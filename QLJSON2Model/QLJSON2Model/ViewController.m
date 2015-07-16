@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "UserInfoModel.h"
+#import "ManageConcern.h"
 
 @interface ViewController ()
 
@@ -15,15 +16,25 @@
 
 @implementation ViewController
 
+- (NSString *)jsonFilePath:(NSString *)fName
+{
+    return [[NSBundle mainBundle]pathForResource:fName ofType:@"json"];
+}
+
+- (NSDictionary *)readBundleJSONFile:(NSString *)fName
+{
+    NSData *data = [NSData dataWithContentsOfFile:[self jsonFilePath:fName]];
+    return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+}
+
 - (NSDictionary *)readUserInfo
 {
-    //==Json文件路径
-    NSString *paths= [[NSBundle mainBundle]pathForResource:@"Userinfo" ofType:@"json"];
-    //==Json数据
-    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:paths];
-    //==JsonObject
-    return data;
-    
+    return [NSDictionary dictionaryWithContentsOfFile:[self jsonFilePath:@"Userinfo"]];
+}
+
+- (NSDictionary *)readManageConcern
+{
+    return [self readBundleJSONFile:@"ManageConcern"];
 }
 
 - (void)viewDidLoad {
@@ -32,6 +43,9 @@
     NSDictionary *userInfoDic = [self readUserInfo];
     
     UserInfoModel *uModel = [UserInfoModel instanceFormDic:userInfoDic];
+    
+    NSDictionary *mConInfoDic = [self readManageConcern];
+    ManageConcern *mConModel = [ManageConcern instanceFormDic:mConInfoDic];
     
 }
 

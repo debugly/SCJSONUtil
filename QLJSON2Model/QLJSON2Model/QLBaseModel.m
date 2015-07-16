@@ -8,8 +8,7 @@
 
 #import "QLBaseModel.h"
 
-const bool isTransferNumber2String = 1;    //？将数字转为字符串
-const bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
+const bool isTransferNumber2String = true;    //？将数字转为字符串
 
 @implementation QLBaseModel
 
@@ -47,9 +46,7 @@ const bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
             }
         }
     }else if(!obj || [obj isKindOfClass:[NSNull class]]){
-        if(isTransferNull2EmptyString){
-            [self setValue:@"" forKey:key];
-        }
+        NSLog(@"value is nil！");
     }else{
         NSLog(@"无法解析的类型！");
     }
@@ -61,8 +58,6 @@ const bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
         [self handleValue:obj thenAssign:key];
     }];
 }
-
-- (void)valueNeedTransfer{}
 
 + (instancetype)instanceFormDic:(NSDictionary *)dic
 {
@@ -94,7 +89,6 @@ const bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
     }
     
     NSString *modleName = [[self collideKeyModelMap]objectForKey:key];
-    
     id finalValue = value;
     
     if ([value isKindOfClass:[NSArray class]]) {
@@ -115,14 +109,12 @@ const bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
     [self autoSetValue:value forUndefinedKey:key];
 }
 
-- (NSDictionary *)collideKeyModelMap
-{
-    return nil;
-}
+#pragma mark -AnalyzeJSON2ModelProtocol
 
-- (NSDictionary *)collideKeysMap
-{
-    return nil;
-}
+- (void)valueNeedTransfer {}
+
+- (NSDictionary *)collideKeyModelMap {return nil;}
+
+- (NSDictionary *)collideKeysMap {return nil;}
 
 @end

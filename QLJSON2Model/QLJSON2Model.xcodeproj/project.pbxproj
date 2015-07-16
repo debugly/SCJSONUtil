@@ -21,6 +21,7 @@
 		B4A9815D1B55005B00A216AB /* newMainPageSecond.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981591B55005B00A216AB /* newMainPageSecond.json */; };
 		B4A9815E1B55005B00A216AB /* NewRecProduct.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A9815A1B55005B00A216AB /* NewRecProduct.json */; };
 		B4A981611B5501AE00A216AB /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981601B5501AE00A216AB /* UserInfoModel.m */; };
+		B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FB4CC41B57924B007045D7 /* ManageConcern.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		B4A9815A1B55005B00A216AB /* NewRecProduct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewRecProduct.json; sourceTree = "<group>"; };
 		B4A9815F1B5501AE00A216AB /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		B4A981601B5501AE00A216AB /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		B4FB4CC31B57924B007045D7 /* ManageConcern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageConcern.h; sourceTree = "<group>"; };
+		B4FB4CC41B57924B007045D7 /* ManageConcern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageConcern.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,8 @@
 				B4A981581B55005B00A216AB /* newMainPageFirst.json */,
 				B4A981591B55005B00A216AB /* newMainPageSecond.json */,
 				B4A9815A1B55005B00A216AB /* NewRecProduct.json */,
+				B4FB4CC31B57924B007045D7 /* ManageConcern.h */,
+				B4FB4CC41B57924B007045D7 /* ManageConcern.m */,
 				B4A9815F1B5501AE00A216AB /* UserInfoModel.h */,
 				B4A981601B5501AE00A216AB /* UserInfoModel.m */,
 				B4A981521B54FED800A216AB /* QLBaseModel.h */,
@@ -250,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A981351B54FE1700A216AB /* ViewController.m in Sources */,
+				B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */,
 				B4A981611B5501AE00A216AB /* UserInfoModel.m in Sources */,
 				B4A981321B54FE1700A216AB /* AppDelegate.m in Sources */,
 				B4A981541B54FED800A216AB /* QLBaseModel.m in Sources */,
@@ -450,6 +456,7 @@
 				B4A9814E1B54FE1700A216AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4A9814F1B54FE1700A216AB /* Build configuration list for PBXNativeTarget "QLJSON2ModelTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +465,7 @@
 				B4A981511B54FE1700A216AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -20,6 +20,9 @@
  */
 - (NSDictionary *)collideKeyModelMap;
 
+//如果需要进行值的转化，可以实现这个方法；比如：你想把一个String转为URL等
+- (void)valueNeedTransfer;
+
 @end
 
 @interface QLBaseModel : NSObject <AnalyzeJSON2ModelProtocol>
@@ -38,7 +41,7 @@
  */
 + (NSArray *)instanceArrFormArray:(NSArray *)arr;
 
+//创建实例后用这个方法可以把字典里的值塞到model中，这个方法不会触发valueNeedTransfer方法；
 - (void)assembleDataFormDic:(NSDictionary *)dic;
-- (void)valueNeedTransfer;
 
 @end
