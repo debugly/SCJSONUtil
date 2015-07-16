@@ -132,5 +132,5 @@ const bool isTransferNumber2String = true;    //？将数字转为字符串
 ```
 * 解析的结果：
 
-<img src="https://github.com/SummerHanada/QLJSON2Model/blob/master/Snip20150716_2.png" width="320" height="568">
+<img src="https://github.com/SummerHanada/QLJSON2Model/blob/master/Snip20150716_2.png" width="392" height="453">
 
