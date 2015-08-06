@@ -44,7 +44,7 @@
 @interface UserInfoModel : QLBaseModel
 
 @property (nonatomic,copy) NSString *code;
-@property (nonatomic,retain) DataInfoModel *dataInfo;
+@property (nonatomic,retain) DataInfoModel *data; //这是1.0.2 版本，这个key可以和 JSON的 key一样了，上个版本可是不允许的！
 
 @end
 

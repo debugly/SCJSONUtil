@@ -66,8 +66,8 @@
     return @{@"data":@"DataInfoModel"};
 }
 
-- (NSDictionary *)collideKeysMap
-{
-    return @{@"data":@"dataInfo"};
-}
+//- (NSDictionary *)collideKeysMap
+//{
+//    return @{@"data":@"dataInfo"};
+//}
 @end
