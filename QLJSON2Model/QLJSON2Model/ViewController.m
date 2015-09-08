@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "UserInfoModel.h"
 #import "ManageConcern.h"
+#import "JSONUtil.h"
 
 @interface ViewController ()
 
@@ -37,6 +38,11 @@
     return [self readBundleJSONFile:@"ManageConcern"];
 }
 
+- (NSDictionary *)readNewMainPageFirst
+{
+    return [self readBundleJSONFile:@"newMainPageFirst"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -46,6 +52,21 @@
     
     NSDictionary *mConInfoDic = [self readManageConcern];
     ManageConcern *mConModel = [ManageConcern instanceFormDic:mConInfoDic];
+    
+//    使用JSONUtil解析；
+    
+//    假如这就是网络请求返回的数据
+    NSDictionary *newMainPageInfo = [self readNewMainPageFirst];
+    //    那么我的model名字叫GalleryModel；对应的 JOSN keypath 是 @"content/gallery" ;
+//    {
+//    "code": "0",
+//    "content": {
+//        "gallery": [
+    
+//    所以解析就是：
+    id findedJSON = findJSONwithKeyPath(@"content/gallery", newMainPageInfo); //根据keypath找到目标JOSN
+    NSArray *models = JSON2Model(findedJSON, @"GalleryModel");
+//    这完全可以封装到我们的网络请求里！
     
 }
 

@@ -1,9 +1,79 @@
-# QLJSON2Model 1.0.2
+# JSONUtil 2.0
 
-> 很放便把 JSON 转为 Model，主要使用了 KVC，如果属性名和服务返回 JSON 的 key 不同就配置下 collideKeysMap，如果嵌套了子 Model 就要配置下 collideKeyModelMap；特点是实现简单，性能也很好；当然业内也有功能更加强大的框架，比如： Mentle，ModelJSON，MJExtention 等，他们往往利用 runtime 获取类的属性，然后缓存，这些毕竟要消耗时间和更多的内存,使用系统提供的 KVC 机制或许要好些 ...
-> 1.0.1版本在属性命名上有限制，所谓的"故意制造冲突 key"这个版本去掉了这个限制,更加友好了！
+> QLJSON2Model 改名字啦，叫做 JSONUtil ，之所以重新命名是因为她的巨大改变---更加放便地把 JSON 转为 Model,更加容易使用（考虑到项目中的已有类或许已经继承了父类，不可能在继承 QLBaseModel 了，因此用起来不太方便，这也是我的感受，因此决定改变下）！同时 2.0 带来了两个实用的方法，也已经在项目里使用，现在拿出来分享下！
+
+--------
+
+> 主要使用了 KVC，如果属性名和服务返回 JSON 的 key 不同就配置下 collideKeysMap，如果嵌套了子 Model 就要配置下 collideKeyModelMap；特点是实现简单，性能也很好；当然业内也有功能更加强大的框架，比如： Mentle，ModelJSON，MJExtention 等，他们往往利用 runtime 获取类的属性，然后缓存，这些毕竟要消耗时间和更多的内存,使用系统提供的 KVC 机制或许要好些 ...
+
+> * 1.0.1版本在属性命名上有限制，所谓的"故意制造冲突 key";
+> * 1.0.2版本去掉了上个版本的冲突 key 限制,友好了许多;
+> * 2.0 版去掉了必须继承父类的不便利，可谓更加友好话，贴合实际;
+
+--------
 
 ### 简介
+
+假使你已经会用我的上个版本了，那么你会感觉新版更加容易使用的；如果还没用过也不必去看 1.0 了，因为 2.0 更加简单，只需《一看二建三解析》，直接看代码比较直观：
+
+
+* 先看 JOSN ，毕竟我们是要把 JSON 转为 Model 嘛
+
+	```
+	{
+	    "code": "0",
+	    "content": {
+	        "gallery": [
+	                    {
+	                    "isFlagship": "0",
+	                    "name": "白色情人节 与浪漫牵手",
+	                    "pic": "http://pic16.shangpin.com/e/s/15/03/06/20150306174649601525-10-10.jpg",
+	                    "refContent": "http://m.shangpin.com/meet/189",
+	                    "type": "5"
+	                    },
+	
+	```
+
+* 然后建立 model；注意继承关系，1.0的必须继承父类限制没了，爽吧！
+
+	```
+	@interface GalleryModel : NSObject
+	
+	@property (nonatomic, copy) NSString *isFlagship;
+	@property (nonatomic, copy) NSString *name;
+	@property (nonatomic, copy) NSString *pic;
+	@property (nonatomic, copy) NSString *refContent;
+	@property (nonatomic, copy) NSString *type;
+	
+	@end
+	```
+
+* 最后 使用JSONUtil解析
+
+	``` 
+	//    假如这就是网络请求返回的数据
+	    NSDictionary *newMainPageInfo = [self readNewMainPageFirst];
+	//    我的model名字叫GalleryModel；观察之后确定目标 keypath 是 @"content/gallery" ;
+	//    {
+	//    "code": "0",
+	//    "content": {
+	//        "gallery": [
+	    
+	    
+	//    model 和 keypath 确定之后就好办了：
+	    id findedJSON = findJSONwithKeyPath(@"content/gallery", newMainPageInfo); //根据keypath找到目标JOSN
+	    NSArray *models = JSON2Model(findedJSON, @"GalleryModel");//一句话解析
+	//    这完全可以封装到我们的网络请求里！
+	
+	```
+	
+### 使用JSONUtil解析JOSN就这么简单，看下刚才的效果吧：
+
+<img src="https://github.com/SummerHanada/QLJSON2Model/blob/master/Snip20150716_2.png" width="392" height="453">
+
+-------
+
+### 1.0版本简介
 
 > QLBaseModel 类中的提供的方法：
 

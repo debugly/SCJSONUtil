@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B480113A1B9F3A8C00DF18C2 /* JSONUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B48011391B9F3A8C00DF18C2 /* JSONUtil.m */; };
+		B480113F1B9F3B5800DF18C2 /* GalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B480113E1B9F3B5800DF18C2 /* GalleryModel.m */; };
 		B4A9812F1B54FE1700A216AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9812E1B54FE1700A216AB /* main.m */; };
 		B4A981321B54FE1700A216AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981311B54FE1700A216AB /* AppDelegate.m */; };
 		B4A981351B54FE1700A216AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981341B54FE1700A216AB /* ViewController.m */; };
 		B4A981381B54FE1700A216AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A981361B54FE1700A216AB /* Main.storyboard */; };
 		B4A9813A1B54FE1700A216AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A981391B54FE1700A216AB /* Images.xcassets */; };
 		B4A9813D1B54FE1700A216AB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A9813B1B54FE1700A216AB /* LaunchScreen.xib */; };
-		B4A981491B54FE1700A216AB /* QLJSON2ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981481B54FE1700A216AB /* QLJSON2ModelTests.m */; };
 		B4A981541B54FED800A216AB /* QLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981531B54FED800A216AB /* QLBaseModel.m */; };
 		B4A981561B55004900A216AB /* Userinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981551B55004900A216AB /* Userinfo.json */; };
 		B4A9815B1B55005B00A216AB /* ManageConcern.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981571B55005B00A216AB /* ManageConcern.json */; };
@@ -24,17 +25,11 @@
 		B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FB4CC41B57924B007045D7 /* ManageConcern.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B4A981431B54FE1700A216AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B4A981211B54FE1700A216AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4A981281B54FE1700A216AB;
-			remoteInfo = QLJSON2Model;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		B48011381B9F3A8C00DF18C2 /* JSONUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONUtil.h; sourceTree = "<group>"; };
+		B48011391B9F3A8C00DF18C2 /* JSONUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONUtil.m; sourceTree = "<group>"; };
+		B480113D1B9F3B5800DF18C2 /* GalleryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryModel.h; sourceTree = "<group>"; };
+		B480113E1B9F3B5800DF18C2 /* GalleryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryModel.m; sourceTree = "<group>"; };
 		B4A981291B54FE1700A216AB /* QLJSON2Model.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QLJSON2Model.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A9812D1B54FE1700A216AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4A9812E1B54FE1700A216AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,7 +40,6 @@
 		B4A981371B54FE1700A216AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4A981391B54FE1700A216AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B4A9813C1B54FE1700A216AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		B4A981421B54FE1700A216AB /* QLJSON2ModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QLJSON2ModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A981471B54FE1700A216AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4A981481B54FE1700A216AB /* QLJSON2ModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLJSON2ModelTests.m; sourceTree = "<group>"; };
 		B4A981521B54FED800A216AB /* QLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLBaseModel.h; sourceTree = "<group>"; };
@@ -69,16 +63,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4A9813F1B54FE1700A216AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B480113B1B9F3AE000DF18C2 /* QLJSON2Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4FB4CC31B57924B007045D7 /* ManageConcern.h */,
+				B4FB4CC41B57924B007045D7 /* ManageConcern.m */,
+				B4A9815F1B5501AE00A216AB /* UserInfoModel.h */,
+				B4A981601B5501AE00A216AB /* UserInfoModel.m */,
+				B4A981521B54FED800A216AB /* QLBaseModel.h */,
+				B4A981531B54FED800A216AB /* QLBaseModel.m */,
+			);
+			name = QLJSON2Model;
+			sourceTree = "<group>";
+		};
+		B480113C1B9F3B1100DF18C2 /* JSONUtil(New) */ = {
+			isa = PBXGroup;
+			children = (
+				B48011381B9F3A8C00DF18C2 /* JSONUtil.h */,
+				B48011391B9F3A8C00DF18C2 /* JSONUtil.m */,
+				B480113D1B9F3B5800DF18C2 /* GalleryModel.h */,
+				B480113E1B9F3B5800DF18C2 /* GalleryModel.m */,
+			);
+			name = "JSONUtil(New)";
+			sourceTree = "<group>";
+		};
 		B4A981201B54FE1700A216AB = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				B4A981291B54FE1700A216AB /* QLJSON2Model.app */,
-				B4A981421B54FE1700A216AB /* QLJSON2ModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,17 +110,8 @@
 		B4A9812B1B54FE1700A216AB /* QLJSON2Model */ = {
 			isa = PBXGroup;
 			children = (
-				B4A981551B55004900A216AB /* Userinfo.json */,
-				B4A981571B55005B00A216AB /* ManageConcern.json */,
-				B4A981581B55005B00A216AB /* newMainPageFirst.json */,
-				B4A981591B55005B00A216AB /* newMainPageSecond.json */,
-				B4A9815A1B55005B00A216AB /* NewRecProduct.json */,
-				B4FB4CC31B57924B007045D7 /* ManageConcern.h */,
-				B4FB4CC41B57924B007045D7 /* ManageConcern.m */,
-				B4A9815F1B5501AE00A216AB /* UserInfoModel.h */,
-				B4A981601B5501AE00A216AB /* UserInfoModel.m */,
-				B4A981521B54FED800A216AB /* QLBaseModel.h */,
-				B4A981531B54FED800A216AB /* QLBaseModel.m */,
+				B480113C1B9F3B1100DF18C2 /* JSONUtil(New) */,
+				B480113B1B9F3AE000DF18C2 /* QLJSON2Model */,
 				B4A981301B54FE1700A216AB /* AppDelegate.h */,
 				B4A981311B54FE1700A216AB /* AppDelegate.m */,
 				B4A981331B54FE1700A216AB /* ViewController.h */,
@@ -126,6 +127,11 @@
 		B4A9812C1B54FE1700A216AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4A981551B55004900A216AB /* Userinfo.json */,
+				B4A981571B55005B00A216AB /* ManageConcern.json */,
+				B4A981581B55005B00A216AB /* newMainPageFirst.json */,
+				B4A981591B55005B00A216AB /* newMainPageSecond.json */,
+				B4A9815A1B55005B00A216AB /* NewRecProduct.json */,
 				B4A9812D1B54FE1700A216AB /* Info.plist */,
 				B4A9812E1B54FE1700A216AB /* main.m */,
 			);
@@ -169,39 +175,17 @@
 			productReference = B4A981291B54FE1700A216AB /* QLJSON2Model.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B4A981411B54FE1700A216AB /* QLJSON2ModelTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B4A9814F1B54FE1700A216AB /* Build configuration list for PBXNativeTarget "QLJSON2ModelTests" */;
-			buildPhases = (
-				B4A9813E1B54FE1700A216AB /* Sources */,
-				B4A9813F1B54FE1700A216AB /* Frameworks */,
-				B4A981401B54FE1700A216AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B4A981441B54FE1700A216AB /* PBXTargetDependency */,
-			);
-			name = QLJSON2ModelTests;
-			productName = QLJSON2ModelTests;
-			productReference = B4A981421B54FE1700A216AB /* QLJSON2ModelTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B4A981211B54FE1700A216AB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = xuqianlong;
 				TargetAttributes = {
 					B4A981281B54FE1700A216AB = {
 						CreatedOnToolsVersion = 6.3.1;
-					};
-					B4A981411B54FE1700A216AB = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = B4A981281B54FE1700A216AB;
 					};
 				};
 			};
@@ -219,7 +203,6 @@
 			projectRoot = "";
 			targets = (
 				B4A981281B54FE1700A216AB /* QLJSON2Model */,
-				B4A981411B54FE1700A216AB /* QLJSON2ModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,13 +223,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4A981401B54FE1700A216AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -256,6 +232,8 @@
 			files = (
 				B4A981351B54FE1700A216AB /* ViewController.m in Sources */,
 				B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */,
+				B480113F1B9F3B5800DF18C2 /* GalleryModel.m in Sources */,
+				B480113A1B9F3A8C00DF18C2 /* JSONUtil.m in Sources */,
 				B4A981611B5501AE00A216AB /* UserInfoModel.m in Sources */,
 				B4A981321B54FE1700A216AB /* AppDelegate.m in Sources */,
 				B4A981541B54FED800A216AB /* QLBaseModel.m in Sources */,
@@ -263,23 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4A9813E1B54FE1700A216AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4A981491B54FE1700A216AB /* QLJSON2ModelTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B4A981441B54FE1700A216AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4A981281B54FE1700A216AB /* QLJSON2Model */;
-			targetProxy = B4A981431B54FE1700A216AB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B4A981361B54FE1700A216AB /* Main.storyboard */ = {
@@ -322,6 +284,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -337,7 +300,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -375,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -389,6 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QLJSON2Model/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.study.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -399,41 +363,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QLJSON2Model/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.study.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		B4A981501B54FE1700A216AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = QLJSON2ModelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QLJSON2Model.app/QLJSON2Model";
-			};
-			name = Debug;
-		};
-		B4A981511B54FE1700A216AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = QLJSON2ModelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QLJSON2Model.app/QLJSON2Model";
 			};
 			name = Release;
 		};
@@ -454,15 +385,6 @@
 			buildConfigurations = (
 				B4A9814D1B54FE1700A216AB /* Debug */,
 				B4A9814E1B54FE1700A216AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B4A9814F1B54FE1700A216AB /* Build configuration list for PBXNativeTarget "QLJSON2ModelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B4A981501B54FE1700A216AB /* Debug */,
-				B4A981511B54FE1700A216AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

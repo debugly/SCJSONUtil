@@ -1,22 +1,29 @@
 //
-//  QLBaseModel.m
-//  PengBei
+//  JSONUtil.m
+//  BeautyLore
 //
-//  Created by xuqianlong on 15/3/5.
-//  Copyright (c) 2015年 夕阳栗子. All rights reserved.
+//  Created by xuqianlong on 15/9/3.
+//  Copyright (c) 2015年 Mac. All rights reserved.
 //
 
-#import "QLBaseModel.h"
+#import "JSONUtil.h"
 
-static bool isTransferNumber2String = true;    //？将数字转为字符串
+static bool isTransferNumber2String = 1;    //？将数字转为字符串
+static bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
 
-@implementation QLBaseModel
-
+@implementation NSObject (AnalyzeJSON2Model)
 
 - (void)handleValue:(id)obj thenAssign:(NSString *)key
 {
-    NSString *modleName = [[self collideKeyModelMap]objectForKey:key];
-    //    没有配置model就直接赋值；
+    NSString *modleName = nil;
+    if ([self respondsToSelector:@selector(collideKeyModelMap)]) {
+        modleName = [[self collideKeyModelMap]objectForKey:key];
+    }
+    
+    if ([self respondsToSelector:@selector(collideKeysMap)]) {
+        key = [[self collideKeysMap]objectForKey:key] ?: key;
+    }
+
     if (modleName) {
         
         if ([obj isKindOfClass:[NSArray class]]) {
@@ -30,14 +37,8 @@ static bool isTransferNumber2String = true;    //？将数字转为字符串
         }
     }
     
-    NSString *newKey = [[self collideKeysMap]objectForKey:key];
-//    model 指定了新的key了；
-    if (newKey) {
-        key = newKey;
-    }
-    
-    //        stirng、字典、model直接塞值；
-    if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[QLBaseModel class]])
+    //        stirng、字典
+    if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSDictionary class]])
     {
         [self setValue:obj forKeyPath:key];
         
@@ -70,7 +71,8 @@ static bool isTransferNumber2String = true;    //？将数字转为字符串
     }else if(!obj || [obj isKindOfClass:[NSNull class]]){
         NSLog(@"key is [%@],value is nil！",key);
     }else{
-        NSLog(@"key is [%@],value无法解析的类型！",key);
+//        应该是instance
+        [self setValue:obj forKeyPath:key];
     }
 }
 
@@ -83,9 +85,9 @@ static bool isTransferNumber2String = true;    //？将数字转为字符串
 
 + (instancetype)instanceFormDic:(NSDictionary *)dic
 {
-    QLBaseModel *obj = [[self alloc]init];
+    NSObject *obj = [[self alloc]init];
     [obj assembleDataFormDic:dic];
-    [obj valueNeedTransfer];
+    [obj respondsToSelector:@selector(valueNeedTransfer)]?[obj valueNeedTransfer]:(nil);
     return obj;
 }
 
@@ -102,42 +104,70 @@ static bool isTransferNumber2String = true;    //？将数字转为字符串
     return [NSArray arrayWithArray:modelArr];
 }
 
-//- (void)autoSetValue:(id)value forUndefinedKey:(NSString *)key
-//{
-//    NSString *propertyKey = [[self collideKeysMap]objectForKey:key];
-//    
-//    if (!propertyKey || propertyKey.length == 0) {
-//        return;
-//    }
-//    
-//    NSString *modleName = [[self collideKeyModelMap]objectForKey:key];
-//    id finalValue = value;
-//    
-//    if ([value isKindOfClass:[NSArray class]]) {
-//        if (modleName && modleName.length > 0) {
-//            Class clazz = NSClassFromString(modleName);
-//            finalValue = [clazz instanceArrFormArray:value];
-//        }
-//    }else if ([value isKindOfClass:[NSDictionary class]]){
-//        Class clazz = NSClassFromString(modleName);
-//        finalValue = [clazz instanceFormDic:value];
-//    }
-//    
-//    [self handleValue:finalValue thenAssign:propertyKey];
-//}
-//
++ (id)instanceFormJSON:(id)json
+{
+    if([json isKindOfClass:[NSArray class]]){
+       return [self instanceArrFormArray:json];
+    }else if([json isKindOfClass:[NSDictionary class]]){
+        return [self instanceFormDic:json];
+    }else{
+#ifdef DEBUG
+        NSParameterAssert(NO);
+#endif
+        return nil;
+    }
+}
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-//    [self autoSetValue:value forUndefinedKey:key];
     NSLog(@"没有解析的key is [%@],value is %@",key,value);
 }
 
-#pragma mark -AnalyzeJSON2ModelProtocol
-
-- (void)valueNeedTransfer {}
-
-- (NSDictionary *)collideKeyModelMap {return nil;}
-
-- (NSDictionary *)collideKeysMap {return nil;}
-
 @end
+
+
+#pragma mark - JOSNUtil methods
+
+static inline id findJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *JSON)
+{
+    if (!JSON) {
+        return nil;
+    }
+    if (!pathArr || pathArr.count == 0) {
+        return JSON;
+    }
+    NSMutableArray *pathArr2 = [NSMutableArray arrayWithArray:pathArr];
+    
+    while ([pathArr2 firstObject] && [[pathArr2 firstObject] description].length == 0) {
+        [pathArr2 removeObjectAtIndex:0];
+    }
+    if ([pathArr2 firstObject]) {
+        JSON = [JSON objectForKey:[pathArr2 firstObject]];
+        [pathArr2 removeObjectAtIndex:0];
+        return findJSONwithKeyPathArr(pathArr2, JSON);
+    }else{
+        return JSON;
+    }
+}
+
+id findJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON)
+{
+    if (!keyPath || keyPath.length == 0) {
+        return JSON;
+    }
+    NSArray *pathArr = [keyPath componentsSeparatedByString:@"/"];
+    
+    return findJSONwithKeyPathArr(pathArr, JSON);
+}
+
+id JSON2Model(id findJson,NSString *modelName)
+{
+    Class clazz = NSClassFromString(modelName);
+    id model = nil;
+    if ([findJson isKindOfClass:[NSDictionary class]]) {
+        model = [clazz instanceFormDic:findJson];
+    }else if([findJson isKindOfClass:[NSArray class]]){
+        model = [clazz instanceArrFormArray:findJson];
+    }
+    return model;
+}
