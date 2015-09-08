@@ -69,7 +69,7 @@
 	
 ### 使用JSONUtil解析JOSN就这么简单，看下刚才的效果吧：
 
-<img src="https://github.com/SummerHanada/QLJSON2Model/blob/master/Snip20150716_2.png" width="392" height="453">
+<img src="https://github.com/SummerHanada/QLJSON2Model/blob/master/2015-09-09-12.03.08.png" width="1177" height="765">
 
 -------
 
