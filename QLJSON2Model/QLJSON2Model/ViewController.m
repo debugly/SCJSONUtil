@@ -10,6 +10,9 @@
 #import "UserInfoModel.h"
 #import "ManageConcern.h"
 #import "JSONUtil.h"
+#import "NSObject+DebugDescription.h"
+#import "NSArray+DebugDescription.h"
+#import "NSObject+PrintProperties.h"
 
 @interface ViewController ()
 
@@ -50,16 +53,18 @@
     
     UserInfoModel *uModel = [UserInfoModel instanceFormDic:userInfoDic];
     
+    NSLog(@"----%@",[uModel DEBUGDescrption]);
+    
     NSDictionary *mConInfoDic = [self readManageConcern];
     ManageConcern *mConModel = [ManageConcern instanceFormDic:mConInfoDic];
-    
+    NSLog(@"----%@",[mConModel DEBUGDescrption]);
 //    使用JSONUtil解析；
     
 //    假如这就是网络请求返回的数据
     NSDictionary *newMainPageInfo = [self readNewMainPageFirst];
     //    那么我的model名字叫GalleryModel；对应的 JOSN keypath 是 @"content/gallery" ;
 //    {
-//    "code": "0",
+//    "code": "0", 
 //    "content": {
 //        "gallery": [
     
@@ -68,6 +73,10 @@
     NSArray *models = JSON2Model(findedJSON, @"GalleryModel");
 //    这完全可以封装到我们的网络请求里！
     
+//    NSArray *arr = [models objectArray2JSONArray];
+//    NSLog(@"----%@",arr);
+
+     NSLog(@"----%@",[models DEBUGDescrption]);
 }
 
 - (void)didReceiveMemoryWarning {

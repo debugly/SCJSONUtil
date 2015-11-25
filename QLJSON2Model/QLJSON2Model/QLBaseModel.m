@@ -12,7 +12,6 @@ static bool isTransferNumber2String = true;    //？将数字转为字符串
 
 @implementation QLBaseModel
 
-
 - (void)handleValue:(id)obj thenAssign:(NSString *)key
 {
     NSString *modleName = [[self collideKeyModelMap]objectForKey:key];

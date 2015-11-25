@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48DF794F1C057FE100808897 /* NSObject+DebugDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF794E1C057FE100808897 /* NSObject+DebugDescription.m */; };
+		48DF79521C05813100808897 /* NSArray+DebugDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF79511C05813100808897 /* NSArray+DebugDescription.m */; };
+		48DF79561C05921F00808897 /* NSObject+PrintProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF79551C05921F00808897 /* NSObject+PrintProperties.m */; };
 		B480113A1B9F3A8C00DF18C2 /* JSONUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B48011391B9F3A8C00DF18C2 /* JSONUtil.m */; };
 		B480113F1B9F3B5800DF18C2 /* GalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B480113E1B9F3B5800DF18C2 /* GalleryModel.m */; };
 		B4A9812F1B54FE1700A216AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9812E1B54FE1700A216AB /* main.m */; };
@@ -26,6 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48DF794D1C057FE100808897 /* NSObject+DebugDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DebugDescription.h"; sourceTree = "<group>"; };
+		48DF794E1C057FE100808897 /* NSObject+DebugDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DebugDescription.m"; sourceTree = "<group>"; };
+		48DF79501C05813100808897 /* NSArray+DebugDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DebugDescription.h"; sourceTree = "<group>"; };
+		48DF79511C05813100808897 /* NSArray+DebugDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DebugDescription.m"; sourceTree = "<group>"; };
+		48DF79541C05921F00808897 /* NSObject+PrintProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PrintProperties.h"; sourceTree = "<group>"; };
+		48DF79551C05921F00808897 /* NSObject+PrintProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PrintProperties.m"; sourceTree = "<group>"; };
 		B48011381B9F3A8C00DF18C2 /* JSONUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONUtil.h; sourceTree = "<group>"; };
 		B48011391B9F3A8C00DF18C2 /* JSONUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONUtil.m; sourceTree = "<group>"; };
 		B480113D1B9F3B5800DF18C2 /* GalleryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryModel.h; sourceTree = "<group>"; };
@@ -66,6 +75,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48DF79531C0591E400808897 /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				48DF794D1C057FE100808897 /* NSObject+DebugDescription.h */,
+				48DF794E1C057FE100808897 /* NSObject+DebugDescription.m */,
+				48DF79501C05813100808897 /* NSArray+DebugDescription.h */,
+				48DF79511C05813100808897 /* NSArray+DebugDescription.m */,
+				48DF79541C05921F00808897 /* NSObject+PrintProperties.h */,
+				48DF79551C05921F00808897 /* NSObject+PrintProperties.m */,
+			);
+			name = Description;
+			sourceTree = "<group>";
+		};
 		B480113B1B9F3AE000DF18C2 /* QLJSON2Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +134,7 @@
 			children = (
 				B480113C1B9F3B1100DF18C2 /* JSONUtil(New) */,
 				B480113B1B9F3AE000DF18C2 /* QLJSON2Model */,
+				48DF79531C0591E400808897 /* Description */,
 				B4A981301B54FE1700A216AB /* AppDelegate.h */,
 				B4A981311B54FE1700A216AB /* AppDelegate.m */,
 				B4A981331B54FE1700A216AB /* ViewController.h */,
@@ -233,10 +256,13 @@
 				B4A981351B54FE1700A216AB /* ViewController.m in Sources */,
 				B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */,
 				B480113F1B9F3B5800DF18C2 /* GalleryModel.m in Sources */,
+				48DF79561C05921F00808897 /* NSObject+PrintProperties.m in Sources */,
 				B480113A1B9F3A8C00DF18C2 /* JSONUtil.m in Sources */,
 				B4A981611B5501AE00A216AB /* UserInfoModel.m in Sources */,
 				B4A981321B54FE1700A216AB /* AppDelegate.m in Sources */,
 				B4A981541B54FED800A216AB /* QLBaseModel.m in Sources */,
+				48DF79521C05813100808897 /* NSArray+DebugDescription.m in Sources */,
+				48DF794F1C057FE100808897 /* NSObject+DebugDescription.m in Sources */,
 				B4A9812F1B54FE1700A216AB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
