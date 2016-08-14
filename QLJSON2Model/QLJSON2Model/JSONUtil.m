@@ -9,7 +9,6 @@
 #import "JSONUtil.h"
 
 static bool isTransferNumber2String = 1;    //？将数字转为字符串
-static bool isTransferNull2EmptyString = 0; //？将null或者nil转为@""
 
 @implementation NSObject (AnalyzeJSON2Model)
 

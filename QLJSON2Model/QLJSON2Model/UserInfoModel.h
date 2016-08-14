@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 xuqianlong. All rights reserved.
 //
 
-#import "QLBaseModel.h"
+#import <Foundation/Foundation.h>
 
-@interface AvatarInfoModel : QLBaseModel
+@interface AvatarInfoModel : NSObject
 
 @property (nonatomic,copy) NSString *original_url;
 @property (nonatomic,copy) NSString *thumbnail_url;
@@ -16,7 +16,7 @@
 
 @end
 
-@interface CarInfoModel : QLBaseModel
+@interface CarInfoModel : NSObject
 
 @property (nonatomic,copy) NSString *bought_time;
 @property (nonatomic,copy) NSString *brand;
@@ -24,7 +24,7 @@
 
 @end
 
-@interface BasicInfoModel : QLBaseModel
+@interface BasicInfoModel : NSObject
 
 @property (nonatomic,retain) AvatarInfoModel *avatarInfo;
 @property (nonatomic,copy)   NSString *gender;
@@ -34,14 +34,14 @@
 
 @end
 
-@interface DataInfoModel : QLBaseModel
+@interface DataInfoModel : NSObject
 
 @property (nonatomic,retain) BasicInfoModel *basicInfo;
 @property (nonatomic,retain) NSMutableArray *carInfoArr;
 
 @end
 
-@interface UserInfoModel : QLBaseModel
+@interface UserInfoModel : NSObject
 
 @property (nonatomic,copy) NSString *code;
 @property (nonatomic,retain) DataInfoModel *data; //这是1.0.2 版本，这个key可以和 JSON的 key一样了，上个版本可是不允许的！

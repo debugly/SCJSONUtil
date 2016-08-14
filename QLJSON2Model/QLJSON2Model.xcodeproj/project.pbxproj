@@ -18,14 +18,13 @@
 		B4A981381B54FE1700A216AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A981361B54FE1700A216AB /* Main.storyboard */; };
 		B4A9813A1B54FE1700A216AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A981391B54FE1700A216AB /* Images.xcassets */; };
 		B4A9813D1B54FE1700A216AB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A9813B1B54FE1700A216AB /* LaunchScreen.xib */; };
-		B4A981541B54FED800A216AB /* QLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981531B54FED800A216AB /* QLBaseModel.m */; };
 		B4A981561B55004900A216AB /* Userinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981551B55004900A216AB /* Userinfo.json */; };
-		B4A9815B1B55005B00A216AB /* ManageConcern.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981571B55005B00A216AB /* ManageConcern.json */; };
+		B4A9815B1B55005B00A216AB /* FavConcern.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981571B55005B00A216AB /* FavConcern.json */; };
 		B4A9815C1B55005B00A216AB /* newMainPageFirst.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981581B55005B00A216AB /* newMainPageFirst.json */; };
 		B4A9815D1B55005B00A216AB /* newMainPageSecond.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A981591B55005B00A216AB /* newMainPageSecond.json */; };
 		B4A9815E1B55005B00A216AB /* NewRecProduct.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A9815A1B55005B00A216AB /* NewRecProduct.json */; };
 		B4A981611B5501AE00A216AB /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A981601B5501AE00A216AB /* UserInfoModel.m */; };
-		B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FB4CC41B57924B007045D7 /* ManageConcern.m */; };
+		B4FB4CC51B57924B007045D7 /* FavModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FB4CC41B57924B007045D7 /* FavModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,17 +50,15 @@
 		B4A9813C1B54FE1700A216AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B4A981471B54FE1700A216AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4A981481B54FE1700A216AB /* QLJSON2ModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLJSON2ModelTests.m; sourceTree = "<group>"; };
-		B4A981521B54FED800A216AB /* QLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLBaseModel.h; sourceTree = "<group>"; };
-		B4A981531B54FED800A216AB /* QLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLBaseModel.m; sourceTree = "<group>"; };
 		B4A981551B55004900A216AB /* Userinfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Userinfo.json; sourceTree = "<group>"; };
-		B4A981571B55005B00A216AB /* ManageConcern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManageConcern.json; sourceTree = "<group>"; };
+		B4A981571B55005B00A216AB /* FavConcern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FavConcern.json; sourceTree = "<group>"; };
 		B4A981581B55005B00A216AB /* newMainPageFirst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newMainPageFirst.json; sourceTree = "<group>"; };
 		B4A981591B55005B00A216AB /* newMainPageSecond.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newMainPageSecond.json; sourceTree = "<group>"; };
 		B4A9815A1B55005B00A216AB /* NewRecProduct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewRecProduct.json; sourceTree = "<group>"; };
 		B4A9815F1B5501AE00A216AB /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		B4A981601B5501AE00A216AB /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
-		B4FB4CC31B57924B007045D7 /* ManageConcern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageConcern.h; sourceTree = "<group>"; };
-		B4FB4CC41B57924B007045D7 /* ManageConcern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageConcern.m; sourceTree = "<group>"; };
+		B4FB4CC31B57924B007045D7 /* FavModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavModel.h; sourceTree = "<group>"; };
+		B4FB4CC41B57924B007045D7 /* FavModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,17 +85,17 @@
 			name = Description;
 			sourceTree = "<group>";
 		};
-		B480113B1B9F3AE000DF18C2 /* QLJSON2Model */ = {
+		B480113B1B9F3AE000DF18C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B4FB4CC31B57924B007045D7 /* ManageConcern.h */,
-				B4FB4CC41B57924B007045D7 /* ManageConcern.m */,
+				B480113D1B9F3B5800DF18C2 /* GalleryModel.h */,
+				B480113E1B9F3B5800DF18C2 /* GalleryModel.m */,
+				B4FB4CC31B57924B007045D7 /* FavModel.h */,
+				B4FB4CC41B57924B007045D7 /* FavModel.m */,
 				B4A9815F1B5501AE00A216AB /* UserInfoModel.h */,
 				B4A981601B5501AE00A216AB /* UserInfoModel.m */,
-				B4A981521B54FED800A216AB /* QLBaseModel.h */,
-				B4A981531B54FED800A216AB /* QLBaseModel.m */,
 			);
-			name = QLJSON2Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		B480113C1B9F3B1100DF18C2 /* JSONUtil(New) */ = {
@@ -106,8 +103,6 @@
 			children = (
 				B48011381B9F3A8C00DF18C2 /* JSONUtil.h */,
 				B48011391B9F3A8C00DF18C2 /* JSONUtil.m */,
-				B480113D1B9F3B5800DF18C2 /* GalleryModel.h */,
-				B480113E1B9F3B5800DF18C2 /* GalleryModel.m */,
 			);
 			name = "JSONUtil(New)";
 			sourceTree = "<group>";
@@ -133,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B480113C1B9F3B1100DF18C2 /* JSONUtil(New) */,
-				B480113B1B9F3AE000DF18C2 /* QLJSON2Model */,
+				B480113B1B9F3AE000DF18C2 /* Models */,
 				48DF79531C0591E400808897 /* Description */,
 				B4A981301B54FE1700A216AB /* AppDelegate.h */,
 				B4A981311B54FE1700A216AB /* AppDelegate.m */,
@@ -151,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A981551B55004900A216AB /* Userinfo.json */,
-				B4A981571B55005B00A216AB /* ManageConcern.json */,
+				B4A981571B55005B00A216AB /* FavConcern.json */,
 				B4A981581B55005B00A216AB /* newMainPageFirst.json */,
 				B4A981591B55005B00A216AB /* newMainPageSecond.json */,
 				B4A9815A1B55005B00A216AB /* NewRecProduct.json */,
@@ -238,7 +233,7 @@
 				B4A981561B55004900A216AB /* Userinfo.json in Resources */,
 				B4A981381B54FE1700A216AB /* Main.storyboard in Resources */,
 				B4A9815D1B55005B00A216AB /* newMainPageSecond.json in Resources */,
-				B4A9815B1B55005B00A216AB /* ManageConcern.json in Resources */,
+				B4A9815B1B55005B00A216AB /* FavConcern.json in Resources */,
 				B4A9813D1B54FE1700A216AB /* LaunchScreen.xib in Resources */,
 				B4A9813A1B54FE1700A216AB /* Images.xcassets in Resources */,
 				B4A9815C1B55005B00A216AB /* newMainPageFirst.json in Resources */,
@@ -254,13 +249,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A981351B54FE1700A216AB /* ViewController.m in Sources */,
-				B4FB4CC51B57924B007045D7 /* ManageConcern.m in Sources */,
+				B4FB4CC51B57924B007045D7 /* FavModel.m in Sources */,
 				B480113F1B9F3B5800DF18C2 /* GalleryModel.m in Sources */,
 				48DF79561C05921F00808897 /* NSObject+PrintProperties.m in Sources */,
 				B480113A1B9F3A8C00DF18C2 /* JSONUtil.m in Sources */,
 				B4A981611B5501AE00A216AB /* UserInfoModel.m in Sources */,
 				B4A981321B54FE1700A216AB /* AppDelegate.m in Sources */,
-				B4A981541B54FED800A216AB /* QLBaseModel.m in Sources */,
 				48DF79521C05813100808897 /* NSArray+DebugDescription.m in Sources */,
 				48DF794F1C057FE100808897 /* NSObject+DebugDescription.m in Sources */,
 				B4A9812F1B54FE1700A216AB /* main.m in Sources */,
