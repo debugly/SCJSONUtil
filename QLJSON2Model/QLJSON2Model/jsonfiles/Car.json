@@ -1,0 +1,14 @@
+{
+    "b":true,
+    "b1":-1,
+    "b2":"1",
+    "pStorng":
+    {
+        "refContent":3333333,
+        "nameEN":"TopShop",
+        "nameCN":"TopShop",
+        "desc":"描述摘要",
+        "pic": "http://pic14.shangpin.com/e/s/15/04/01/20150401185027193594-10-10.jpg"
+    },
+   "pWeak" :123
+}

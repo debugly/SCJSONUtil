@@ -13,9 +13,9 @@
 //处理就好了
 - (void)valueNeedTransfer
 {
-    if (self.pic) {
-        self.pic = [NSURL URLWithString:(NSString *)self.pic];
-    }
+//    if (self.pic) {
+//        self.pic = [NSURL URLWithString:(NSString *)self.pic];
+//    }
 }
 
 @end

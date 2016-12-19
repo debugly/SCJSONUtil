@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AnalyzeJSON2ModelProtocol <NSObject>
+@protocol JSONUtilProtocol <NSObject>
 
 @optional;
 /**
@@ -29,7 +29,7 @@
 @end
 
 
-@interface NSObject (AnalyzeJSON2Model)<AnalyzeJSON2ModelProtocol>
+@interface NSObject (AnalyzeJSON2Model)<JSONUtilProtocol>
 
 - (void)assembleDataFormDic:(NSDictionary *)dic;
 
@@ -68,5 +68,5 @@ FOUNDATION_EXPORT id JSON2Model(id Json,NSString *modelName);
  *  @brief 根据 keyPath 找到目标 JSON，可辅助 JSON2Model 函数使用，先找到 JOSN 在解析；
  *  @param keyPath JSON里的一个路径；一个以 / 分割的字符串；例如：@"data" , @"data/list";
  */
-FOUNDATION_EXPORT id findJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON);
+FOUNDATION_EXPORT id FindJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON);
 
