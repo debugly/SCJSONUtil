@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "UserInfoModel.h"
 #import "FavModel.h"
-#import "JSONUtil.h"
+#import "SLJSONUtil.h"
 #import "NSObject+DebugDescription.h"
 #import "NSArray+DebugDescription.h"
 #import "NSObject+PrintProperties.h"
@@ -67,7 +67,7 @@
     NSDictionary *userInfoDic = [self readUserInfo];
 
     [self testCount:10000 work:^{
-        UserInfoModel *uModel = [UserInfoModel instanceFormDic:userInfoDic];
+        UserInfoModel *uModel = [UserInfoModel sl_instanceFormDic:userInfoDic];
     }];
 //    10000 次转换耗时:0.51412
 //    100000 次转换耗时:4.61152
@@ -77,7 +77,7 @@
 - (NSString *)testModelsFromJSONArr
 {
     NSArray *favArr = [self readFavConcern];
-    NSArray *favModels = [FavModel instanceArrFormArray:favArr];
+    NSArray *favModels = [FavModel sl_instanceArrFormArray:favArr];
     return [favModels DEBUGDescrption];
 }
 
@@ -102,9 +102,9 @@
     //  model名字叫GalleryModel；对应的 JOSN keypath 是 @"content/gallery" ;
     
     //根据keypath找到目标JOSN
-    id findedJSON = FindJSONwithKeyPath(@"content/gallery", newMainPageInfo);
+    id findedJSON = SLFindJSONwithKeyPath(@"content/gallery", newMainPageInfo);
     //自动根据类型解析；
-    NSArray *models = JSON2Model(findedJSON, @"GalleryModel");
+    NSArray *models = SLJSON2Model(findedJSON, @"GalleryModel");
     //这完全可以封装到我们的网络请求里！
     return [models DEBUGDescrption];
 }
