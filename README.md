@@ -49,9 +49,9 @@
 假设responseJSON是服务器返回的json数据，那么正规的写法是先判断 code 是否等于 0，然后再取出 gallery 对应的json，然后交给 JSONUtil ！JSONUtil提供了便捷的方法能够方便将它取出来：
 
 //1.根据 keypath 取出目标json
-    id findedJSON = FindJSONwithKeyPath(@"content/gallery", responseJSON); 
+    id findedJSON = SCFindJSONwithKeyPath(@"content/gallery", responseJSON); 
 //2.使用 JSONUtil 解析
-    NSArray *models = JSON2Model(findedJSON, @"GalleryModel");
+    NSArray *models = SCJSON2Model(findedJSON, @"GalleryModel");
 
 //models 就是你想要的GalleryModel数组了！
 	
@@ -135,3 +135,4 @@
 * 2.0 则去掉了必须继承父类的限制，可谓更贴合实际了; QLJSON2Model 改名为 JSONUtil ！
 * 2.1 自动匹配类型，比如服务器返回了一个Number，客户端model属性是String，那么框架会帮你自动转为String！
 * 2.2 公司项目也使用这个库，因此遵循内部的命名规范，统一加上sl(SL)前缀！
+* 2.3 公司内部工程重构，将该库提取到了通用库中，因此修改了类名将 SL 改为了 SC ，方便日后及时更新该库!

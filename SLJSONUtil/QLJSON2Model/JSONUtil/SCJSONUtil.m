@@ -1,19 +1,19 @@
 //
-//  JSONUtil.m
-//  BeautyLore
+//  SCJSONUtil.m
+//  SohuCoreFoundation
 //
 //  Created by xuqianlong on 15/9/3.
 //  Copyright (c) 2015年 Mac. All rights reserved.
 //
 
-#import "SLJSONUtil.h"
+#import "SCJSONUtil.h"
 #import "objc/runtime.h"
 
-#define QLJSONLogON 0
-#if QLJSONLogON
-#define QLJSONLog(...)   printf( __VA_ARGS__)
+#define SCJSONLogON 0
+#if SCJSONLogON
+#define SCJSONLog(...)   printf( __VA_ARGS__)
 #else
-#define QLJSONLog(...)
+#define SCJSONLog(...)
 #endif
 
 typedef NS_ENUM(NSUInteger, QLPropertyType) {
@@ -102,7 +102,7 @@ static QLPropertyDesc * QLQLPropertyDescForClassProperty(Class clazz,const char 
                 
             default: // #:^ igonre:Class,SEL,Method...
             {
-                QLJSONLog("未识别的类型：%c",iType);
+                SCJSONLog("未识别的类型：%c",iType);
             }
                 break;
         }
@@ -143,29 +143,29 @@ static NSURL * QLValueTransfer2NSURL(id value){
 #pragma mark C  Functions  -End-
 #pragma mark -
 
-@implementation NSObject (SLAnalyzeJSON2Model)
+@implementation NSObject (SCAnalyzeJSON2Model)
 
-- (void)sl_autoMatchValue:(id)obj forKey:(NSString *)key
+- (void)sc_autoMatchValue:(id)obj forKey:(NSString *)key
 {
     NSString *mapedKey = key;
-    if ([self respondsToSelector:@selector(sl_collideKeysMap)]) {
-        mapedKey = [[self sl_collideKeysMap]objectForKey:key] ?: key;
+    if ([self respondsToSelector:@selector(sc_collideKeysMap)]) {
+        mapedKey = [[self sc_collideKeysMap]objectForKey:key] ?: key;
     }
     
     QLPropertyDesc * pdesc = QLQLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
     if (NULL == pdesc) {
-        QLJSONLog("未解析的key:%s",[key UTF8String]);
+        SCJSONLog("未解析的key:%s",[key UTF8String]);
         return;
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
         NSString *modleName = nil;
-        if ([self respondsToSelector:@selector(sl_collideKeyModelMap)]) {
-            modleName = [[self sl_collideKeyModelMap]objectForKey:key];
+        if ([self respondsToSelector:@selector(sc_collideKeyModelMap)]) {
+            modleName = [[self sc_collideKeyModelMap]objectForKey:key];
         }
         if (modleName) {
             Class clazz = NSClassFromString(modleName);
-            NSArray *objs = [clazz sl_instanceArrFormArray:obj];
+            NSArray *objs = [clazz sc_instanceArrFormArray:obj];
             char * pclazz = pdesc->clazz;
             // 如果属性是可变的，那么做个可变处理
             if (QLCStrEqual(pclazz, "NSMutableArray")) {
@@ -174,9 +174,16 @@ static NSURL * QLValueTransfer2NSURL(id value){
             [self setValue:objs forKey:mapedKey];
         }
     }else if ([obj isKindOfClass:[NSDictionary class]]){
-        Class clazz = objc_getClass(pdesc->clazz) ;
-        id value = [clazz sl_instanceFormDic:obj];
-        [self setValue:value forKey:mapedKey];
+        //如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
+        if(QLCStrEqual((char *)pdesc->clazz, "NSMutableDictionary")){
+            [self setValue:[obj mutableCopy] forKey:mapedKey];
+        }else if(QLCStrEqual((char *)pdesc->clazz, "NSDictionary")){
+            [self setValue:obj forKey:mapedKey];
+        }else{
+            Class clazz = objc_getClass(pdesc->clazz);
+            id value = [clazz sc_instanceFormDic:obj];
+            [self setValue:value forKey:mapedKey];
+        }
     }else if (![obj isKindOfClass:[NSNull class]]){
         //自定义对象或者系统的NSStirng，NSNumber等；
         switch (pdesc->type) {
@@ -249,44 +256,47 @@ static NSURL * QLValueTransfer2NSURL(id value){
     }
 }
 
-- (void)sl_assembleDataFormDic:(NSDictionary *)dic
+- (void)sc_assembleDataFormDic:(NSDictionary *)dic
 {
     [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self sl_autoMatchValue:obj forKey:key];
+        [self sc_autoMatchValue:obj forKey:key];
     }];
 }
 
-+ (instancetype)sl_instanceFormDic:(NSDictionary *)jsonDic
++ (instancetype)sc_instanceFormDic:(NSDictionary *)jsonDic
 {
     NSObject *obj = [[self alloc]init];
-    [obj sl_assembleDataFormDic:jsonDic];
-    [obj respondsToSelector:@selector(sl_valueNeedTransfer)]?[obj sl_valueNeedTransfer]:(nil);
+    [obj sc_assembleDataFormDic:jsonDic];
+    [obj respondsToSelector:@selector(sc_valueNeedTransfer)]?[obj sc_valueNeedTransfer]:(nil);
     return obj;
 }
 
-+ (NSArray *)sl_instanceArrFormArray:(NSArray *)jsonArr
++ (NSArray *)sc_instanceArrFormArray:(NSArray *)jsonArr
 {
     if(!jsonArr || jsonArr.count == 0) return nil;
     
     NSMutableArray *modelArr = [[NSMutableArray alloc]initWithCapacity:3];
     [jsonArr enumerateObjectsUsingBlock:^(id json, NSUInteger idx, BOOL *stop) {
-        id instance = [self sl_instanceFromValue:json];
+        id instance = [self sc_instanceFromValue:json];
         if (instance) {
             [modelArr addObject:instance];
         }else{
-            NSAssert(NO, @"WTF?无法将该json转为model，因此过滤掉该元素！");
+        #if SCJSONLogON
+            NSString *str = [NSString stringWithFormat:@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
+            NSAssert(NO,str);
+        #endif
         }
     }];
     return [NSArray arrayWithArray:modelArr];
 }
 
-+ (instancetype)sl_instanceFromValue:(id)json
++ (instancetype)sc_instanceFromValue:(id)json
 {
     if ([json isKindOfClass:[NSDictionary class]]) {
-        return [self sl_instanceFormDic:json];
+        return [self sc_instanceFormDic:json];
     }
     if([json isKindOfClass:[NSArray class]]){
-        return [self sl_instanceArrFormArray:json];
+        return [self sc_instanceArrFormArray:json];
     }
     if ([self class] == [NSNumber class]) {
         return QLValueTransfer2NSNumber(json);
@@ -300,7 +310,10 @@ static NSURL * QLValueTransfer2NSURL(id value){
     if ([self class] == [NSDecimalNumber class]) {
         return QLValueTransfer2NSDecimalNumber(json);
     }
-    NSAssert(NO,@"无法将该value转为model");
+    #if SCJSONLogON
+    NSString *str = [NSString stringWithFormat:@"无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
+    NSAssert(NO,str);
+    #endif
     return nil;
 }
 
@@ -308,7 +321,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
 
 #pragma mark - JOSNUtil methods
 
-static inline id SLFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *JSON)
+static inline id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *JSON)
 {
     if (!JSON) {
         return nil;
@@ -324,34 +337,34 @@ static inline id SLFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *JSON)
     if ([pathArr2 firstObject]) {
         JSON = [JSON objectForKey:[pathArr2 firstObject]];
         [pathArr2 removeObjectAtIndex:0];
-        return SLFindJSONwithKeyPathArr(pathArr2, JSON);
+        return SCFindJSONwithKeyPathArr(pathArr2, JSON);
     }else{
         return JSON;
     }
 }
 
-id SLFindJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON)
+id SCFindJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON)
 {
     if (!keyPath || keyPath.length == 0) {
         return JSON;
     }
     NSArray *pathArr = [keyPath componentsSeparatedByString:@"/"];
-    return SLFindJSONwithKeyPathArr(pathArr, JSON);
+    return SCFindJSONwithKeyPathArr(pathArr, JSON);
 }
 
-id SLJSON2Model(id json,NSString *modelName)
+id SCJSON2Model(id json,NSString *modelName)
 {
     Class clazz = NSClassFromString(modelName);
-    return [clazz sl_instanceFromValue:json];
+    return [clazz sc_instanceFromValue:json];
 }
 
-id SLJSON2StringJOSN(id findJson)
+id SCJSON2StringJOSN(id findJson)
 {
     if ([findJson isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:findJson];
         [findJson enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [dic setObject:SLJSON2StringJOSN(obj) forKey:key];
+                [dic setObject:SCJSON2StringJOSN(obj) forKey:key];
             }
         }];
         return dic;
@@ -359,7 +372,7 @@ id SLJSON2StringJOSN(id findJson)
         NSMutableArray *arr = [NSMutableArray array];
         for (id obj in findJson) {
             if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [arr addObject:SLJSON2StringJOSN(obj)];
+                [arr addObject:SCJSON2StringJOSN(obj)];
             }
         }
         return arr;
