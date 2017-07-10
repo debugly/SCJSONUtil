@@ -184,7 +184,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
             id value = [clazz sc_instanceFormDic:obj];
             [self setValue:value forKey:mapedKey];
         }
-    }else if (![obj isKindOfClass:[NSNull class]]){
+    }else if(![obj isKindOfClass:[NSNull class]]){
         //自定义对象或者系统的NSStirng，NSNumber等；
         switch (pdesc->type) {
             case QLPropertyTypeObj:
@@ -238,7 +238,14 @@ static NSURL * QLValueTransfer2NSURL(id value){
             case QLPropertyTypeBOOL:
             case QLPropertyTypeLong32:
             {
-                [self setValue:obj forKey:mapedKey];
+                NSNumber *tmpValue = obj;
+                
+                //ios 8, -[__NSCFString longValue]: unrecognized selector
+                if ([obj isKindOfClass:[NSString class]]){
+                    tmpValue = QLValueTransfer2NSNumber(obj);
+                }
+                
+                [self setValue:tmpValue forKey:mapedKey];
             }
                 break;
             default:
@@ -281,10 +288,10 @@ static NSURL * QLValueTransfer2NSURL(id value){
         if (instance) {
             [modelArr addObject:instance];
         }else{
-        #if SCJSONLogON
+#if SCJSONLogON
             NSString *str = [NSString stringWithFormat:@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
             NSAssert(NO,str);
-        #endif
+#endif
         }
     }];
     return [NSArray arrayWithArray:modelArr];
@@ -310,10 +317,10 @@ static NSURL * QLValueTransfer2NSURL(id value){
     if ([self class] == [NSDecimalNumber class]) {
         return QLValueTransfer2NSDecimalNumber(json);
     }
-    #if SCJSONLogON
+#if SCJSONLogON
     NSString *str = [NSString stringWithFormat:@"无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
     NSAssert(NO,str);
-    #endif
+#endif
     return nil;
 }
 
@@ -358,13 +365,13 @@ id SCJSON2Model(id json,NSString *modelName)
     return [clazz sc_instanceFromValue:json];
 }
 
-id SCJSON2StringJOSN(id findJson)
+id JSON2StringValueJSON(id findJson)
 {
     if ([findJson isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:findJson];
         [findJson enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [dic setObject:SCJSON2StringJOSN(obj) forKey:key];
+                [dic setObject:JSON2StringValueJSON(obj) forKey:key];
             }
         }];
         return dic;
@@ -372,7 +379,7 @@ id SCJSON2StringJOSN(id findJson)
         NSMutableArray *arr = [NSMutableArray array];
         for (id obj in findJson) {
             if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [arr addObject:SCJSON2StringJOSN(obj)];
+                [arr addObject:JSON2StringValueJSON(obj)];
             }
         }
         return arr;
