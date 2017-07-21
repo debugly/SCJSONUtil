@@ -1,6 +1,16 @@
 SCJSONUtil 
 ============
 
+# Installation with CocoaPods
+
+在你的 `Podfile` 文件里添加:
+
+```
+target 'TargetName' do
+	pod 'SCJSONUtil', '~> 2.4.0'
+end
+```
+
 # 特性
 1. 小巧（仅300余行），快速，方便
 2. 支持自定义属性名（比如服务器返回的是id，我们的model里可定义为uid）
@@ -139,3 +149,4 @@ SCJSONUtil
 * 2.1 自动匹配类型，比如服务器返回了一个Number，客户端model属性是String，那么框架会帮你自动转为String！
 * 2.2 公司项目也使用这个库，因此遵循内部的命名规范，统一加上sl(SL)前缀！
 * 2.3 公司内部工程重构，将该库提取到了通用库中，因此修改了类名将 SL 改为了 SC ，方便日后及时更新该库!
+* 2.4 支持 CocoaPods 安装；demo使用pods！
