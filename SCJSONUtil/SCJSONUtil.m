@@ -364,30 +364,3 @@ id SCJSON2Model(id json,NSString *modelName)
     Class clazz = NSClassFromString(modelName);
     return [clazz sc_instanceFromValue:json];
 }
-
-id JSON2StringValueJSON(id findJson)
-{
-    if ([findJson isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:findJson];
-        [findJson enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [dic setObject:JSON2StringValueJSON(obj) forKey:key];
-            }
-        }];
-        return dic;
-    }else if([findJson isKindOfClass:[NSArray class]]){
-        NSMutableArray *arr = [NSMutableArray array];
-        for (id obj in findJson) {
-            if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [arr addObject:JSON2StringValueJSON(obj)];
-            }
-        }
-        return arr;
-    }else if ([findJson isKindOfClass:[NSString class]]){
-        return findJson;
-    }else if ([findJson isKindOfClass:[NSNumber class]]){
-        return [findJson description];
-    }else{
-        return findJson;
-    }
-}
