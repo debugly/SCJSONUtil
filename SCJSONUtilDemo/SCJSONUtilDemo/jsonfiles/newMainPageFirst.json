@@ -1,0 +1,507 @@
+{
+    "code": "0",
+    "content": {
+        "gallery": [
+                    {
+                    "isFlagship": "0",
+                    "name": "白色情人节 与浪漫牵手",
+                    "pic": "http://pic16.shangpin.com/e/s/15/03/06/20150306174649601525-10-10.jpg",
+                    "refContent": "http://m.shangpin.com/meet/189",
+                    "type": "5"
+                    },
+                    {
+                    "isFlagship": "0",
+                    "name": "【早春新品预售】",
+                    "pic": "http://pic11.shangpin.com/e/s/15/03/13/20150313101837452024-10-10.jpg",
+                    "refContent": "50310992",
+                    "type": "1"
+                    },
+                    {
+                    "isFlagship": "0",
+                    "name": "【男装春季促销】",
+                    "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
+                    "refContent": "50310978",
+                    "type": "1"
+                    },
+                    {
+                    "isFlagship": "0",
+                    "name": "【男装春季促销】",
+                    "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
+                    "refContent": "50310978",
+                    "type": "1"
+                    },
+                    {
+                    "isFlagship": "0",
+                    "name": "【男装春季促销】",
+                    "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
+                    "refContent": "50310978",
+                    "type": "1"
+                    },
+                    {
+                    "isFlagship": "0",
+                    "name": "【男装春季促销】",
+                    "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
+                    "refContent": "50310978",
+                    "type": "1"
+                    }
+                    ],
+        "entrance": [
+                      {
+                      "isFlagship": "0",
+                      "name": "时尚潮时尚",
+                      "pic": "http://pic12.shangpin.com/e/s/15/03/03/20150303151320537363-10-10.jpg",
+                      "refContent": "http://m.shangpin.com/meet/185",
+                      "type": "5"
+                      },
+                      {
+                      "isFlagship": "0",
+                      "name": "优惠券留",
+                      "pic": "http://pic14.shangpin.com/e/s/15/03/05/20150305164615551722-10-10.jpg",
+                      "refContent": "50305792",
+                      "type": "1"
+                      },
+                      {
+                      "isFlagship": "0",
+                      "name": "物流查",
+                      "pic": "http://pic15.shangpin.com/e/s/15/03/03/20150303155535618638-10-10.jpg",
+                      "refContent": "http://m.shangpin.com/meet/188",
+                      "type": "5"
+                      },
+                      {
+                      "isFlagship": "0",
+                      "name": "入口",
+                      "pic": "http://pic14.shangpin.com/e/s/15/03/05/20150305164615551722-10-10.jpg",
+                      "refContent": "50305792",
+                      "type": "1"
+                      },
+                      {
+                      "isFlagship": "0",
+                      "name": "礼品卡",
+                      "pic": "http://pic15.shangpin.com/e/s/15/03/03/20150303155535618638-10-10.jpg",
+                      "refContent": "http://m.shangpin.com/meet/188",
+                      "type": "5"
+                      },
+                      {
+                      "name": "不错哦",
+                      "pic": "http://pic14.shangpin.com/e/s/15/03/05/20150305142326260964-10-10.jpg",
+                      "refContent": "50302515",
+                      "type": "1"
+                      },
+                      {
+                      "name": "购物车",
+                      "pic": "http://pic12.shangpin.com/e/s/15/03/05/20150305143006228421-10-10.jpg",
+                      "refContent": "50215339",
+                      "type": "1"
+                      },
+                      {
+                      "name": "列表页",
+                      "pic": "http://pic14.shangpin.com/e/s/15/03/05/20150305142326260964-10-10.jpg",
+                      "refContent": "50302515",
+                      "type": "1"
+                      }
+                      ],
+        "releases": [
+                     {
+                     "desc": "",
+                     "endTime": "1426554000000",
+                     "height": "720",
+                     "name": "【TOPSHOP 2000条牛仔裤补货到】",
+                     "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312132707142163-10-10.jpg",
+                     "refContent": "50311019",
+                     "startTag": "03.13",
+                     "startTime": "1426212600000",
+                     "type": "1",
+                     "width": "720"
+                     },
+                     {
+                     "desc": "MO&CO.新品特惠",
+                     "endTime": "1426467600000",
+                     "height": "490",
+                     "name": "MO&CO.新品特惠",
+                     "pic": "http://pic14.shangpin.com/e/s/15/03/13/20150313095913400551-10-10.jpg",
+                     "refContent": "50306843",
+                     "startTag": "03.13",
+                     "startTime": "1426209300000",
+                     "type": "1",
+                     "width": "720"
+                     },
+                     {
+                     "desc": "美式轻奢风",
+                     "endTime": "1426467600000",
+                     "height": "580",
+                     "name": "【新品预售 3月18日发货】",
+                     "pic": "http://pic11.shangpin.com/e/s/15/03/09/20150309145151259290-10-10.jpg",
+                     "refContent": "50309891",
+                     "startTag": "03.13",
+                     "startTime": "1426208400000",
+                     "type": "1",
+                     "width": "720"
+                     }
+                     ],
+        "sale": [
+                 {
+                 "list": [
+                          {
+                          "desc": "新品网络独家首发",
+                          "endTime": "1426467600000",
+                          "height": "670",
+                          "name": "【STELLA LUNA新品网络首发】",
+                          "pic": "http://pic16.shangpin.com/e/s/15/03/06/20150306170847472468-10-10.jpg",
+                          "refContent": "50306871",
+                          "startTag": "09:00",
+                          "startTime": "1426208400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "意大利新品睡衣",
+                          "endTime": "1426813200000",
+                          "height": "550",
+                          "name": "意大利进口 新品睡衣",
+                          "pic": "http://pic16.shangpin.com/e/s/15/03/09/20150309105605840242-10-10.jpg",
+                          "refContent": "50302526",
+                          "startTag": "09:00",
+                          "startTime": "1426208400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "打底裤集合",
+                          "endTime": "1426467600000",
+                          "height": "350",
+                          "name": "打底裤集合",
+                          "pic": "http://pic14.shangpin.com/e/s/15/03/09/20150309153725584647-10-10.jpg",
+                          "refContent": "50303576",
+                          "startTag": "09:00",
+                          "startTime": "1426208400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "早春美饰上新",
+                          "endTime": "1426467600000",
+                          "height": "1050",
+                          "name": "炫彩水晶 低调华丽",
+                          "pic": "http://pic14.shangpin.com/e/s/15/03/10/20150310161702642930-10-10.jpg",
+                          "refContent": "50304615",
+                          "startTag": "09:00",
+                          "startTime": "1426208400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "阿玛尼新年特惠",
+                          "endTime": "1426467600000",
+                          "height": "50",
+                          "name": "【阿玛尼新年特惠】 ",
+                          "pic": "http://pic15.shangpin.com/e/s/15/03/12/20150312142428193691-10-10.jpg",
+                          "refContent": "50304727",
+                          "startTag": "09:00",
+                          "startTime": "1426208400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "",
+                          "endTime": "1428135660000",
+                          "height": "150",
+                          "name": "kate spade",
+                          "pic": "http://pic15.shangpin.com/e/s/15/03/12/20150312162128286598-10-10.jpg",
+                          "refContent": "50312101",
+                          "startTag": "09:00",
+                          "startTime": "1426208400000",
+                          "type": "1",
+                          "width": "720"
+                          }
+                          ],
+                 "title": "今日特卖 DAILY EVENTS",
+                 "type": "1"
+                 },
+                 {
+                 "list": [
+                          {
+                          "desc": "波西米亚风女装",
+                          "endTime": "1426485600000",
+                          "height": "250",
+                          "name": "波西米亚风女装",
+                          "pic": "http://pic14.shangpin.com/e/s/15/03/09/20150309153809514337-10-10.jpg",
+                          "refContent": "50304587",
+                          "startTag": "14:00",
+                          "startTime": "1426226400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "高级彩宝专场",
+                          "endTime": "1426485600000",
+                          "height": "850",
+                          "name": "时尚彩宝 高贵专属",
+                          "pic": "http://pic11.shangpin.com/e/s/15/03/10/20150310162008391046-10-10.jpg",
+                          "refContent": "50304625",
+                          "startTag": "14:00",
+                          "startTime": "1426226400000",
+                          "type": "1",
+                          "width": "720"
+                          },
+                          {
+                          "desc": "",
+                          "endTime": "1428135780000",
+                          "height": "650",
+                          "name": "saint laurent",
+                          "pic": "http://pic11.shangpin.com/e/s/15/03/12/20150312162313055123-10-10.jpg",
+                          "refContent": "50312103",
+                          "startTag": "14:00",
+                          "startTime": "1426226400000",
+                          "type": "1",
+                          "width": "720"
+                          }
+                          ],
+                 "title": "即将开始 （每日14:00开启）",
+                 "type": "2"
+                 }
+                 ],
+        "sysTime": "1426226372902",
+        "themes": [
+                   {
+                   "height": "550",
+                   "name": "Salvatore Ferragamo",
+                   "pic": "http://pic14.shangpin.com/e/s/15/03/09/20150309113148373426-10-10.jpg",
+                   "refContent": "50305771",
+                   "type": "1",
+                   "width": "720"
+                   },
+                   {
+                   "height": "450",
+                   "name": "【早春新品预售】",
+                   "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                   "refContent": "50310992",
+                   "type": "1",
+                   "width": "720"
+                   },
+                   {
+                   "height": "800",
+                   "name": "【TOPSHOP 上班女郎穿衣术】",
+                   "pic": "http://pic11.shangpin.com/e/s/15/03/12/20150312170612069350-10-10.jpg",
+                   "refContent": "50303556",
+                   "type": "1",
+                   "width": "720"
+                   }
+                   ],
+        "brand": [
+                  {
+                  "refContent": "111111111",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic16.shangpin.com/e/s/15/02/15/20150215155540295340-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "2222222",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic12.shangpin.com/e/s/15/02/15/20150215154810871864-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "3333333",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic14.shangpin.com/e/s/15/04/01/20150401185027193594-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "4444444",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic11.shangpin.com/e/s/15/02/15/20150215150055287171-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "5555555",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic14.shangpin.com/e/s/15/02/15/20150215155043347252-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "6666666",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic12.shangpin.com/e/s/15/02/15/20150215150258387585-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "7777777",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic13.shangpin.com/e/s/15/02/15/20150215155140474254-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "8888888",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic14.shangpin.com/e/s/15/02/15/20150215154845410359-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "9999999",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic16.shangpin.com/e/s/15/02/15/20150215151504769908-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1000000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic15.shangpin.com/e/s/15/04/13/20150413174239555535-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1100000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic15.shangpin.com/e/s/15/03/27/20150327170622288008-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1200000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic12.shangpin.com/e/s/15/02/15/20150215164135101731-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1300000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic15.shangpin.com/e/s/15/02/15/20150215154213693963-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1400000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic15.shangpin.com/e/s/15/02/15/20150215154009066205-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1500000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic15.shangpin.com/e/s/15/04/01/20150401153506809822-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1600000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic15.shangpin.com/e/s/15/02/15/20150215154757876484-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1600000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic16.shangpin.com/e/s/15/02/15/20150215155121052546-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1600000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic14.shangpin.com/e/s/15/02/15/20150215155558703893-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  },{
+                  "refContent": "1600000",
+                  "nameEN": "TopShop",
+                  "nameCN": "TopShop",
+                  "desc": "描述摘要",
+                  "pic": "http://pic11.shangpin.com/e/s/15/03/27/20150327170606111386-10-10.jpg",
+                  "type": "3",
+                  "refContent": ""
+                  
+                  }
+                  ],
+        "fashion": [
+                    {
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    },{
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    },{
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    },{
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    },{
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    },{
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    },{
+                    "name": "尚潮流标题",
+                    "type": "5",
+                    "pubTime": "83838928291",
+                    "pic": "http://pic13.shangpin.com/e/s/15/03/13/20150313101818280750-10-10.jpg",
+                    "summary": "文章摘要",
+                    "source": "文章来源",
+                    "refContent": "http://m.shangpin.com/meet/185"
+                    }
+                    ]
+    },
+    "msg": ""
+}
