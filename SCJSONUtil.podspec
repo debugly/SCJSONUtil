@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCJSONUtil"
-  s.version      = "2.4.0"
+  s.version      = "2.4.1"
   s.summary      = "轻量、方便的 JSON 转 Model 框架"
 
   # This description is used to generate tags and improve search results.
@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.source_files  = "SCJSONUtil", "SCJSONUtil/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "SCJSONUtil/**/*.h"
+  # s.public_header_files = "SCJSONUtil/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
