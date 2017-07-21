@@ -7,7 +7,7 @@ SCJSONUtil
 
 ```
 target 'TargetName' do
-	pod 'SCJSONUtil', '~> 2.4.0'
+	pod 'SCJSONUtil', '~> 2.4.1'
 end
 ```
 
