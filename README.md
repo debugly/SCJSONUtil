@@ -7,7 +7,7 @@ SCJSONUtil
 
 ```
 target 'TargetName' do
-	pod 'SCJSONUtil', '~> 2.4.1'
+	pod 'SCJSONUtil', '~> 2.4.2'
 end
 ```
 
@@ -151,3 +151,4 @@ end
 * 2.3 公司内部工程重构，将该库提取到了通用库中，因此修改了类名将 SL 改为了 SC ，方便日后及时更新该库!
 * 2.4 支持 CocoaPods 安装；demo使用pods！
 * 2.4.1 清理没用的方法
+* 2.4.2 当服务器返回数据不能转化为Number时，不能使用KVC赋值。

@@ -75,3 +75,9 @@ FOUNDATION_EXPORT id SCJSON2Model(id Json,NSString *modelName);
  *  @param keyPath JSON里的一个路径；一个以 / 分割的字符串；例如：@"data" , @"data/list";
  */
 FOUNDATION_EXPORT id SCFindJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON);
+
+/**
+ * @brief 如果没有使用SCJSON2Model方法，而是使用了findJSONwithKeyPath_SC方法，那么JOSN里面不全是String，可以通过该方法解决；
+ */
+FOUNDATION_EXPORT id SCJSON2StringValueJSON(id findJson);
+

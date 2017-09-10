@@ -45,7 +45,7 @@ static bool QLCStrEqual(char *v1,char *v2)
     return 0 == strcmp(v1, v2);
 }
 
-static void	*QLMallocInit(size_t __size)
+static void    *QLMallocInit(size_t __size)
 {
     void *p = malloc(__size);
     memset(p, 0, __size);
@@ -244,8 +244,10 @@ static NSURL * QLValueTransfer2NSURL(id value){
                 if ([obj isKindOfClass:[NSString class]]){
                     tmpValue = QLValueTransfer2NSNumber(obj);
                 }
-                
-                [self setValue:tmpValue forKey:mapedKey];
+                //后端返回的数据可能有问题，通过valueTransfer不能转化为目标对象
+                if (tmpValue) {
+                    [self setValue:tmpValue forKey:mapedKey];
+                }
             }
                 break;
             default:
@@ -363,4 +365,31 @@ id SCJSON2Model(id json,NSString *modelName)
 {
     Class clazz = NSClassFromString(modelName);
     return [clazz sc_instanceFromValue:json];
+}
+
+id SCJSON2StringValueJSON(id findJson)
+{
+    if ([findJson isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:findJson];
+        [findJson enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if (obj && ![obj isKindOfClass:[NSNull class]]) {
+                [dic setObject:SCJSON2StringValueJSON(obj) forKey:key];
+            }
+        }];
+        return dic;
+    }else if([findJson isKindOfClass:[NSArray class]]){
+        NSMutableArray *arr = [NSMutableArray array];
+        for (id obj in findJson) {
+            if (obj && ![obj isKindOfClass:[NSNull class]]) {
+                [arr addObject:SCJSON2StringValueJSON(obj)];
+            }
+        }
+        return arr;
+    }else if ([findJson isKindOfClass:[NSString class]]){
+        return findJson;
+    }else if ([findJson isKindOfClass:[NSNumber class]]){
+        return [findJson description];
+    }else{
+        return findJson;
+    }
 }
