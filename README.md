@@ -1,9 +1,9 @@
 SCJSONUtil 
 ============
 
-# Installation with CocoaPods
+# 支持 CocoaPods 
 
-在你的 `Podfile` 文件里添加:
+在 `Podfile` 文件里添加:
 
 ```
 target 'TargetName' do
@@ -140,7 +140,7 @@ end
 另一方面选择后者是因为，根据我解析的习惯是，服务器定义的字段我都会解析，但是有的字段服务器可能不返回，如果按照前者的遍历方式，会增加几次多余的遍历；当然我否定使用后者不会出现多余的遍历，这个定义model的习惯和服务器返回json的空值都有关系！
 
 
-# Versions
+# 版本
 
 * 1.0 必须继承 QLBaseModel 父类;
 * 1.0.1 在属性命名上有限制，对于子model必须故意制造出"冲突 key";
