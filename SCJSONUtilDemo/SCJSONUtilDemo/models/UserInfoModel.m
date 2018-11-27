@@ -7,15 +7,11 @@
 //
 
 #import "UserInfoModel.h"
+#import <SCJSONUtil/SCJSONUtil.h>
 
 @implementation CarInfoModel
 
-- (NSDictionary *)collideKeyModelMap
-{
-    return @{@"brand_img_url":@"AvatarInfoModel"};
-}
-
-- (NSDictionary *)collideKeysMap
+- (NSDictionary *)sc_collideKeysMap
 {
     return @{@"brand_img_url":@"brandImg"};
 }
@@ -28,31 +24,34 @@
 
 @implementation BasicInfoModel
 
-- (NSDictionary *)collideKeyModelMap
+- (NSDictionary *)sc_collideKeysMap
 {
-    return @{@"avatar_img":@"AvatarInfoModel"};
-}
-
-- (NSDictionary *)collideKeysMap
-{
-    return @{@"avatar_img":@"avatarInfo",@"id":@"uid"};
+    return @{@"avatar_img":@"avatarInfo"};
 }
 
 //给name加个前缀；
-- (void)valueNeedTransfer
+
+- (id)sc_key:(NSString *)key beforeAssignedValue:(NSString *)value
 {
-    self.name = [@"xql." stringByAppendingString:self.name];
+    if ([key isEqualToString:@"name"]) {
+        if ([value isKindOfClass:[NSString class]]) {
+            return [@"xql." stringByAppendingString:value];
+        }
+        return nil;
+    }
+    return value;
 }
+
 @end
 
 @implementation DataInfoModel
 
-- (NSDictionary *)collideKeyModelMap
+- (NSDictionary *)sc_collideKeyModelMap
 {
-    return @{@"basic":@"BasicInfoModel",@"cars":@"CarInfoModel"};
+    return @{@"cars":@"CarInfoModel"};
 }
 
-- (NSDictionary *)collideKeysMap
+- (NSDictionary *)sc_collideKeysMap
 {
     return @{@"basic":@"basicInfo",@"cars":@"carInfoArr"};
 }
@@ -61,13 +60,4 @@
 
 @implementation UserInfoModel
 
-- (NSDictionary *)collideKeyModelMap
-{
-    return @{@"data":@"DataInfoModel"};
-}
-
-//- (NSDictionary *)collideKeysMap
-//{
-//    return @{@"data":@"dataInfo"};
-//}
 @end

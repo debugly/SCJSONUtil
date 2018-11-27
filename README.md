@@ -155,3 +155,16 @@ end
 * 2.4.1 清理没用的方法
 * 2.4.2 当服务器返回数据不能转化为Number时，不能使用KVC赋值。
 * 2.4.3 开始在 OS X 平台测试使用。
+* 2.4.4 增删类别方法，增加警告信息，创建Model更加省心。
+
+	```
+	做了类型自动映射后，sc_valueNeedTransfer 显得鸡肋，因此去掉了
+	- (void)sc_valueNeedTransfer; 方法。
+	新增
+	- (id)sc_key:(NSString *)key beforeAssignedValue:(id)value;
+	```
+
+	```
+	2018-11-27 18:30:17.844219+0800 SCJSONUtilDemo[91682:1947248] ⚠️ UserInfoModel 类没有解析 test 属性;如果客户端和服务端key不相同可通过sc_collideKeysMap 做映射！value:testValue
+2018-11-27 18:30:17.844351+0800 SCJSONUtilDemo[91682:1947248] ⚠️⚠️ DataInfoModel 类的 cars 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@"cars":@"XyzModel"}
+	```

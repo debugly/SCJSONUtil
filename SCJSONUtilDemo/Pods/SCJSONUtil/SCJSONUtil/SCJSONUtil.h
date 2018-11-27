@@ -9,23 +9,30 @@
 
 #import <Foundation/Foundation.h>
 
+///日志开关
+#define SCJSONLogON 1
+
 @protocol SCAnalyzeJSON2ModelProtocol <NSObject>
 
 @optional;
 /**
- *  @brief:  存放冲突key映射的字典 @{@"id":@"Newsid"}
+ *  @brief:  存放冲突key映射的字典 @{@"server's key":@"model‘s property name"}
+ *  遍历服务端返回数据，通过key去查找客户端model里定义的属性名
  */
 - (NSDictionary *)sc_collideKeysMap;
 
 /**
- *  @brief:  存放冲突key映射Model的字典，@{@"courses":@"CourseModel"}
+ *  @brief: 存放服务端key和映射Model的字典，@{@"server's key":@"your Model Name"}
  */
 - (NSDictionary *)sc_collideKeyModelMap;
 
 /**
- *  @brief:  将json赋值给model后会调用model对象的该方法，可以再次做Value转换；
+ *  @brief: 在给 key 赋值之前，将从字典里找到的 value 返回来，你可以修改这个值，然后返回新的值，从而达到处理业务逻辑的目的；
+    @parameter key : 该model的属性名
+    @parameter value :从字典里取出来的原始值，还未做自动映射
+    框架会将返回值进行自动映射！
  */
-- (void)sc_valueNeedTransfer;
+- (id)sc_key:(NSString *)key beforeAssignedValue:(id)value;
 
 @end
 

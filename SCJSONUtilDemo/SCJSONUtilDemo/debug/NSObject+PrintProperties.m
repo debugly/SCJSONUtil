@@ -88,7 +88,13 @@
             NSArray *subProperties = [propertyDic objectForKey:className];
             for (NSString *key in subProperties) {
                 [toString appendString:levalString];
-                [toString appendFormat:@"\t%@:%@\n",key,[self valueForKey:key]];
+                id value = [self valueForKey:key];
+                if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSURL class]] || [value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSNumber class]]) {
+                    [toString appendFormat:@"\t%@:%@\n",key,value];
+                }else{
+                    NSString *desc = [value DEBUGDescrptionWithLeval:leval+1];
+                    [toString appendFormat:@"\t%@:%@\n",key,desc];
+                }
             }
             [toString appendString:levalString];
             [toString appendFormat:@"}\n"];
