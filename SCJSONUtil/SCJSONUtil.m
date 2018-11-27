@@ -9,9 +9,8 @@
 #import "SCJSONUtil.h"
 #import "objc/runtime.h"
 
-#define SCJSONLogON 0
 #if SCJSONLogON
-#define SCJSONLog(...)   printf( __VA_ARGS__)
+#define SCJSONLog(...)   NSLog( __VA_ARGS__)
 #else
 #define SCJSONLog(...)
 #endif
@@ -45,7 +44,7 @@ static bool QLCStrEqual(char *v1,char *v2)
     return 0 == strcmp(v1, v2);
 }
 
-static void    *QLMallocInit(size_t __size)
+static void	*QLMallocInit(size_t __size)
 {
     void *p = malloc(__size);
     memset(p, 0, __size);
@@ -102,7 +101,7 @@ static QLPropertyDesc * QLQLPropertyDescForClassProperty(Class clazz,const char 
                 
             default: // #:^ igonre:Class,SEL,Method...
             {
-                SCJSONLog("未识别的类型：%c",iType);
+                SCJSONLog(@"未识别的类型：%c",iType);
             }
                 break;
         }
@@ -154,8 +153,13 @@ static NSURL * QLValueTransfer2NSURL(id value){
     
     QLPropertyDesc * pdesc = QLQLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
     if (NULL == pdesc) {
-        SCJSONLog("未解析的key:%s",[key UTF8String]);
+        SCJSONLog(@"⚠️ %@ 类没有解析 %@ 属性;如果客户端和服务端key不相同可通过sc_collideKeysMap 做映射！value:%@",NSStringFromClass([self class]),key,obj);
         return;
+    }
+    
+    ///处理之前给客户端一次对值处理的机会，做一些业务逻辑！
+    if ([self respondsToSelector:@selector(sc_key:beforeAssignedValue:)]) {
+        obj = [self sc_key:mapedKey beforeAssignedValue:obj];
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
@@ -163,6 +167,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
         if ([self respondsToSelector:@selector(sc_collideKeyModelMap)]) {
             modleName = [[self sc_collideKeyModelMap]objectForKey:key];
         }
+        
         if (modleName) {
             Class clazz = NSClassFromString(modleName);
             NSArray *objs = [clazz sc_instanceArrFormArray:obj];
@@ -172,6 +177,8 @@ static NSURL * QLValueTransfer2NSURL(id value){
                 objs = [NSMutableArray arrayWithArray:objs];
             }
             [self setValue:objs forKey:mapedKey];
+        } else {
+            SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@\"%@\":@\"%@\"}",NSStringFromClass([self class]),key,key,@"XyzModel");
         }
     }else if ([obj isKindOfClass:[NSDictionary class]]){
         //如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
@@ -244,10 +251,8 @@ static NSURL * QLValueTransfer2NSURL(id value){
                 if ([obj isKindOfClass:[NSString class]]){
                     tmpValue = QLValueTransfer2NSNumber(obj);
                 }
-                //后端返回的数据可能有问题，通过valueTransfer不能转化为目标对象
-                if (tmpValue) {
-                    [self setValue:tmpValue forKey:mapedKey];
-                }
+                
+                [self setValue:tmpValue forKey:mapedKey];
             }
                 break;
             default:
@@ -276,7 +281,6 @@ static NSURL * QLValueTransfer2NSURL(id value){
 {
     NSObject *obj = [[self alloc]init];
     [obj sc_assembleDataFormDic:jsonDic];
-    [obj respondsToSelector:@selector(sc_valueNeedTransfer)]?[obj sc_valueNeedTransfer]:(nil);
     return obj;
 }
 
