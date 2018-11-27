@@ -1,7 +1,9 @@
 SCJSONUtil 
 ============
 
-# 支持 CocoaPods 
+支持 iOS 和 OS X 平台。
+
+# 使用 CocoaPods 安装
 
 在 `Podfile` 文件里添加:
 
@@ -152,3 +154,4 @@ end
 * 2.4 支持 CocoaPods 安装；demo使用pods！
 * 2.4.1 清理没用的方法
 * 2.4.2 当服务器返回数据不能转化为Number时，不能使用KVC赋值。
+* 2.4.3 开始在 OS X 平台测试使用。

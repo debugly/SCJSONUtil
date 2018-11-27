@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCJSONUtil"
-  s.version      = "2.4.2"
-  s.summary      = "轻量、方便的 JSON 转 Model 框架"
+  s.version      = "2.4.3"
+  s.summary      = "轻量、方便的 JSON 转 Model 框架，支持 iOS 和 OS X 平台"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                   轻量、方便的 JSON 转 Model 框架；服役于千帆SDK！
+                   轻量、方便的 JSON 转 Model 框架；服役搜狐的SDK和搜狐影音 Mac 版！
                    DESC
 
   s.homepage     = "http://debugly.cn/SCJSONUtil"
@@ -65,11 +65,11 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "5.0"
+  # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
-  # s.osx.deployment_target = "10.7"
+  s.ios.deployment_target = "5.0"
+  s.osx.deployment_target = "10.6"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
