@@ -1,5 +1,0 @@
-platform :ios,'7.0'
-
-target 'SCJSONUtilDemo' do
-	pod "SCJSONUtil", '2.4.1'
-end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C2A187A5F21DA97DDF7EAEB8 /* libPods-SCJSONUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 910D33CC79B14F0A976AD9A7 /* libPods-SCJSONUtilDemo.a */; };
 		C342B2A01F218554007F04FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B29F1F218554007F04FC /* main.m */; };
 		C342B2A31F218554007F04FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2A21F218554007F04FC /* AppDelegate.m */; };
 		C342B2A61F218554007F04FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2A51F218554007F04FC /* ViewController.m */; };
@@ -27,12 +26,12 @@
 		C342B2D61F2186B9007F04FC /* FavModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C71F2186B9007F04FC /* FavModel.m */; };
 		C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C91F2186B9007F04FC /* GalleryModel.m */; };
 		C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2CB1F2186B9007F04FC /* UserInfoModel.m */; };
+		DD99FD0721EF0C3000584AC4 /* Video.json in Resources */ = {isa = PBXBuildFile; fileRef = DD99FD0621EF0C3000584AC4 /* Video.json */; };
+		DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* VideoList.m */; };
+		DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		910D33CC79B14F0A976AD9A7 /* libPods-SCJSONUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCJSONUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3FA855A917AE7FBB9AA8A2A /* Pods-SCJSONUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		B800DA8BE0D7C4F29BD806D3 /* Pods-SCJSONUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C342B29B1F218554007F04FC /* SCJSONUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCJSONUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C342B29F1F218554007F04FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C342B2A11F218554007F04FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +62,11 @@
 		C342B2C91F2186B9007F04FC /* GalleryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryModel.m; sourceTree = "<group>"; };
 		C342B2CA1F2186B9007F04FC /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		C342B2CB1F2186B9007F04FC /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		DD99FD0621EF0C3000584AC4 /* Video.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Video.json; sourceTree = "<group>"; };
+		DD99FD0821EF0C4200584AC4 /* VideoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoList.h; sourceTree = "<group>"; };
+		DD99FD0921EF0C4200584AC4 /* VideoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoList.m; sourceTree = "<group>"; };
+		DD99FD0C21EF0DFA00584AC4 /* SCJSONUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONUtil.h; sourceTree = "<group>"; };
+		DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2A187A5F21DA97DDF7EAEB8 /* libPods-SCJSONUtilDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,18 +83,8 @@
 		47DB86180D062E1A82A3A8A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				910D33CC79B14F0A976AD9A7 /* libPods-SCJSONUtilDemo.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9CC99DBD300CA3B2E3E48A5D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A3FA855A917AE7FBB9AA8A2A /* Pods-SCJSONUtilDemo.debug.xcconfig */,
-				B800DA8BE0D7C4F29BD806D3 /* Pods-SCJSONUtilDemo.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		C342B2921F218554007F04FC = {
@@ -99,7 +92,6 @@
 			children = (
 				C342B29D1F218554007F04FC /* SCJSONUtilDemo */,
 				C342B29C1F218554007F04FC /* Products */,
-				9CC99DBD300CA3B2E3E48A5D /* Pods */,
 				47DB86180D062E1A82A3A8A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +107,7 @@
 		C342B29D1F218554007F04FC /* SCJSONUtilDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DD99FD0B21EF0DFA00584AC4 /* SCJSONUtil */,
 				C342B2B51F2186B9007F04FC /* debug */,
 				C342B2BC1F2186B9007F04FC /* jsonfiles */,
 				C342B2C31F2186B9007F04FC /* models */,
@@ -155,6 +148,7 @@
 		C342B2BC1F2186B9007F04FC /* jsonfiles */ = {
 			isa = PBXGroup;
 			children = (
+				DD99FD0621EF0C3000584AC4 /* Video.json */,
 				C342B2BD1F2186B9007F04FC /* Car.json */,
 				C342B2BE1F2186B9007F04FC /* FavConcern.json */,
 				C342B2BF1F2186B9007F04FC /* newMainPageFirst.json */,
@@ -176,8 +170,20 @@
 				C342B2C91F2186B9007F04FC /* GalleryModel.m */,
 				C342B2CA1F2186B9007F04FC /* UserInfoModel.h */,
 				C342B2CB1F2186B9007F04FC /* UserInfoModel.m */,
+				DD99FD0821EF0C4200584AC4 /* VideoList.h */,
+				DD99FD0921EF0C4200584AC4 /* VideoList.m */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		DD99FD0B21EF0DFA00584AC4 /* SCJSONUtil */ = {
+			isa = PBXGroup;
+			children = (
+				DD99FD0C21EF0DFA00584AC4 /* SCJSONUtil.h */,
+				DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */,
+			);
+			name = SCJSONUtil;
+			path = ../../SCJSONUtil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,12 +193,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C342B2B21F218554007F04FC /* Build configuration list for PBXNativeTarget "SCJSONUtilDemo" */;
 			buildPhases = (
-				60D863A3C88761314A14A400 /* [CP] Check Pods Manifest.lock */,
 				C342B2971F218554007F04FC /* Sources */,
 				C342B2981F218554007F04FC /* Frameworks */,
 				C342B2991F218554007F04FC /* Resources */,
-				D39DFD4AE50504EF21C25F29 /* [CP] Embed Pods Frameworks */,
-				5D2F8FFB2330A0CE4E4B49D4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,7 +217,7 @@
 				TargetAttributes = {
 					C342B29A1F218554007F04FC = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -248,60 +251,13 @@
 				C342B2CF1F2186B9007F04FC /* Car.json in Resources */,
 				C342B2D41F2186B9007F04FC /* Userinfo.json in Resources */,
 				C342B2A91F218554007F04FC /* Main.storyboard in Resources */,
+				DD99FD0721EF0C3000584AC4 /* Video.json in Resources */,
 				C342B2D11F2186B9007F04FC /* newMainPageFirst.json in Resources */,
 				C342B2D31F2186B9007F04FC /* NewRecProduct.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5D2F8FFB2330A0CE4E4B49D4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		60D863A3C88761314A14A400 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D39DFD4AE50504EF21C25F29 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C342B2971F218554007F04FC /* Sources */ = {
@@ -317,6 +273,8 @@
 				C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */,
 				C342B2D51F2186B9007F04FC /* Car.m in Sources */,
 				C342B2A01F218554007F04FC /* main.m in Sources */,
+				DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */,
+				DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */,
 				C342B2CC1F2186B9007F04FC /* NSArray+DebugDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,28 +395,32 @@
 		};
 		C342B2B31F218554007F04FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3FA855A917AE7FBB9AA8A2A /* Pods-SCJSONUtilDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SCJSONUtilDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sohu.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		C342B2B41F218554007F04FC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B800DA8BE0D7C4F29BD806D3 /* Pods-SCJSONUtilDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SCJSONUtilDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sohu.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

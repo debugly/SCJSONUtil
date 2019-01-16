@@ -1,0 +1,80 @@
+{
+    "playlistid": 5828854,
+    "area": "内地",
+    "qq": {
+        "size": 48,
+        "videos": [
+            {
+                "no": 1,
+                "uid": 454463456,
+                "showName": "第1集",
+                "swfurl": 454463456,
+                "domain": "qq.com",
+                "rUrl": "http://v.qq.com/x/page/b0029rfy05v.html?ptag=sohu.tv",
+                "rSwfurl": "http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?vid=b0029rfy05v&autoplay=0&list=2&showcfg=1&tpid=1&cid=3p2fnoopmegcajh",
+                "rid": 5828854,
+                "title": "大江大河[TV版]_01",
+                "type": 0,
+                "url": "http://v.qq.com/x/page/b0029rfy05v.html?ptag=sohu.tv"
+            },
+            {
+                "no": 2,
+                "uid": 454463457,
+                "showName": "第2集",
+                "swfurl": 454463457,
+                "domain": "qq.com",
+                "rUrl": "http://v.qq.com/x/page/q0029dl5gs3.html?ptag=sohu.tv",
+                "rSwfurl": "http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?vid=q0029dl5gs3&autoplay=0&list=2&showcfg=1&tpid=1&cid=3p2fnoopmegcajh",
+                "rid": 5828854,
+                "title": "大江大河[TV版]_02",
+                "type": 0,
+                "url": "http://v.qq.com/x/page/q0029dl5gs3.html?ptag=sohu.tv"
+            }
+        ]
+    },
+    "albumName": "大江大河",
+    "types": [
+        "剧情片"
+    ],
+    "author": "",
+    "smallVerPicUrl": "http://img.tv.itc.cn/soimg/test/default.png",
+    "directors": [
+        "孔笙",
+        "黄伟"
+    ],
+    "updateTime": 1547618953594,
+    "iqiyi": {
+        "size": 2,
+        "videos": [
+            {
+                "no": 1,
+                "uid": 454463474,
+                "showName": "第1集",
+                "swfurl": 454463474,
+                "domain": "iqiyi.com",
+                "rUrl": "http://www.iqiyi.com/v_19rqs0we9s.html?vfm=m_312_shsp",
+                "rid": 5828854,
+                "title": "大江大河第1集",
+                "type": 2,
+                "url": "http://www.iqiyi.com/v_19rqs0we9s.html?vfm=m_312_shsp"
+            },
+            {
+                "no": 2,
+                "uid": 454463473,
+                "showName": "第2集",
+                "swfurl": 454463473,
+                "domain": "iqiyi.com",
+                "rUrl": "http://www.iqiyi.com/v_19rqs0wim0.html?vfm=m_312_shsp",
+                "rid": 5828854,
+                "title": "大江大河第2集",
+                "type": 2,
+                "url": "http://www.iqiyi.com/v_19rqs0wim0.html?vfm=m_312_shsp"
+            }
+        ]
+    },
+    "albumDesc": "宋运辉（王凯饰）天资聪颖，却出身不好，一直倍受歧视，但是他把握住了1978年恢复高考的机会，抓住机遇，勤学苦干，当上了国企的技术人员，一步步晋升，奠定了成功人生的基础，但也在新时代的变革中逐渐迷失。与宋运辉不同的是他的姐夫雷东宝（杨烁 饰）。他出身贫寒、属于苗正根红的“大老粗”，行动力十足。在乡村改革的浪潮中带领村民紧跟政策，一直走在时代的前沿。但由于自身文化水平不高，眼界不够开阔，最终绊倒在新事物脚下。如果说宋运辉和雷东宝的经历是国营经济和集体经济的缩影。那么个体户杨巡（董子健 饰）无疑就是个体经济的典型代表，在翻滚向前的时代中，他手忙脚乱抓住过商机，也踩踏过陷阱，生意场上几经波折，最终拥有了自己的产业，成为了那个时代个体经济的典型代表。",
+    "categories": [
+        "电视剧"
+    ],
+    "showAlbumName": "大江大河(48集全)"
+}

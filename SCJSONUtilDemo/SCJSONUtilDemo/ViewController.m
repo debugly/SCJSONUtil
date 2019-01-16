@@ -7,14 +7,14 @@
 //
 
 #import "ViewController.h"
-#import <SCJSONUtil/SCJSONUtil.h>
+#import "SCJSONUtil.h"
 #import "UserInfoModel.h"
 #import "FavModel.h"
 #import "NSObject+DebugDescription.h"
 #import "NSArray+DebugDescription.h"
 #import "NSObject+PrintProperties.h"
 #import "Car.h"
-
+#import "VideoList.h"
 
 @interface ViewController ()
 
@@ -39,6 +39,10 @@
     result = [result stringByAppendingString:@"\n\n=========多层嵌套字典转嵌套model==========\n\n"];
 
     result = [result stringByAppendingString:[self testModelFromDictionary]];
+    
+    result = [result stringByAppendingString:@"\n\n=========动态参照解析==========\n\n"];
+    
+    result = [result stringByAppendingString:[self testDynamicParserFromDictionary]];
     
     result = [result stringByAppendingString:@"\n\n===================\n\n"];
     
@@ -116,6 +120,19 @@
     return [models DEBUGDescrption];
 }
 
+- (NSString *)testDynamicParserFromDictionary
+{
+    NSDictionary *videoListJson = [self readVideoList];
+    /**
+     // 动态映射 key 的映射关系
+     !! 这里模拟一个场景，我们需要请求这样一个接口，参数值可以是[qq,iqiyi]，响应结果里会包含所有渠道的视频信息(详见Video.json)，我们客户端定义了一个 video 数组来存放目标渠道的剧集，但是这种情况下，我们不知道怎么确定 video 字段跟服务器字段的映射关系！所以为了满足这种需求，就提供了V2版本的函数，她的第三个参数就是用来存放额外信息的，这个信息会在解析过程中，通过(sc_unDefinedKey:forValue:refObj:)方法传递过来；然后根据 refObj 提供的映射关系，去动态修改 key (value)！
+     这样就解决了编译时无法确定映射关系问题，有点像 OC 的运行时哈，代码运行起来后，可以动态的解决！
+     */
+    
+    VideoList *videoList = SCJSON2ModelV2(videoListJson, @"VideoList",@{@"qq":@"videos"});//这里的qq,可以换成iqiyi；具体是业务决定的
+    return [videoList DEBUGDescrption];
+}
+
 - (void)testPerformance
 {
     ///!! 测试的时候要关闭日志，NSLog 很耗时！
@@ -166,4 +183,8 @@
     return [self readBundleJSONFile:@"newMainPageFirst"];
 }
 
+- (NSDictionary *)readVideoList
+{
+    return [self readBundleJSONFile:@"Video"];
+}
 @end

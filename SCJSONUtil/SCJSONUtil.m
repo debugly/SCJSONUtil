@@ -51,7 +51,7 @@ static void	*QLMallocInit(size_t __size)
     return p;
 }
 
-static QLPropertyDesc * QLQLPropertyDescForClassProperty(Class clazz,const char *key)
+static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *key)
 {
     objc_property_t property = class_getProperty(clazz, key);
     if (NULL == property) {
@@ -144,22 +144,37 @@ static NSURL * QLValueTransfer2NSURL(id value){
 
 @implementation NSObject (SCAnalyzeJSON2Model)
 
-- (void)sc_autoMatchValue:(id)obj forKey:(NSString *)key
+- (void)sc_autoMatchValue:(id)obj forKey:(NSString *)key refObj:(id)refObj
 {
-    NSString *mapedKey = key;
+    NSString *mapedKey = key; //服务器返回的key
     if ([self respondsToSelector:@selector(sc_collideKeysMap)]) {
+        // 自定义key，覆盖服务器返回的key
         mapedKey = [[self sc_collideKeysMap]objectForKey:key] ?: key;
     }
     
-    QLPropertyDesc * pdesc = QLQLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
+    // 获取属性类型
+    QLPropertyDesc * pdesc = NULL;
+    
+    pdesc = QLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
     if (NULL == pdesc) {
-        SCJSONLog(@"⚠️ %@ 类没有解析 %@ 属性;如果客户端和服务端key不相同可通过sc_collideKeysMap 做映射！value:%@",NSStringFromClass([self class]),key,obj);
-        return;
+        // Model 里没有定义 key 这个属性
+        if ([self respondsToSelector:@selector(sc_unDefinedKey:forValue:refObj:)] && [self sc_unDefinedKey:&mapedKey forValue:&obj refObj:refObj]) {
+            SCJSONLog(@"重新定义了key或者value");
+            //改变key值！！
+            key = mapedKey;
+            pdesc = QLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
+        } else {
+            SCJSONLog(@"⚠️ %@ 类没有解析 %@ 属性;如果客户端和服务端key不相同可通过sc_collideKeysMap 做映射！value:%@",NSStringFromClass([self class]),key,obj);
+            return;
+        }
     }
     
+    if (NULL == pdesc) {
+        return;
+    }
     ///处理之前给客户端一次对值处理的机会，做一些业务逻辑！
-    if ([self respondsToSelector:@selector(sc_key:beforeAssignedValue:)]) {
-        obj = [self sc_key:mapedKey beforeAssignedValue:obj];
+    if ([self respondsToSelector:@selector(sc_key:beforeAssignedValue:refObj:)]) {
+        obj = [self sc_key:mapedKey beforeAssignedValue:obj refObj:refObj];
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
@@ -272,44 +287,53 @@ static NSURL * QLValueTransfer2NSURL(id value){
 
 - (void)sc_assembleDataFormDic:(NSDictionary *)dic
 {
+    [self sc_assembleDataFormDic:dic refObj:nil];
+}
+
+- (void)sc_assembleDataFormDic:(NSDictionary *)dic refObj:(id)refObj
+{
     [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self sc_autoMatchValue:obj forKey:key];
+        [self sc_autoMatchValue:obj forKey:key refObj:refObj];
     }];
 }
 
 + (instancetype)sc_instanceFormDic:(NSDictionary *)jsonDic
 {
-    NSObject *obj = [[self alloc]init];
-    [obj sc_assembleDataFormDic:jsonDic];
-    return obj;
+    return [self sc_instanceFromValue:jsonDic];
 }
 
 + (NSArray *)sc_instanceArrFormArray:(NSArray *)jsonArr
 {
-    if(!jsonArr || jsonArr.count == 0) return nil;
-    
-    NSMutableArray *modelArr = [[NSMutableArray alloc]initWithCapacity:3];
-    [jsonArr enumerateObjectsUsingBlock:^(id json, NSUInteger idx, BOOL *stop) {
-        id instance = [self sc_instanceFromValue:json];
-        if (instance) {
-            [modelArr addObject:instance];
-        }else{
-#if SCJSONLogON
-            NSString *str = [NSString stringWithFormat:@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
-            NSAssert(NO,str);
-#endif
-        }
-    }];
-    return [NSArray arrayWithArray:modelArr];
+    return [self sc_instanceFromValue:jsonArr];
 }
 
-+ (instancetype)sc_instanceFromValue:(id)json
++ (id)sc_instanceFromValue:(id)json refObj:(id)refObj
 {
     if ([json isKindOfClass:[NSDictionary class]]) {
-        return [self sc_instanceFormDic:json];
+        NSObject *obj = [[self alloc]init];
+        [obj sc_assembleDataFormDic:json refObj:refObj];
+        return obj;
     }
     if([json isKindOfClass:[NSArray class]]){
-        return [self sc_instanceArrFormArray:json];
+        NSArray *jsonArr = json;
+        
+        if(!jsonArr || jsonArr.count == 0){
+          return nil;
+        }
+        
+        NSMutableArray *modelArr = [[NSMutableArray alloc]initWithCapacity:3];
+        [jsonArr enumerateObjectsUsingBlock:^(id json, NSUInteger idx, BOOL *stop) {
+            id instance = [self sc_instanceFromValue:json refObj:refObj];
+            if (instance) {
+                [modelArr addObject:instance];
+            }else{
+#if SCJSONLogON
+                NSString *str = [NSString stringWithFormat:@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
+                NSAssert(NO,str);
+#endif
+            }
+        }];
+        return [NSArray arrayWithArray:modelArr];
     }
     if ([self class] == [NSNumber class]) {
         return QLValueTransfer2NSNumber(json);
@@ -328,6 +352,11 @@ static NSURL * QLValueTransfer2NSURL(id value){
     NSAssert(NO,str);
 #endif
     return nil;
+}
+
++ (id)sc_instanceFromValue:(id)json
+{
+    return [self sc_instanceFromValue:json refObj:nil];
 }
 
 @end
@@ -369,6 +398,12 @@ id SCJSON2Model(id json,NSString *modelName)
 {
     Class clazz = NSClassFromString(modelName);
     return [clazz sc_instanceFromValue:json];
+}
+
+id SCJSON2ModelV2(id json,NSString *modelName,id refObj)
+{
+    Class clazz = NSClassFromString(modelName);
+    return [clazz sc_instanceFromValue:json refObj:refObj];
 }
 
 id SCJSON2StringValueJSON(id findJson)

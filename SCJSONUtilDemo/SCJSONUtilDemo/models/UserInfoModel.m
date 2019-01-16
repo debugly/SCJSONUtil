@@ -7,7 +7,7 @@
 //
 
 #import "UserInfoModel.h"
-#import <SCJSONUtil/SCJSONUtil.h>
+#import "SCJSONUtil.h"
 
 @implementation CarInfoModel
 
