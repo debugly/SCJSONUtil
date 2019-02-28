@@ -142,14 +142,15 @@ static NSURL * QLValueTransfer2NSURL(id value){
 #pragma mark C  Functions  -End-
 #pragma mark -
 
-@implementation NSObject (SCAnalyzeJSON2Model)
+@implementation NSObject (SCJSON2Model)
 
 - (void)sc_autoMatchValue:(id)obj forKey:(NSString *)key refObj:(id)refObj
 {
+    id<SCJSON2ModelProtocol> instance = (id<SCJSON2ModelProtocol>)self;
     NSString *mapedKey = key; //服务器返回的key
-    if ([self respondsToSelector:@selector(sc_collideKeysMap)]) {
+    if ([instance respondsToSelector:@selector(sc_collideKeysMap)]) {
         // 自定义key，覆盖服务器返回的key
-        mapedKey = [[self sc_collideKeysMap]objectForKey:key] ?: key;
+        mapedKey = [[instance sc_collideKeysMap]objectForKey:key] ?: key;
     }
     
     // 获取属性类型
@@ -158,7 +159,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
     pdesc = QLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
     if (NULL == pdesc) {
         // Model 里没有定义 key 这个属性
-        if ([self respondsToSelector:@selector(sc_unDefinedKey:forValue:refObj:)] && [self sc_unDefinedKey:&mapedKey forValue:&obj refObj:refObj]) {
+        if ([instance respondsToSelector:@selector(sc_unDefinedKey:forValue:refObj:)] && [instance sc_unDefinedKey:&mapedKey forValue:&obj refObj:refObj]) {
             SCJSONLog(@"重新定义了key或者value");
             //改变key值！！
             key = mapedKey;
@@ -173,14 +174,14 @@ static NSURL * QLValueTransfer2NSURL(id value){
         return;
     }
     ///处理之前给客户端一次对值处理的机会，做一些业务逻辑！
-    if ([self respondsToSelector:@selector(sc_key:beforeAssignedValue:refObj:)]) {
-        obj = [self sc_key:mapedKey beforeAssignedValue:obj refObj:refObj];
+    if ([instance respondsToSelector:@selector(sc_key:beforeAssignedValue:refObj:)]) {
+        obj = [instance sc_key:mapedKey beforeAssignedValue:obj refObj:refObj];
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
         NSString *modleName = nil;
-        if ([self respondsToSelector:@selector(sc_collideKeyModelMap)]) {
-            modleName = [[self sc_collideKeyModelMap]objectForKey:key];
+        if ([instance respondsToSelector:@selector(sc_collideKeyModelMap)]) {
+            modleName = [[instance sc_collideKeyModelMap]objectForKey:key];
         }
         
         if (modleName) {
@@ -295,6 +296,11 @@ static NSURL * QLValueTransfer2NSURL(id value){
     [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self sc_autoMatchValue:obj forKey:key refObj:refObj];
     }];
+    
+    id<SCJSON2ModelProtocol> instance = (id<SCJSON2ModelProtocol>)self;
+    if ([instance respondsToSelector:@selector(sc_willFinishConvert:refObj:)]) {
+        [instance sc_willFinishConvert:dic refObj:refObj];
+    }
 }
 
 + (instancetype)sc_instanceFormDic:(NSDictionary *)jsonDic

@@ -167,3 +167,4 @@ end
 	2018-11-27 18:30:17.844351+0800 SCJSONUtilDemo[91682:1947248] ⚠️⚠️ DataInfoModel 类的 cars 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@"cars":@"XyzModel"}
 	```
 * 2.4.5 增加类别方法，可动态做key-value映射。
+* 2.4.6 增加类别方法，可自定义解析过程。

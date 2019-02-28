@@ -12,7 +12,7 @@
 ///日志开关
 #define SCJSONLogON 0
 
-@protocol SCAnalyzeJSON2ModelProtocol <NSObject>
+@protocol SCJSON2ModelProtocol <NSObject>
 
 @optional;
 /**
@@ -46,10 +46,17 @@
  */
 - (id)sc_key:(NSString *)key beforeAssignedValue:(id)value refObj:(id)refObj;
 
+/**
+ * @brief: JOSN 转 Model即将完成，你可以在这里做最后的自定义解析，以完成复杂的转换！
+   @parameter data : 服务器返回的原始JSON数据；
+   @parameter refObj : 客户端解析时传过来的额外信息；
+ */
+- (void)sc_willFinishConvert:(id)data refObj:(id)refObj;
+
 @end
 
 
-@interface NSObject (SCAnalyzeJSON2Model)<SCAnalyzeJSON2ModelProtocol>
+@interface NSObject (SCJSON2Model)
 
 /**
  *  @brief:  创建好对象后调用此方法，将json赋值给该modle对象；
@@ -73,9 +80,9 @@
 
 /**
  *  @brief: 自动判断Value类型进行解析
- *            a.value is array --> a model instances array,if JSON is nil or empty return nil;
- *            b.value is dictionary --> a model instance,if JSON is nil or empty return nil;
- *            c.Class is NSNumber、NSString、NSURL or NSDecimalNumber ; auto convert value to instance.
+ *            a、if value is array --> a model instances array,if JSON is nil or empty return nil;
+ *            b、if value is dictionary --> a model instance,if JSON is nil or empty return nil;
+ *            c、if caller's Class is NSNumber、NSString、NSURL or NSDecimalNumber ; auto convert value to (the caller's Class) instance.
  */
 + (id)sc_instanceFromValue:(id)value;
 

@@ -15,6 +15,7 @@
 #import "NSObject+PrintProperties.h"
 #import "Car.h"
 #import "VideoList.h"
+#import "VideoInfo.h"
 
 @interface ViewController ()
 
@@ -42,7 +43,11 @@
     
     result = [result stringByAppendingString:@"\n\n=========动态参照解析==========\n\n"];
     
-    result = [result stringByAppendingString:[self testDynamicParserFromDictionary]];
+    result = [result stringByAppendingString:[self testDynamicConvertFromDictionary]];
+    
+    result = [result stringByAppendingString:@"\n\n=========自定义解析==========\n\n"];
+    
+    result = [result stringByAppendingString:[self testCustomConvertFromDictionary]];
     
     result = [result stringByAppendingString:@"\n\n===================\n\n"];
     
@@ -120,7 +125,7 @@
     return [models DEBUGDescrption];
 }
 
-- (NSString *)testDynamicParserFromDictionary
+- (NSString *)testDynamicConvertFromDictionary
 {
     NSDictionary *videoListJson = [self readVideoList];
     /**
@@ -131,6 +136,20 @@
     
     VideoList *videoList = SCJSON2ModelV2(videoListJson, @"VideoList",@{@"qq":@"videos"});//这里的qq,可以换成iqiyi；具体是业务决定的
     return [videoList DEBUGDescrption];
+}
+
+- (NSString *)testCustomConvertFromDictionary
+{
+    NSDictionary *videoInfoJson = [self readVideoInfo];
+    /**
+     // 自定义解析过程
+     !! 当解析过程过于复杂时，可在
+        - (id)sc_willFinishConvert:(id)data refObj:(id)refObj
+     方法中编写解析过程！
+     */
+    
+    VideoInfo *videoInfo = SCJSON2ModelV2(videoInfoJson, @"VideoInfo",@{@"test":@"RefObj"});//额外业务参数
+    return [videoInfo DEBUGDescrption];
 }
 
 - (void)testPerformance
@@ -187,4 +206,10 @@
 {
     return [self readBundleJSONFile:@"Video"];
 }
+
+- (NSDictionary *)readVideoInfo
+{
+    return [self readBundleJSONFile:@"VideoInfo"];
+}
+
 @end

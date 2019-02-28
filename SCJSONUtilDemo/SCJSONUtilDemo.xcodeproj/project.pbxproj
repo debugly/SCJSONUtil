@@ -29,6 +29,8 @@
 		DD99FD0721EF0C3000584AC4 /* Video.json in Resources */ = {isa = PBXBuildFile; fileRef = DD99FD0621EF0C3000584AC4 /* Video.json */; };
 		DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* VideoList.m */; };
 		DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */; };
+		DDA214172227C2700001F585 /* VideoInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA214162227C2700001F585 /* VideoInfo.json */; };
+		DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA214192227C31B0001F585 /* VideoInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,9 @@
 		DD99FD0921EF0C4200584AC4 /* VideoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoList.m; sourceTree = "<group>"; };
 		DD99FD0C21EF0DFA00584AC4 /* SCJSONUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONUtil.h; sourceTree = "<group>"; };
 		DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONUtil.m; sourceTree = "<group>"; };
+		DDA214162227C2700001F585 /* VideoInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoInfo.json; sourceTree = "<group>"; };
+		DDA214182227C31B0001F585 /* VideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoInfo.h; sourceTree = "<group>"; };
+		DDA214192227C31B0001F585 /* VideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +160,7 @@
 				C342B2C01F2186B9007F04FC /* newMainPageSecond.json */,
 				C342B2C11F2186B9007F04FC /* NewRecProduct.json */,
 				C342B2C21F2186B9007F04FC /* Userinfo.json */,
+				DDA214162227C2700001F585 /* VideoInfo.json */,
 			);
 			path = jsonfiles;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 				C342B2CB1F2186B9007F04FC /* UserInfoModel.m */,
 				DD99FD0821EF0C4200584AC4 /* VideoList.h */,
 				DD99FD0921EF0C4200584AC4 /* VideoList.m */,
+				DDA214182227C31B0001F585 /* VideoInfo.h */,
+				DDA214192227C31B0001F585 /* VideoInfo.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -246,6 +254,7 @@
 			files = (
 				C342B2D01F2186B9007F04FC /* FavConcern.json in Resources */,
 				C342B2AE1F218554007F04FC /* LaunchScreen.storyboard in Resources */,
+				DDA214172227C2700001F585 /* VideoInfo.json in Resources */,
 				C342B2D21F2186B9007F04FC /* newMainPageSecond.json in Resources */,
 				C342B2AB1F218554007F04FC /* Assets.xcassets in Resources */,
 				C342B2CF1F2186B9007F04FC /* Car.json in Resources */,
@@ -273,6 +282,7 @@
 				C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */,
 				C342B2D51F2186B9007F04FC /* Car.m in Sources */,
 				C342B2A01F218554007F04FC /* main.m in Sources */,
+				DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */,
 				DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */,
 				DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */,
 				C342B2CC1F2186B9007F04FC /* NSArray+DebugDescription.m in Sources */,

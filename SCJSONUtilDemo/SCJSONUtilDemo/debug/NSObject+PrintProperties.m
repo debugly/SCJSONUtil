@@ -91,6 +91,8 @@
                 id value = [self valueForKey:key];
                 if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSURL class]] || [value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSNumber class]]) {
                     [toString appendFormat:@"\t%@:%@\n",key,value];
+                }else if([NSStringFromClass([value class]) isEqualToString:@"NSObject"]){
+                    //ignore
                 }else{
                     NSString *desc = [value DEBUGDescrptionWithLeval:leval+1];
                     [toString appendFormat:@"\t%@:%@\n",key,desc];
