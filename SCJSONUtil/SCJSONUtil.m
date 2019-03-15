@@ -268,7 +268,10 @@ static NSURL * QLValueTransfer2NSURL(id value){
                     tmpValue = QLValueTransfer2NSNumber(obj);
                 }
                 
-                [self setValue:tmpValue forKey:mapedKey];
+                //could not set nil as the value for the scalar key(int,float,...)
+                if (tmpValue) {
+                    [self setValue:tmpValue forKey:mapedKey];
+                }
             }
                 break;
             default:
