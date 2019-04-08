@@ -194,6 +194,17 @@ static NSURL * QLValueTransfer2NSURL(id value){
             }
             [self setValue:objs forKey:mapedKey];
         } else {
+            NSArray *objs = nil;
+            
+            char * pclazz = pdesc->clazz;
+            // 如果属性是可变的，那么做个可变处理
+            if (QLCStrEqual(pclazz, "NSMutableArray")) {
+                objs = [NSMutableArray arrayWithArray:obj];
+            }else{
+                objs = [NSArray arrayWithArray:obj];
+            }
+            [self setValue:objs forKey:mapedKey];
+            
             SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@\"%@\":@\"%@\"}",NSStringFromClass([self class]),key,key,@"XyzModel");
         }
     }else if ([obj isKindOfClass:[NSDictionary class]]){

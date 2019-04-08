@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *area;
 @property (nonatomic,assign) long playlistid;
 @property (nonatomic,strong) NSArray<VideoItem *> *videos;
+@property (nonatomic, strong) NSArray *wps;
 
 @end
 

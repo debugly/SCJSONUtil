@@ -70,6 +70,8 @@
         [toString appendString:levalString];
         [toString appendFormat:@"]\n"];
         return [toString copy];
+    }else if([self isKindOfClass:[NSDictionary class]]){
+        return [self description];
     }else{
         NSMutableString *toString = [[NSMutableString alloc]init];
         NSArray *properties = [self propertyNames];

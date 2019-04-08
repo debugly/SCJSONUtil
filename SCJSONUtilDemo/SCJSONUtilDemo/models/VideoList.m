@@ -14,6 +14,11 @@
 
 @implementation VideoList
 
+- (NSDictionary *)sc_collideKeysMap
+{
+    return @{@"wp" : @"wps"};
+}
+
 - (NSDictionary *)sc_collideKeyModelMap
 {
     return @{@"videos":@"VideoItem"};
