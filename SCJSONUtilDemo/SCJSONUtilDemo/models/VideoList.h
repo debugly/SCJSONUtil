@@ -24,7 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *area;
 @property (nonatomic,assign) long playlistid;
 @property (nonatomic,strong) NSArray<VideoItem *> *videos;
-@property (nonatomic, strong) NSArray *wps;
+///没有指定model，原值输出！
+@property (nonatomic,strong) NSArray *wps;
+///不能解析！
+@property (nonatomic,assign) int array;
 
 @end
 

@@ -44,7 +44,7 @@ static bool QLCStrEqual(char *v1,char *v2)
     return 0 == strcmp(v1, v2);
 }
 
-static void	*QLMallocInit(size_t __size)
+static void    *QLMallocInit(size_t __size)
 {
     void *p = malloc(__size);
     memset(p, 0, __size);
@@ -173,39 +173,42 @@ static NSURL * QLValueTransfer2NSURL(id value){
     if (NULL == pdesc) {
         return;
     }
+    
     ///处理之前给客户端一次对值处理的机会，做一些业务逻辑！
     if ([instance respondsToSelector:@selector(sc_key:beforeAssignedValue:refObj:)]) {
         obj = [instance sc_key:mapedKey beforeAssignedValue:obj refObj:refObj];
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
-        NSString *modleName = nil;
-        if ([instance respondsToSelector:@selector(sc_collideKeyModelMap)]) {
-            modleName = [[instance sc_collideKeyModelMap]objectForKey:key];
-        }
         
-        if (modleName) {
-            Class clazz = NSClassFromString(modleName);
-            NSArray *objs = [clazz sc_instanceArrFormArray:obj];
+        //匹配目标类型
+        if (pdesc->type == QLPropertyTypeObj && ( QLCStrEqual((char *)pdesc->clazz, "NSMutableArray") || QLCStrEqual((char *)pdesc->clazz, "NSArray") )) {
+            
+            NSString *modleName = nil;
+            if ([instance respondsToSelector:@selector(sc_collideKeyModelMap)]) {
+                modleName = [[instance sc_collideKeyModelMap]objectForKey:key];
+            }
+            
+            NSArray *objs = nil;
+            
+            if (modleName) {
+                Class clazz = NSClassFromString(modleName);
+                objs = [clazz sc_instanceArrFormArray:obj];
+            } else {
+                objs = [NSArray arrayWithArray:obj];
+                SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@\"%@\":@\"%@\"}",NSStringFromClass([self class]),key,key,@"XyzModel");
+            }
+            
             char * pclazz = pdesc->clazz;
             // 如果属性是可变的，那么做个可变处理
             if (QLCStrEqual(pclazz, "NSMutableArray")) {
                 objs = [NSMutableArray arrayWithArray:objs];
             }
             [self setValue:objs forKey:mapedKey];
-        } else {
-            NSArray *objs = nil;
-            
-            char * pclazz = pdesc->clazz;
-            // 如果属性是可变的，那么做个可变处理
-            if (QLCStrEqual(pclazz, "NSMutableArray")) {
-                objs = [NSMutableArray arrayWithArray:obj];
-            }else{
-                objs = [NSArray arrayWithArray:obj];
-            }
-            [self setValue:objs forKey:mapedKey];
-            
-            SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@\"%@\":@\"%@\"}",NSStringFromClass([self class]),key,key,@"XyzModel");
+        }
+        /// model 属性不是 NSMutableArray/NSArray，无法处理！默认忽略掉！
+        else {
+            SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回类型不匹配，无法解析！请修改为NSArray * %@; 或者 NSMutableArray * %@;",NSStringFromClass([self class]),key,key,key);
         }
     }else if ([obj isKindOfClass:[NSDictionary class]]){
         //如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
@@ -338,7 +341,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
         NSArray *jsonArr = json;
         
         if(!jsonArr || jsonArr.count == 0){
-          return nil;
+            return nil;
         }
         
         NSMutableArray *modelArr = [[NSMutableArray alloc]initWithCapacity:3];

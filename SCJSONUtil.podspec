@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCJSONUtil"
-  s.version      = "2.4.8"
+  s.version      = "2.4.9"
   s.summary      = "轻量、方便的 JSON 转 Model 框架，支持 iOS 和 OS X 平台"
 
   # This description is used to generate tags and improve search results.
