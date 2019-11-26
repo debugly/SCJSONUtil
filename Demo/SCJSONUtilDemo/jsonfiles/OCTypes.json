@@ -1,0 +1,16 @@
+{
+    "boolType": true,
+    "BOOLType": true,
+    "charType": 32,
+    "uCharType": 97,
+    "shortType": 123,
+    "uShortType": 234,
+    "intType": 345,
+    "uIntType": 456,
+    "longType": 567,
+    "uLongType": 789,
+    "longlongType": 5677,
+    "uLongLongType": 7899,
+    "floatType": 345.123,
+    "doubleType": 456.12345,
+}

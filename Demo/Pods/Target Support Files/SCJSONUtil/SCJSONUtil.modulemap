@@ -1,0 +1,6 @@
+framework module SCJSONUtil {
+  umbrella header "SCJSONUtil-umbrella.h"
+
+  export *
+  module * { export * }
+}

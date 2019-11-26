@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCJSONUtil"
-  s.version      = "2.4.9"
+  s.version      = "2.5.0"
   s.summary      = "轻量、方便的 JSON 转 Model 框架，支持 iOS 和 OS X 平台"
 
   # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                    轻量、方便的 JSON 转 Model 框架；服役搜狐的SDK和搜狐影音 Mac 版！
                    DESC
 
-  s.homepage     = "http://debugly.cn/SCJSONUtil"
+  s.homepage     = "https://debugly.cn/SCJSONUtil"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 

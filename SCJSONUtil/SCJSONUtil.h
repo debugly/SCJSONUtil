@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 ///日志开关
-#define SCJSONLogON 0
+#define SCJSONLogON 1
 
 @protocol SCJSON2ModelProtocol <NSObject>
 

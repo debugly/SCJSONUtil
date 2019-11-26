@@ -10,6 +10,7 @@
 #import "SCJSONUtil.h"
 #import "UserInfoModel.h"
 #import "FavModel.h"
+#import "OCNumberTypes.h"
 #import "NSObject+DebugDescription.h"
 #import "NSArray+DebugDescription.h"
 #import "NSObject+PrintProperties.h"
@@ -25,11 +26,17 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
+    //[self printTypeEncodings];
     ///数组
-    NSString *result = @"\n=======json数组转model数组============\n\n";
+    NSString *result = @"\n=======Objc 基础数据类型解析=======\n\n";
+    
+    result = [result stringByAppendingString:[self testOCNumberTypes]];
+    
+    result = [result stringByAppendingString:@"\n\n=======json数组转model数组============\n\n"];
     
     result = [result stringByAppendingString:[self testModelsFromJSONArr]];
     
@@ -57,6 +64,40 @@
         ///测试嵌套model解析性能
         [self testPerformance];
     });
+}
+
+- (void)printTypeEncodings
+{
+    NSLog(@"bool     : %s, %lu", @encode(bool), sizeof(bool));
+    NSLog(@"BOOL     : %s, %lu", @encode(BOOL), sizeof(BOOL));
+    NSLog(@"char     : %s, %lu", @encode(char), sizeof(char));
+    NSLog(@"unsigned char     : %s, %lu", @encode(unsigned char), sizeof(unsigned char));
+    NSLog(@"short    : %s, %lu", @encode(short), sizeof(short));
+    NSLog(@"unsigned short    : %s, %lu", @encode(unsigned short), sizeof(unsigned short));
+    NSLog(@"int      : %s, %lu", @encode(int), sizeof(int));
+    NSLog(@"unsigned int      : %s, %lu", @encode(unsigned int), sizeof(unsigned int));
+    NSLog(@"long     : %s, %lu", @encode(long), sizeof(long));
+    NSLog(@"unsigned long     : %s, %lu", @encode(unsigned long), sizeof(unsigned long));
+    NSLog(@"long long: %s, %lu", @encode(long long), sizeof(long long));
+    NSLog(@"unsigned long long: %s, %lu", @encode(unsigned long long), sizeof(unsigned long long));
+    NSLog(@"float    : %s, %lu", @encode(float), sizeof(float));
+    NSLog(@"double   : %s, %lu", @encode(double), sizeof(double));
+    
+    NSLog(@"int8_t  : %s, %lu", @encode(int8_t), sizeof(int8_t));
+    NSLog(@"uint8_t  : %s, %lu", @encode(uint8_t), sizeof(uint8_t));
+    NSLog(@"int16_t  : %s, %lu", @encode(int16_t), sizeof(int16_t));
+    NSLog(@"uint16_t  : %s, %lu", @encode(uint16_t), sizeof(uint16_t));
+    NSLog(@"int32_t  : %s, %lu", @encode(int32_t), sizeof(int32_t));
+    NSLog(@"uint32_t  : %s, %lu", @encode(uint32_t), sizeof(uint32_t));
+    NSLog(@"int64_t  : %s, %lu", @encode(int64_t), sizeof(int64_t));
+    NSLog(@"uint64_t  : %s, %lu", @encode(uint64_t), sizeof(uint64_t));
+}
+
+- (NSString *)testOCNumberTypes
+{
+    NSDictionary *typesDic = [self readOCTypes];
+    OCNumberTypes *model = [OCNumberTypes sc_instanceFormDic:typesDic];
+    return [model DEBUGDescrption];
 }
 
 - (void)testCount:(long)count work:(dispatch_block_t)block
@@ -180,6 +221,11 @@
         return nil;
     }
     return json;
+}
+
+- (NSDictionary *)readOCTypes
+{
+    return [self readBundleJSONFile:@"OCTypes"];
 }
 
 - (NSDictionary *)readCarInfo

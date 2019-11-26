@@ -17,17 +17,21 @@
 
 typedef NS_ENUM(NSUInteger, QLPropertyType) {
     QLPropertyTypeUnknow,
-    QLPropertyTypeObj = '@',
-    QLPropertyTypeFloat = 'f',
-    QLPropertyTypeDouble = 'd',
-    QLPropertyTypeBOOL = 'B',
-    QLPropertyTypeBool = QLPropertyTypeBOOL,
-    QLPropertyTypeChar = 'c',
-    QLPropertyTypeShort = 's',
-    QLPropertyTypeInt = 'i',
-    QLPropertyTypeLong = 'q',
-    QLPropertyTypeLong32 = 'l',
-    QLPropertyTypeLongLong = QLPropertyTypeLong
+    QLPropertyTypeObj       = '@',
+    QLPropertyTypeFloat     = 'f',
+    QLPropertyTypeDouble    = 'd',
+    QLPropertyTypeBOOL      = 'B',
+    QLPropertyTypeBool      = QLPropertyTypeBOOL,
+    QLPropertyTypeInt8      = 'c',
+    QLPropertyTypeUInt8     = 'C',
+    QLPropertyTypeInt16     = 's',
+    QLPropertyTypeUInt16    = 'S',
+    QLPropertyTypeInt32     = 'i',
+    QLPropertyTypeUInt32    = 'I',
+    QLPropertyTypeLong32    = 'l', //32位机器 long 型
+    QLPropertyTypeULong32   = 'L',//32位机器 unsigned long 型
+    QLPropertyTypeInt64     = 'q',  //32位机器 long long 类型；64位机器 long long 和 long 类型
+    QLPropertyTypeUInt64    = 'Q', //32位机器 unsigned long long 类型；64位机器 unsigned long long 和 unsigned long 类型
 };
 
 typedef struct QLPropertyDescS {
@@ -44,7 +48,7 @@ static bool QLCStrEqual(char *v1,char *v2)
     return 0 == strcmp(v1, v2);
 }
 
-static void    *QLMallocInit(size_t __size)
+static void *QLMallocInit(size_t __size)
 {
     void *p = malloc(__size);
     memset(p, 0, __size);
@@ -87,11 +91,16 @@ static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *k
             case QLPropertyTypeFloat:
             case QLPropertyTypeDouble:
             case QLPropertyTypeBOOL:
-            case QLPropertyTypeChar:
-            case QLPropertyTypeShort:
-            case QLPropertyTypeInt:
-            case QLPropertyTypeLong:
+            case QLPropertyTypeInt8:
+            case QLPropertyTypeUInt8:
+            case QLPropertyTypeInt16:
+            case QLPropertyTypeUInt16:
+            case QLPropertyTypeInt32:
+            case QLPropertyTypeUInt32:
             case QLPropertyTypeLong32:
+            case QLPropertyTypeULong32:
+            case QLPropertyTypeInt64:
+            case QLPropertyTypeUInt64:
             {
                 QLPropertyDesc *desc = QLMallocInit(sizeof(QLPropertyDesc));//must init!!! iphone 5 crash,clazz is empty string : '' ;
                 desc->type = iType;
@@ -265,15 +274,20 @@ static NSURL * QLValueTransfer2NSURL(id value){
                 }
             }
                 break;
-                ///因为kvc本身需要的value是id类型，所以对于基本数据类型不处理，而是交给系统 KVC 处理;
-            case QLPropertyTypeInt:
+            ///因为kvc本身需要的value是id类型，所以对于基本数据类型不处理，而是交给系统 KVC 处理;
             case QLPropertyTypeFloat:
             case QLPropertyTypeDouble:
-            case QLPropertyTypeChar:
-            case QLPropertyTypeShort:
-            case QLPropertyTypeLong:
             case QLPropertyTypeBOOL:
+            case QLPropertyTypeInt8:
+            case QLPropertyTypeUInt8:
+            case QLPropertyTypeInt16:
+            case QLPropertyTypeUInt16:
+            case QLPropertyTypeInt32:
+            case QLPropertyTypeUInt32:
             case QLPropertyTypeLong32:
+            case QLPropertyTypeULong32:
+            case QLPropertyTypeInt64:
+            case QLPropertyTypeUInt64:
             {
                 NSNumber *tmpValue = obj;
                 

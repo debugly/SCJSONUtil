@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47463518475F39794456DCB7 /* Pods_SCJSONUtilDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C2B7C4033FF3CDBAC14D5E /* Pods_SCJSONUtilDemo.framework */; };
 		C342B2A01F218554007F04FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B29F1F218554007F04FC /* main.m */; };
 		C342B2A31F218554007F04FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2A21F218554007F04FC /* AppDelegate.m */; };
 		C342B2A61F218554007F04FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2A51F218554007F04FC /* ViewController.m */; };
@@ -26,6 +27,8 @@
 		C342B2D61F2186B9007F04FC /* FavModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C71F2186B9007F04FC /* FavModel.m */; };
 		C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C91F2186B9007F04FC /* GalleryModel.m */; };
 		C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2CB1F2186B9007F04FC /* UserInfoModel.m */; };
+		DD58AFFF238D01EE00E47BB1 /* OCTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD58AFFE238D01EE00E47BB1 /* OCTypes.json */; };
+		DD58B002238D035B00E47BB1 /* OCNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = DD58B001238D035B00E47BB1 /* OCNumberTypes.m */; };
 		DD99FD0721EF0C3000584AC4 /* Video.json in Resources */ = {isa = PBXBuildFile; fileRef = DD99FD0621EF0C3000584AC4 /* Video.json */; };
 		DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* VideoList.m */; };
 		DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */; };
@@ -34,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		068B6847047E9305872A6FA4 /* Pods-SCJSONUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.release.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C342B29B1F218554007F04FC /* SCJSONUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCJSONUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C342B29F1F218554007F04FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C342B2A11F218554007F04FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,6 +68,9 @@
 		C342B2C91F2186B9007F04FC /* GalleryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryModel.m; sourceTree = "<group>"; };
 		C342B2CA1F2186B9007F04FC /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		C342B2CB1F2186B9007F04FC /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		DD58AFFE238D01EE00E47BB1 /* OCTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OCTypes.json; sourceTree = "<group>"; };
+		DD58B000238D035B00E47BB1 /* OCNumberTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCNumberTypes.h; sourceTree = "<group>"; };
+		DD58B001238D035B00E47BB1 /* OCNumberTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCNumberTypes.m; sourceTree = "<group>"; };
 		DD99FD0621EF0C3000584AC4 /* Video.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Video.json; sourceTree = "<group>"; };
 		DD99FD0821EF0C4200584AC4 /* VideoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoList.h; sourceTree = "<group>"; };
 		DD99FD0921EF0C4200584AC4 /* VideoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoList.m; sourceTree = "<group>"; };
@@ -72,6 +79,8 @@
 		DDA214162227C2700001F585 /* VideoInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoInfo.json; sourceTree = "<group>"; };
 		DDA214182227C31B0001F585 /* VideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoInfo.h; sourceTree = "<group>"; };
 		DDA214192227C31B0001F585 /* VideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
+		E1BA55833FF4E3C7DBAA5CB0 /* Pods-SCJSONUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.debug.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		E6C2B7C4033FF3CDBAC14D5E /* Pods_SCJSONUtilDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCJSONUtilDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,15 +88,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47463518475F39794456DCB7 /* Pods_SCJSONUtilDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022D93A7048FC8A046037B37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1BA55833FF4E3C7DBAA5CB0 /* Pods-SCJSONUtilDemo.debug.xcconfig */,
+				068B6847047E9305872A6FA4 /* Pods-SCJSONUtilDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		47DB86180D062E1A82A3A8A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E6C2B7C4033FF3CDBAC14D5E /* Pods_SCJSONUtilDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -98,6 +118,7 @@
 				C342B29D1F218554007F04FC /* SCJSONUtilDemo */,
 				C342B29C1F218554007F04FC /* Products */,
 				47DB86180D062E1A82A3A8A9 /* Frameworks */,
+				022D93A7048FC8A046037B37 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +182,7 @@
 				C342B2C11F2186B9007F04FC /* NewRecProduct.json */,
 				C342B2C21F2186B9007F04FC /* Userinfo.json */,
 				DDA214162227C2700001F585 /* VideoInfo.json */,
+				DD58AFFE238D01EE00E47BB1 /* OCTypes.json */,
 			);
 			path = jsonfiles;
 			sourceTree = "<group>";
@@ -180,6 +202,8 @@
 				DD99FD0921EF0C4200584AC4 /* VideoList.m */,
 				DDA214182227C31B0001F585 /* VideoInfo.h */,
 				DDA214192227C31B0001F585 /* VideoInfo.m */,
+				DD58B000238D035B00E47BB1 /* OCNumberTypes.h */,
+				DD58B001238D035B00E47BB1 /* OCNumberTypes.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -201,9 +225,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C342B2B21F218554007F04FC /* Build configuration list for PBXNativeTarget "SCJSONUtilDemo" */;
 			buildPhases = (
+				A24A144F85492CB067857741 /* [CP] Check Pods Manifest.lock */,
 				C342B2971F218554007F04FC /* Sources */,
 				C342B2981F218554007F04FC /* Frameworks */,
 				C342B2991F218554007F04FC /* Resources */,
+				766A551F4EDC2091FE075FA5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -220,7 +246,7 @@
 		C342B2931F218554007F04FC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = xuqianlong;
 				TargetAttributes = {
 					C342B29A1F218554007F04FC = {
@@ -231,7 +257,7 @@
 			};
 			buildConfigurationList = C342B2961F218554007F04FC /* Build configuration list for PBXProject "SCJSONUtilDemo" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -255,6 +281,7 @@
 				C342B2D01F2186B9007F04FC /* FavConcern.json in Resources */,
 				C342B2AE1F218554007F04FC /* LaunchScreen.storyboard in Resources */,
 				DDA214172227C2700001F585 /* VideoInfo.json in Resources */,
+				DD58AFFF238D01EE00E47BB1 /* OCTypes.json in Resources */,
 				C342B2D21F2186B9007F04FC /* newMainPageSecond.json in Resources */,
 				C342B2AB1F218554007F04FC /* Assets.xcassets in Resources */,
 				C342B2CF1F2186B9007F04FC /* Car.json in Resources */,
@@ -267,6 +294,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		766A551F4EDC2091FE075FA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SCJSONUtil/SCJSONUtil.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCJSONUtil.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A24A144F85492CB067857741 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SCJSONUtilDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C342B2971F218554007F04FC /* Sources */ = {
@@ -281,6 +351,7 @@
 				C342B2A31F218554007F04FC /* AppDelegate.m in Sources */,
 				C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */,
 				C342B2D51F2186B9007F04FC /* Car.m in Sources */,
+				DD58B002238D035B00E47BB1 /* OCNumberTypes.m in Sources */,
 				C342B2A01F218554007F04FC /* main.m in Sources */,
 				DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */,
 				DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */,
@@ -315,21 +386,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -364,21 +444,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -405,6 +494,7 @@
 		};
 		C342B2B31F218554007F04FC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1BA55833FF4E3C7DBAA5CB0 /* Pods-SCJSONUtilDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -421,6 +511,7 @@
 		};
 		C342B2B41F218554007F04FC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 068B6847047E9305872A6FA4 /* Pods-SCJSONUtilDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
