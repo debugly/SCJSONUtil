@@ -13,4 +13,12 @@
     "uLongLongType": 7899,
     "floatType": 345.123,
     "doubleType": 456.12345,
+    "stringType": "I'm a string.",
+    "mutableStringType": "I'm a mutable string.",
+    "numberType": "7982",
+    "urlType": "https://debugly.cn",
+    "fileURLType": "file:///Users/qianlongxu/Desktop/Caption.zip",
+    "classAType": {
+        "name": "I'm a classA instance."
+    }
 }

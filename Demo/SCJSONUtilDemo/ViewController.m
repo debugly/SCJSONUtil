@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "SCJSONUtil.h"
+#import <SCJSONUtil/SCJSONUtil.h>
 #import "UserInfoModel.h"
 #import "FavModel.h"
-#import "OCNumberTypes.h"
+#import "OCTypes.h"
 #import "NSObject+DebugDescription.h"
 #import "NSArray+DebugDescription.h"
 #import "NSObject+PrintProperties.h"
@@ -34,7 +34,7 @@
     ///数组
     NSString *result = @"\n=======Objc 基础数据类型解析=======\n\n";
     
-    result = [result stringByAppendingString:[self testOCNumberTypes]];
+    result = [result stringByAppendingString:[self testOCTypes]];
     
     result = [result stringByAppendingString:@"\n\n=======json数组转model数组============\n\n"];
     
@@ -93,10 +93,10 @@
     NSLog(@"uint64_t  : %s, %lu", @encode(uint64_t), sizeof(uint64_t));
 }
 
-- (NSString *)testOCNumberTypes
+- (NSString *)testOCTypes
 {
     NSDictionary *typesDic = [self readOCTypes];
-    OCNumberTypes *model = [OCNumberTypes sc_instanceFormDic:typesDic];
+    OCTypes *model = [OCTypes sc_instanceFormDic:typesDic];
     return [model DEBUGDescrption];
 }
 

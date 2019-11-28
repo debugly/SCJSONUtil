@@ -143,7 +143,12 @@ static NSDecimalNumber * QLValueTransfer2NSDecimalNumber(id value){
 
 static NSURL * QLValueTransfer2NSURL(id value){
     if ([value isKindOfClass:[NSString class]]){
-        return [NSURL URLWithString:(NSString *)value];
+        NSString *str = (NSString *)value;
+        if ([str hasPrefix:@"file://"]) {
+            str = [str stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+            return [NSURL fileURLWithPath:str];
+        }
+        return [NSURL URLWithString:str];
     }
     return nil;
 }

@@ -28,10 +28,9 @@
 		C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C91F2186B9007F04FC /* GalleryModel.m */; };
 		C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2CB1F2186B9007F04FC /* UserInfoModel.m */; };
 		DD58AFFF238D01EE00E47BB1 /* OCTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD58AFFE238D01EE00E47BB1 /* OCTypes.json */; };
-		DD58B002238D035B00E47BB1 /* OCNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = DD58B001238D035B00E47BB1 /* OCNumberTypes.m */; };
+		DD58B002238D035B00E47BB1 /* OCTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = DD58B001238D035B00E47BB1 /* OCTypes.m */; };
 		DD99FD0721EF0C3000584AC4 /* Video.json in Resources */ = {isa = PBXBuildFile; fileRef = DD99FD0621EF0C3000584AC4 /* Video.json */; };
 		DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* VideoList.m */; };
-		DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */; };
 		DDA214172227C2700001F585 /* VideoInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA214162227C2700001F585 /* VideoInfo.json */; };
 		DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA214192227C31B0001F585 /* VideoInfo.m */; };
 /* End PBXBuildFile section */
@@ -69,13 +68,11 @@
 		C342B2CA1F2186B9007F04FC /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		C342B2CB1F2186B9007F04FC /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		DD58AFFE238D01EE00E47BB1 /* OCTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OCTypes.json; sourceTree = "<group>"; };
-		DD58B000238D035B00E47BB1 /* OCNumberTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCNumberTypes.h; sourceTree = "<group>"; };
-		DD58B001238D035B00E47BB1 /* OCNumberTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCNumberTypes.m; sourceTree = "<group>"; };
+		DD58B000238D035B00E47BB1 /* OCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCTypes.h; sourceTree = "<group>"; };
+		DD58B001238D035B00E47BB1 /* OCTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCTypes.m; sourceTree = "<group>"; };
 		DD99FD0621EF0C3000584AC4 /* Video.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Video.json; sourceTree = "<group>"; };
 		DD99FD0821EF0C4200584AC4 /* VideoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoList.h; sourceTree = "<group>"; };
 		DD99FD0921EF0C4200584AC4 /* VideoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoList.m; sourceTree = "<group>"; };
-		DD99FD0C21EF0DFA00584AC4 /* SCJSONUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONUtil.h; sourceTree = "<group>"; };
-		DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONUtil.m; sourceTree = "<group>"; };
 		DDA214162227C2700001F585 /* VideoInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoInfo.json; sourceTree = "<group>"; };
 		DDA214182227C31B0001F585 /* VideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoInfo.h; sourceTree = "<group>"; };
 		DDA214192227C31B0001F585 /* VideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
@@ -133,7 +130,6 @@
 		C342B29D1F218554007F04FC /* SCJSONUtilDemo */ = {
 			isa = PBXGroup;
 			children = (
-				DD99FD0B21EF0DFA00584AC4 /* SCJSONUtil */,
 				C342B2B51F2186B9007F04FC /* debug */,
 				C342B2BC1F2186B9007F04FC /* jsonfiles */,
 				C342B2C31F2186B9007F04FC /* models */,
@@ -202,20 +198,10 @@
 				DD99FD0921EF0C4200584AC4 /* VideoList.m */,
 				DDA214182227C31B0001F585 /* VideoInfo.h */,
 				DDA214192227C31B0001F585 /* VideoInfo.m */,
-				DD58B000238D035B00E47BB1 /* OCNumberTypes.h */,
-				DD58B001238D035B00E47BB1 /* OCNumberTypes.m */,
+				DD58B000238D035B00E47BB1 /* OCTypes.h */,
+				DD58B001238D035B00E47BB1 /* OCTypes.m */,
 			);
 			path = models;
-			sourceTree = "<group>";
-		};
-		DD99FD0B21EF0DFA00584AC4 /* SCJSONUtil */ = {
-			isa = PBXGroup;
-			children = (
-				DD99FD0C21EF0DFA00584AC4 /* SCJSONUtil.h */,
-				DD99FD0D21EF0DFA00584AC4 /* SCJSONUtil.m */,
-			);
-			name = SCJSONUtil;
-			path = ../../SCJSONUtil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,10 +337,9 @@
 				C342B2A31F218554007F04FC /* AppDelegate.m in Sources */,
 				C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */,
 				C342B2D51F2186B9007F04FC /* Car.m in Sources */,
-				DD58B002238D035B00E47BB1 /* OCNumberTypes.m in Sources */,
+				DD58B002238D035B00E47BB1 /* OCTypes.m in Sources */,
 				C342B2A01F218554007F04FC /* main.m in Sources */,
 				DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */,
-				DD99FD0E21EF0DFA00584AC4 /* SCJSONUtil.m in Sources */,
 				DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */,
 				C342B2CC1F2186B9007F04FC /* NSArray+DebugDescription.m in Sources */,
 			);

@@ -1,13 +1,17 @@
 //
-//  OCNumberTypes.m
+//  OCTypes.m
 //  SCJSONUtilDemo
 //
 //  Created by qianlongxu on 2019/11/26.
 //  Copyright © 2019 xuqianlong. All rights reserved.
 //
 
-#import "OCNumberTypes.h"
+#import "OCTypes.h"
 
-@implementation OCNumberTypes
+@implementation OCClassA
+
+@end
+
+@implementation OCTypes
 
 @end
