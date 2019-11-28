@@ -241,39 +241,40 @@ static NSURL * QLValueTransfer2NSURL(id value){
             case QLPropertyTypeObj:
             {
                 const char *dclazz = pdesc->clazz;
-                //目标类型是id，无法处理直接赋值；
+                    //目标类型是id，无法处理直接赋值；
                 if (!dclazz) {
                     [self setValue:obj forKey:mapedKey];
                     break;
                 }
+                
                 const char *vclazz = object_getClassName(obj);
-                ///目标类型和值类型一直，则直接赋值
+                    ///目标类型和值类型相同，则直接赋值
                 if(QLCStrEqual((char *)dclazz, (char *)vclazz)){
                     [self setValue:obj forKey:mapedKey];
                     
                     ///目标类型是NSString
-                }else if(QLCStrEqual((char *)dclazz, "NSString")){
+                } else if(QLCStrEqual((char *)dclazz, "NSString")){
                     NSString *value = QLValueTransfer2NSString(obj);
                     [self setValue:value forKey:mapedKey];
                     
                     ///目标类型是NSMutableString
-                }else if(QLCStrEqual((char *)dclazz, "NSMutableString")){
+                } else if(QLCStrEqual((char *)dclazz, "NSMutableString")){
                     NSString *value = QLValueTransfer2NSString(obj);
                     value = [NSMutableString stringWithString:value];
                     [self setValue:value forKey:mapedKey];
                     
                     ///目标类型是NSNumber
-                }else if(QLCStrEqual((char *)dclazz, "NSNumber")){
+                } else if(QLCStrEqual((char *)dclazz, "NSNumber")){
                     NSNumber *value = QLValueTransfer2NSNumber(obj);
                     [self setValue:value forKey:mapedKey];
                     
                     ///目标类型是NSDecimalNumber
-                }else if(QLCStrEqual((char *)dclazz, "NSDecimalNumber")){
+                } else if(QLCStrEqual((char *)dclazz, "NSDecimalNumber")){
                     NSDecimalNumber *value = QLValueTransfer2NSDecimalNumber(obj);
                     [self setValue:value forKey:mapedKey];
                     
                     ///目标类型是NSURL
-                }else if(QLCStrEqual((char *)dclazz, "NSURL")){
+                } else if(QLCStrEqual((char *)dclazz, "NSURL")){
                     NSURL *value = QLValueTransfer2NSURL(obj);
                     [self setValue:value forKey:mapedKey];
                 }
