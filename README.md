@@ -1,9 +1,19 @@
 SCJSONUtil 
 ============
 
-支持 iOS 和 OS X 平台。
+[![Version](https://img.shields.io/cocoapods/v/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
+[![License](https://img.shields.io/cocoapods/l/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
+[![Platform](https://img.shields.io/cocoapods/p/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
 
-# 使用 CocoaPods 安装
+## 特性
+
+1. 小巧（仅300余行），快速，方便
+2. 支持自定义属性名（比如服务器返回的是id，我们的model里可定义为uid）
+3. 支持类型自动匹配（比如服务器返回的是Number，model里定义的是String，那么会解析为 String）
+
+> 在 2.1 之前该框架会将服务器返回的字段统统转为 NSString 类型，因此 model 的头文件里定义的全都是 NSString 类型，这对于使用者来说是个恶心的限制，有用户还有我的团队都给我反馈过这个问题，因此我决定支持下类型自动匹配的功能，因此更加完美了呢！
+
+## 使用 CocoaPods 安装
 
 在 `Podfile` 文件里添加:
 
@@ -13,14 +23,8 @@ target 'TargetName' do
 end
 ```
 
-# 特性
-1. 小巧（仅300余行），快速，方便
-2. 支持自定义属性名（比如服务器返回的是id，我们的model里可定义为uid）
-3. 支持类型自动匹配（比如服务器返回的是Number，model里定义的是String，那么会解析为 String）
 
-> 在 2.1 之前该框架会将服务器返回的字段统统转为 NSString 类型，因此 model 的头文件里定义的全都是 NSString 类型，这对于使用者来说是个恶心的限制，有用户还有我的团队都给我反馈过这个问题，因此我决定支持下类型自动匹配的功能，因此更加完美了呢！
-
-# 使用说明
+## 使用说明
 
 《一看二建三解析》，直接看代码比较直观：
 
@@ -76,7 +80,7 @@ end
 
 ---
 	
-# 核心思想
+## 核心思想
 
 1. 递归，JSON 是可以嵌套的，因此这是一个递归的问题；
 2. 遍历 JSON，而不是遍历model
@@ -142,7 +146,7 @@ end
 另一方面选择后者是因为，根据我解析的习惯是，服务器定义的字段我都会解析，但是有的字段服务器可能不返回，如果按照前者的遍历方式，会增加几次多余的遍历；当然我否定使用后者不会出现多余的遍历，这个定义model的习惯和服务器返回json的空值都有关系！
 
 
-# 版本
+## 版本
 
 * 1.0 必须继承 QLBaseModel 父类;
 * 1.0.1 在属性命名上有限制，对于子model必须故意制造出"冲突 key";
