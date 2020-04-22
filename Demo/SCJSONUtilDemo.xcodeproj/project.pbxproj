@@ -33,7 +33,18 @@
 		DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* VideoList.m */; };
 		DDA214172227C2700001F585 /* VideoInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA214162227C2700001F585 /* VideoInfo.json */; };
 		DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA214192227C31B0001F585 /* VideoInfo.m */; };
+		DDC71419245054CB00C32703 /* SCJSONUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC71418245054CB00C32703 /* SCJSONUtilTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDC7141B245054CB00C32703 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C342B2931F218554007F04FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C342B29A1F218554007F04FC;
+			remoteInfo = SCJSONUtilDemo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		068B6847047E9305872A6FA4 /* Pods-SCJSONUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.release.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +87,9 @@
 		DDA214162227C2700001F585 /* VideoInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoInfo.json; sourceTree = "<group>"; };
 		DDA214182227C31B0001F585 /* VideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoInfo.h; sourceTree = "<group>"; };
 		DDA214192227C31B0001F585 /* VideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
+		DDC71416245054CB00C32703 /* SCJSONUtilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCJSONUtilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC71418245054CB00C32703 /* SCJSONUtilTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCJSONUtilTests.m; sourceTree = "<group>"; };
+		DDC7141A245054CB00C32703 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1BA55833FF4E3C7DBAA5CB0 /* Pods-SCJSONUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.debug.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C2B7C4033FF3CDBAC14D5E /* Pods_SCJSONUtilDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCJSONUtilDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,6 +100,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				47463518475F39794456DCB7 /* Pods_SCJSONUtilDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC71413245054CB00C32703 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				C342B29D1F218554007F04FC /* SCJSONUtilDemo */,
+				DDC71417245054CB00C32703 /* SCJSONUtilTests */,
 				C342B29C1F218554007F04FC /* Products */,
 				47DB86180D062E1A82A3A8A9 /* Frameworks */,
 				022D93A7048FC8A046037B37 /* Pods */,
@@ -123,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				C342B29B1F218554007F04FC /* SCJSONUtilDemo.app */,
+				DDC71416245054CB00C32703 /* SCJSONUtilTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,6 +227,15 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		DDC71417245054CB00C32703 /* SCJSONUtilTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDC71418245054CB00C32703 /* SCJSONUtilTests.m */,
+				DDC7141A245054CB00C32703 /* Info.plist */,
+			);
+			path = SCJSONUtilTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,6 +258,24 @@
 			productReference = C342B29B1F218554007F04FC /* SCJSONUtilDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DDC71415245054CB00C32703 /* SCJSONUtilTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDC7141F245054CB00C32703 /* Build configuration list for PBXNativeTarget "SCJSONUtilTests" */;
+			buildPhases = (
+				DDC71412245054CB00C32703 /* Sources */,
+				DDC71413245054CB00C32703 /* Frameworks */,
+				DDC71414245054CB00C32703 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDC7141C245054CB00C32703 /* PBXTargetDependency */,
+			);
+			name = SCJSONUtilTests;
+			productName = SCJSONUtilTests;
+			productReference = DDC71416245054CB00C32703 /* SCJSONUtilTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -238,6 +288,11 @@
 					C342B29A1F218554007F04FC = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Manual;
+					};
+					DDC71415245054CB00C32703 = {
+						CreatedOnToolsVersion = 11.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C342B29A1F218554007F04FC;
 					};
 				};
 			};
@@ -255,6 +310,7 @@
 			projectRoot = "";
 			targets = (
 				C342B29A1F218554007F04FC /* SCJSONUtilDemo */,
+				DDC71415245054CB00C32703 /* SCJSONUtilTests */,
 			);
 		};
 /* End PBXProject section */
@@ -276,6 +332,13 @@
 				DD99FD0721EF0C3000584AC4 /* Video.json in Resources */,
 				C342B2D11F2186B9007F04FC /* newMainPageFirst.json in Resources */,
 				C342B2D31F2186B9007F04FC /* NewRecProduct.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC71414245054CB00C32703 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +408,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDC71412245054CB00C32703 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC71419245054CB00C32703 /* SCJSONUtilTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDC7141C245054CB00C32703 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C342B29A1F218554007F04FC /* SCJSONUtilDemo */;
+			targetProxy = DDC7141B245054CB00C32703 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C342B2A71F218554007F04FC /* Main.storyboard */ = {
@@ -490,7 +569,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sohu.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -507,7 +586,48 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sohu.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DDC7141D245054CB00C32703 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SCJSONUtilTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = debugly.cn.SCJSONUtilTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCJSONUtilDemo.app/SCJSONUtilDemo";
+			};
+			name = Debug;
+		};
+		DDC7141E245054CB00C32703 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SCJSONUtilTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = debugly.cn.SCJSONUtilTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCJSONUtilDemo.app/SCJSONUtilDemo";
 			};
 			name = Release;
 		};
@@ -528,6 +648,15 @@
 			buildConfigurations = (
 				C342B2B31F218554007F04FC /* Debug */,
 				C342B2B41F218554007F04FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDC7141F245054CB00C32703 /* Build configuration list for PBXNativeTarget "SCJSONUtilTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC7141D245054CB00C32703 /* Debug */,
+				DDC7141E245054CB00C32703 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
