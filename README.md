@@ -1,6 +1,6 @@
 SCJSONUtil 
 ============
-
+[![CI Status](https://img.shields.io/travis/debugly/SCJSONUtil.svg?style=flat)](https://travis-ci.org/debugly/SCJSONUtil)
 [![Version](https://img.shields.io/cocoapods/v/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
 [![License](https://img.shields.io/cocoapods/l/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
 [![Platform](https://img.shields.io/cocoapods/p/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
