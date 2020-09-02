@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *showName;
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSString *domain;
+@property (nonatomic,strong) NSNumber *type;
+@property (nonatomic,strong) NSNumber * rid;
+@property (nonatomic,copy) NSMutableString * rSwfurl;
+@property (nonatomic,copy) NSMutableString * url;
+@property (nonatomic,strong) NSNumber * uid;
 
 @end
 
@@ -29,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///不能解析！
 @property (nonatomic,assign) int array;
 @property (nonatomic,assign) BOOL activity;
+@property (nonatomic,copy) NSMutableString * smallVerPicUrl;
+@property (nonatomic,copy) NSMutableString * showAlbumName;
 
 @end
 

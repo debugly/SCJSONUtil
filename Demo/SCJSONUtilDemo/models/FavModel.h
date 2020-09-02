@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *nameEN;
 @property (nonatomic, copy) NSString *nameCN;
 @property (nonatomic, copy) NSURL *pic; //这个需要手动transfer
+@property (nonatomic, copy) NSString *desc;
 
 @end
