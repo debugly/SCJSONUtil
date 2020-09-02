@@ -1,6 +1,9 @@
 {
     "playlistid": 5828854,
     "area": "内地",
+    "activity": {
+        "on": 1
+    },
     "array": ["abc"],
     "wp": [
         {

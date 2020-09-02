@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray *wps;
 ///不能解析！
 @property (nonatomic,assign) int array;
+@property (nonatomic,assign) BOOL activity;
 
 @end
 
