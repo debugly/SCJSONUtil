@@ -181,7 +181,11 @@ static NSURL * QLValueTransfer2NSURL(id value){
             serverKey = mapedKey;
             pdesc = QLPropertyDescForClassProperty([self class], [mapedKey UTF8String]);
         } else {
-            SCJSONLog(@"⚠️ %@ 类没有解析 %@ 属性;如果客户端和服务端key不相同可通过sc_collideKeysMap 做映射！value:%@",NSStringFromClass([self class]),serverKey,obj);
+            NSString *objClass = NSStringFromClass([obj class]);
+            if ([objClass hasPrefix:@"__"]) {
+                objClass = NSStringFromClass([obj superclass]);
+            }
+            SCJSONLog(@"⚠️ %@ 类没有解析 %@ 字段，请完善为 %@ * %@",NSStringFromClass([self class]),serverKey,objClass,serverKey);
             return;
         }
     }
