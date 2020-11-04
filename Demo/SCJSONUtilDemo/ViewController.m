@@ -31,8 +31,11 @@
     [super viewDidLoad];
         
     //[self printTypeEncodings];
-    ///数组
-    NSString *result = @"\n=======Objc 基础数据类型解析=======\n\n";
+    
+    //SCJSONUtilLog(YES);
+    NSString *result = [NSString stringWithFormat:@"=======日志开关=======\n%d\n\n",isSCJSONUtilLogOn()];
+    
+    result = [result stringByAppendingString:@"\n=======Objc 基础数据类型解析=======\n\n"];
     
     result = [result stringByAppendingString:[self testOCTypes]];
     

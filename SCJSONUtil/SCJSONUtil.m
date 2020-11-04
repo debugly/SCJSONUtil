@@ -1,6 +1,5 @@
 //
 //  SCJSONUtil.m
-//  SohuCoreFoundation
 //
 //  Created by xuqianlong on 15/9/3.
 //  Copyright (c) 2015年 Mac. All rights reserved.
@@ -9,11 +8,23 @@
 #import "SCJSONUtil.h"
 #import "objc/runtime.h"
 
-#if SCJSONLogON
-#define SCJSONLog(...)   NSLog( __VA_ARGS__)
-#else
-#define SCJSONLog(...)
-#endif
+static BOOL s_SCJSONUtilLogOn = NO;
+
+void SCJSONUtilLog(BOOL on)
+{
+    s_SCJSONUtilLogOn = on;
+}
+
+BOOL isSCJSONUtilLogOn(void)
+{
+    return s_SCJSONUtilLogOn;
+}
+
+#define SCJSONLog(...)   do{ \
+    if(s_SCJSONUtilLogOn) { \
+        NSLog(__VA_ARGS__); \
+    } \
+}while(0)
 
 typedef NS_ENUM(NSUInteger, QLPropertyType) {
     QLPropertyTypeUnknow,
