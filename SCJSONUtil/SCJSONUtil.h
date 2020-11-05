@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-///日志开关
-#define SCJSONLogON 1
+///日志开关，默认关闭
+void SCJSONUtilLog(BOOL on);
+BOOL isSCJSONUtilLogOn(void);
 
 @protocol SCJSON2ModelProtocol <NSObject>
 
