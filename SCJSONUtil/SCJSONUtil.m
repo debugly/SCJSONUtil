@@ -10,20 +10,22 @@
 
 static BOOL s_SCJSONUtilLogOn = NO;
 
-void SCJSONUtilLog(BOOL on)
-{
+void SCJSONUtilLog(BOOL on) {
     s_SCJSONUtilLogOn = on;
 }
 
-BOOL isSCJSONUtilLogOn(void)
-{
+BOOL isSCJSONUtilLogOn(void) {
     return s_SCJSONUtilLogOn;
 }
 
 #define SCJSONLog(...)   do{ \
-    if(s_SCJSONUtilLogOn) { \
+    if (s_SCJSONUtilLogOn) { \
         NSLog(__VA_ARGS__); \
     } \
+}while(0)
+
+#define SCJSONError(...)   do{ \
+    NSLog(__VA_ARGS__); \
 }while(0)
 
 typedef NS_ENUM(NSUInteger, QLPropertyType) {
@@ -54,23 +56,20 @@ typedef struct QLPropertyDescS {
 
 #pragma mark 【Utils】
 
-static bool QLCStrEqual(char *v1,char *v2)
-{
+static bool QLCStrEqual(char *v1,char *v2) {
     if (NULL == v1 || NULL == v2) {
         return 0;
     }
     return 0 == strcmp(v1, v2);
 }
 
-static void *QLMallocInit(size_t __size)
-{
+static void *QLMallocInit(size_t __size) {
     void *p = malloc(__size);
     memset(p, 0, __size);
     return p;
 }
 
-static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *key)
-{
+static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *key) {
     objc_property_t property = class_getProperty(clazz, key);
     if (NULL == property) {
         return NULL;
@@ -132,31 +131,31 @@ static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *k
     return NULL;
 }
 
-#pragma mark 【ValueTransfer】
+#pragma mark - 【ValueTransfer】
 
-static NSString * QLValueTransfer2NSString(id value){
+static NSString * QLValueTransfer2NSString(id value) {
     return [value description];
 }
 
-static NSNumber * QLValueTransfer2NSNumber(id value){
-    if ([value isKindOfClass:[NSString class]]){
+static NSNumber * QLValueTransfer2NSNumber(id value) {
+    if ([value isKindOfClass:[NSString class]]) {
         NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
         return [numberFormatter numberFromString:value];
-    }else if ([value isKindOfClass:[NSNumber class]]){
+    } else if ([value isKindOfClass:[NSNumber class]]) {
         return value;
     }
     return nil;
 }
 
-static NSDecimalNumber * QLValueTransfer2NSDecimalNumber(id value){
-    if ([value isKindOfClass:[NSString class]]){
+static NSDecimalNumber * QLValueTransfer2NSDecimalNumber(id value) {
+    if ([value isKindOfClass:[NSString class]]) {
         return [NSDecimalNumber decimalNumberWithString:value];
     }
     return nil;
 }
 
-static NSURL * QLValueTransfer2NSURL(id value){
-    if ([value isKindOfClass:[NSString class]]){
+static NSURL * QLValueTransfer2NSURL(id value) {
+    if ([value isKindOfClass:[NSString class]]) {
         NSString *str = (NSString *)value;
         if ([str hasPrefix:@"file://"]) {
             str = [str stringByReplacingOccurrencesOfString:@"file://" withString:@""];
@@ -172,7 +171,9 @@ static NSURL * QLValueTransfer2NSURL(id value){
 
 @implementation NSObject (SCJSON2Model)
 
-- (void)sc_autoMatchValue:(id)obj forKey:(NSString *)serverKey refObj:(id)refObj
+- (void)sc_autoMatchValue:(id)obj
+                   forKey:(NSString *)serverKey
+                   refObj:(id)refObj
 {
     id<SCJSON2ModelProtocol> instance = (id<SCJSON2ModelProtocol>)self;
     NSString *mapedKey = serverKey; //服务器返回的key
@@ -206,15 +207,14 @@ static NSURL * QLValueTransfer2NSURL(id value){
         return;
     }
     
-    ///处理之前给客户端一次对值处理的机会，做一些业务逻辑！
+    //处理之前给客户端一次对值处理的机会，做一些业务逻辑！
     if ([instance respondsToSelector:@selector(sc_key:beforeAssignedValue:refObj:)]) {
         obj = [instance sc_key:mapedKey beforeAssignedValue:obj refObj:refObj];
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
-        
         //匹配目标类型
-        if (pdesc->type == QLPropertyTypeObj && ( QLCStrEqual((char *)pdesc->clazz, "NSMutableArray") || QLCStrEqual((char *)pdesc->clazz, "NSArray") )) {
+        if (pdesc->type == QLPropertyTypeObj && (QLCStrEqual((char *)pdesc->clazz, "NSMutableArray") || QLCStrEqual((char *)pdesc->clazz, "NSArray") )) {
             
             NSString *modleName = nil;
             if ([instance respondsToSelector:@selector(sc_collideKeyModelMap)]) {
@@ -237,19 +237,18 @@ static NSURL * QLValueTransfer2NSURL(id value){
                 objs = [NSMutableArray arrayWithArray:objs];
             }
             [self setValue:objs forKey:mapedKey];
-        }
-        /// model 属性不是 NSMutableArray/NSArray，无法处理！默认忽略掉！
-        else {
+        } else {
+            // model 属性不是 NSMutableArray/NSArray，无法处理！默认忽略掉！
             SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回类型不匹配，无法解析！请修改为NSArray * %@; 或者 NSMutableArray * %@;",NSStringFromClass([self class]),serverKey,serverKey,serverKey);
         }
-    }else if ([obj isKindOfClass:[NSDictionary class]]){
+    } else if ([obj isKindOfClass:[NSDictionary class]]) {
         //如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
-        if(pdesc->type == QLPropertyTypeObj) {
-            if(QLCStrEqual((char *)pdesc->clazz, "NSMutableDictionary")){
+        if (pdesc->type == QLPropertyTypeObj) {
+            if (QLCStrEqual((char *)pdesc->clazz, "NSMutableDictionary")) {
                 [self setValue:[obj mutableCopy] forKey:mapedKey];
-            }else if(QLCStrEqual((char *)pdesc->clazz, "NSDictionary")){
+            } else if (QLCStrEqual((char *)pdesc->clazz, "NSDictionary")) {
                 [self setValue:obj forKey:mapedKey];
-            }else{
+            } else {
                 Class clazz = objc_getClass(pdesc->clazz);
                 if (clazz) {
                     id value = [clazz sc_instanceFormDic:obj];
@@ -262,55 +261,49 @@ static NSURL * QLValueTransfer2NSURL(id value){
                     SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回的值的类型不法匹配！请修改为%s * %@;",NSStringFromClass([self class]),mapedKey,pdesc->clazz,mapedKey);
                 }
             }
-        }else{
+        } else {
             SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回的值 %@ 类型不法匹配！请修改为NSDictionary * %@; 或者 NSMutableDictionary * %@;",NSStringFromClass([self class]),mapedKey,obj,mapedKey,mapedKey);
         }
-    }else if(![obj isKindOfClass:[NSNull class]]){
+    } else if (![obj isKindOfClass:[NSNull class]]) {
         //自定义对象或者系统的NSStirng，NSNumber等；
         switch (pdesc->type) {
             case QLPropertyTypeObj:
             {
                 const char *dclazz = pdesc->clazz;
-                    //目标类型是id，无法处理直接赋值；
+                //目标类型是id，无法处理直接赋值；
                 if (!dclazz) {
                     [self setValue:obj forKey:mapedKey];
                     break;
                 }
-                
                 const char *vclazz = object_getClassName(obj);
-                    ///目标类型和值类型相同，则直接赋值
-                if(QLCStrEqual((char *)dclazz, (char *)vclazz)){
+                //目标类型和值类型相同，则直接赋值
+                if (QLCStrEqual((char *)dclazz, (char *)vclazz)) {
                     [self setValue:obj forKey:mapedKey];
-                    
-                    ///目标类型是NSString
-                } else if(QLCStrEqual((char *)dclazz, "NSString")){
+                } else if (QLCStrEqual((char *)dclazz, "NSString")) {
+                    //目标类型是NSString
                     NSString *value = QLValueTransfer2NSString(obj);
                     [self setValue:value forKey:mapedKey];
-                    
-                    ///目标类型是NSMutableString
-                } else if(QLCStrEqual((char *)dclazz, "NSMutableString")){
+                } else if (QLCStrEqual((char *)dclazz, "NSMutableString")) {
+                    //目标类型是NSMutableString
                     NSString *value = QLValueTransfer2NSString(obj);
                     value = [NSMutableString stringWithString:value];
                     [self setValue:value forKey:mapedKey];
-                    
-                    ///目标类型是NSNumber
-                } else if(QLCStrEqual((char *)dclazz, "NSNumber")){
+                } else if (QLCStrEqual((char *)dclazz, "NSNumber")) {
+                    //目标类型是NSNumber
                     NSNumber *value = QLValueTransfer2NSNumber(obj);
                     [self setValue:value forKey:mapedKey];
-                    
-                    ///目标类型是NSDecimalNumber
-                } else if(QLCStrEqual((char *)dclazz, "NSDecimalNumber")){
+                } else if (QLCStrEqual((char *)dclazz, "NSDecimalNumber")) {
+                    //目标类型是NSDecimalNumber
                     NSDecimalNumber *value = QLValueTransfer2NSDecimalNumber(obj);
                     [self setValue:value forKey:mapedKey];
-                    
-                    ///目标类型是NSURL
-                } else if(QLCStrEqual((char *)dclazz, "NSURL")){
+                } else if (QLCStrEqual((char *)dclazz, "NSURL")) {
+                    //目标类型是NSURL
                     NSURL *value = QLValueTransfer2NSURL(obj);
                     [self setValue:value forKey:mapedKey];
                 }
             }
                 break;
-            ///因为kvc本身需要的value是id类型，所以对于基本数据类型不处理，而是交给系统 KVC 处理;
+            //因为kvc本身需要的value是id类型，所以对于基本数据类型不处理，而是交给系统 KVC 处理;
             case QLPropertyTypeFloat:
             case QLPropertyTypeDouble:
             case QLPropertyTypeBOOL:
@@ -328,7 +321,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
                 NSNumber *tmpValue = obj;
                 
                 //ios 8, -[__NSCFString longValue]: unrecognized selector
-                if ([obj isKindOfClass:[NSString class]]){
+                if ([obj isKindOfClass:[NSString class]]) {
                     tmpValue = QLValueTransfer2NSNumber(obj);
                 }
                 
@@ -370,16 +363,6 @@ static NSURL * QLValueTransfer2NSURL(id value){
     }
 }
 
-+ (instancetype)sc_instanceFormDic:(NSDictionary *)jsonDic
-{
-    return [self sc_instanceFromValue:jsonDic];
-}
-
-+ (NSArray *)sc_instanceArrFormArray:(NSArray *)jsonArr
-{
-    return [self sc_instanceFromValue:jsonArr];
-}
-
 + (id)sc_instanceFromValue:(id)json refObj:(id)refObj
 {
     if ([json isKindOfClass:[NSDictionary class]]) {
@@ -387,10 +370,10 @@ static NSURL * QLValueTransfer2NSURL(id value){
         [obj sc_assembleDataFormDic:json refObj:refObj];
         return obj;
     }
-    if([json isKindOfClass:[NSArray class]]){
+    if ([json isKindOfClass:[NSArray class]]) {
         NSArray *jsonArr = json;
         
-        if(!jsonArr || jsonArr.count == 0){
+        if (!jsonArr || jsonArr.count == 0) {
             return nil;
         }
         
@@ -399,11 +382,8 @@ static NSURL * QLValueTransfer2NSURL(id value){
             id instance = [self sc_instanceFromValue:json refObj:refObj];
             if (instance) {
                 [modelArr addObject:instance];
-            }else{
-#if SCJSONLogON
-                NSString *str = [NSString stringWithFormat:@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
-                NSAssert(NO,str);
-#endif
+            } else {
+                SCJSONError(@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class]));
             }
         }];
         return [NSArray arrayWithArray:modelArr];
@@ -420,10 +400,7 @@ static NSURL * QLValueTransfer2NSURL(id value){
     if ([self class] == [NSDecimalNumber class]) {
         return QLValueTransfer2NSDecimalNumber(json);
     }
-#if SCJSONLogON
-    NSString *str = [NSString stringWithFormat:@"无法将该[%@]转为[%@]",json,NSStringFromClass([self class])];
-    NSAssert(NO,str);
-#endif
+    SCJSONError(@"无法将该[%@]转为[%@]",json,NSStringFromClass([self class]));
     return nil;
 }
 
@@ -432,17 +409,26 @@ static NSURL * QLValueTransfer2NSURL(id value){
     return [self sc_instanceFromValue:json refObj:nil];
 }
 
++ (instancetype)sc_instanceFormDic:(NSDictionary *)jsonDic
+{
+    return [self sc_instanceFromValue:jsonDic];
+}
+
++ (NSArray *)sc_instanceArrFormArray:(NSArray *)jsonArr
+{
+    return [self sc_instanceFromValue:jsonArr];
+}
+
 @end
 
-#pragma mark - JOSNUtil methods
+#pragma mark - JOSNUtil c functions
 
-static inline id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *JSON)
-{
-    if (!JSON) {
+id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *json){
+    if (!json) {
         return nil;
     }
     if (!pathArr || pathArr.count == 0) {
-        return JSON;
+        return json;
     }
     NSMutableArray *pathArr2 = [NSMutableArray arrayWithArray:pathArr];
     
@@ -450,58 +436,34 @@ static inline id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *JSON)
         [pathArr2 removeObjectAtIndex:0];
     }
     if ([pathArr2 firstObject]) {
-        JSON = [JSON objectForKey:[pathArr2 firstObject]];
+        json = [json objectForKey:[pathArr2 firstObject]];
         [pathArr2 removeObjectAtIndex:0];
-        return SCFindJSONwithKeyPathArr(pathArr2, JSON);
-    }else{
-        return JSON;
+        return SCFindJSONwithKeyPathArr(pathArr2, json);
+    } else {
+        return json;
     }
 }
 
-id SCFindJSONwithKeyPath(NSString *keyPath,NSDictionary *JSON)
-{
+id SCFindJSONwithKeyPathV2(NSString *keyPath,NSDictionary *JSON,NSString *separator){
     if (!keyPath || keyPath.length == 0) {
         return JSON;
     }
-    NSArray *pathArr = [keyPath componentsSeparatedByString:@"/"];
+    if (!separator) {
+        separator = @"";
+    }
+    NSArray *pathArr = [keyPath componentsSeparatedByString:separator];
     return SCFindJSONwithKeyPathArr(pathArr, JSON);
 }
 
-id SCJSON2Model(id json,NSString *modelName)
-{
-    Class clazz = NSClassFromString(modelName);
-    return [clazz sc_instanceFromValue:json];
+id SCFindJSONwithKeyPath(NSString *keyPath,NSDictionary *json){
+    return SCFindJSONwithKeyPathV2(keyPath, json, @"/");
 }
 
-id SCJSON2ModelV2(id json,NSString *modelName,id refObj)
-{
+id SCJSON2ModelV2(id json,NSString *modelName,id refObj){
     Class clazz = NSClassFromString(modelName);
     return [clazz sc_instanceFromValue:json refObj:refObj];
 }
 
-id SCJSON2StringValueJSON(id findJson)
-{
-    if ([findJson isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:findJson];
-        [findJson enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [dic setObject:SCJSON2StringValueJSON(obj) forKey:key];
-            }
-        }];
-        return dic;
-    }else if([findJson isKindOfClass:[NSArray class]]){
-        NSMutableArray *arr = [NSMutableArray array];
-        for (id obj in findJson) {
-            if (obj && ![obj isKindOfClass:[NSNull class]]) {
-                [arr addObject:SCJSON2StringValueJSON(obj)];
-            }
-        }
-        return arr;
-    }else if ([findJson isKindOfClass:[NSString class]]){
-        return findJson;
-    }else if ([findJson isKindOfClass:[NSNumber class]]){
-        return [findJson description];
-    }else{
-        return findJson;
-    }
+id SCJSON2Model(id json,NSString *modelName){
+    return SCJSON2ModelV2(json, modelName, nil);
 }
