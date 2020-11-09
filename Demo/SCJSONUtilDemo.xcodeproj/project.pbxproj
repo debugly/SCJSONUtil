@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037C8F6E9F63CF6EC8479D81 /* Pods_SCJSONUtilTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599B0E23DF6EB617E5E0193 /* Pods_SCJSONUtilTests.framework */; };
 		47463518475F39794456DCB7 /* Pods_SCJSONUtilDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C2B7C4033FF3CDBAC14D5E /* Pods_SCJSONUtilDemo.framework */; };
 		C342B2A01F218554007F04FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B29F1F218554007F04FC /* main.m */; };
 		C342B2A31F218554007F04FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2A21F218554007F04FC /* AppDelegate.m */; };
@@ -19,7 +20,7 @@
 		C342B2CE1F2186B9007F04FC /* NSObject+PrintProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */; };
 		C342B2CF1F2186B9007F04FC /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BD1F2186B9007F04FC /* Car.json */; };
 		C342B2D01F2186B9007F04FC /* FavConcern.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BE1F2186B9007F04FC /* FavConcern.json */; };
-		C342B2D11F2186B9007F04FC /* newMainPageFirst.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BF1F2186B9007F04FC /* newMainPageFirst.json */; };
+		C342B2D11F2186B9007F04FC /* GalleryList.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BF1F2186B9007F04FC /* GalleryList.json */; };
 		C342B2D21F2186B9007F04FC /* newMainPageSecond.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2C01F2186B9007F04FC /* newMainPageSecond.json */; };
 		C342B2D31F2186B9007F04FC /* NewRecProduct.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2C11F2186B9007F04FC /* NewRecProduct.json */; };
 		C342B2D41F2186B9007F04FC /* Userinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2C21F2186B9007F04FC /* Userinfo.json */; };
@@ -48,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		068B6847047E9305872A6FA4 /* Pods-SCJSONUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilDemo.release.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
+		7599B0E23DF6EB617E5E0193 /* Pods_SCJSONUtilTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCJSONUtilTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A35052C75EE50DF0B92EF308 /* Pods-SCJSONUtilTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilTests.release.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilTests/Pods-SCJSONUtilTests.release.xcconfig"; sourceTree = "<group>"; };
 		C342B29B1F218554007F04FC /* SCJSONUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCJSONUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C342B29F1F218554007F04FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C342B2A11F218554007F04FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,7 +69,7 @@
 		C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PrintProperties.m"; sourceTree = "<group>"; };
 		C342B2BD1F2186B9007F04FC /* Car.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Car.json; sourceTree = "<group>"; };
 		C342B2BE1F2186B9007F04FC /* FavConcern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FavConcern.json; sourceTree = "<group>"; };
-		C342B2BF1F2186B9007F04FC /* newMainPageFirst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newMainPageFirst.json; sourceTree = "<group>"; };
+		C342B2BF1F2186B9007F04FC /* GalleryList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GalleryList.json; sourceTree = "<group>"; };
 		C342B2C01F2186B9007F04FC /* newMainPageSecond.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newMainPageSecond.json; sourceTree = "<group>"; };
 		C342B2C11F2186B9007F04FC /* NewRecProduct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewRecProduct.json; sourceTree = "<group>"; };
 		C342B2C21F2186B9007F04FC /* Userinfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Userinfo.json; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 		C342B2C91F2186B9007F04FC /* GalleryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryModel.m; sourceTree = "<group>"; };
 		C342B2CA1F2186B9007F04FC /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		C342B2CB1F2186B9007F04FC /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		C7668D1C6AFBFC376799CADF /* Pods-SCJSONUtilTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilTests.debug.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilTests/Pods-SCJSONUtilTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD58AFFE238D01EE00E47BB1 /* OCTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OCTypes.json; sourceTree = "<group>"; };
 		DD58B000238D035B00E47BB1 /* OCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCTypes.h; sourceTree = "<group>"; };
 		DD58B001238D035B00E47BB1 /* OCTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCTypes.m; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037C8F6E9F63CF6EC8479D81 /* Pods_SCJSONUtilTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +123,8 @@
 			children = (
 				E1BA55833FF4E3C7DBAA5CB0 /* Pods-SCJSONUtilDemo.debug.xcconfig */,
 				068B6847047E9305872A6FA4 /* Pods-SCJSONUtilDemo.release.xcconfig */,
+				C7668D1C6AFBFC376799CADF /* Pods-SCJSONUtilTests.debug.xcconfig */,
+				A35052C75EE50DF0B92EF308 /* Pods-SCJSONUtilTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C2B7C4033FF3CDBAC14D5E /* Pods_SCJSONUtilDemo.framework */,
+				7599B0E23DF6EB617E5E0193 /* Pods_SCJSONUtilTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -196,7 +204,7 @@
 				DD99FD0621EF0C3000584AC4 /* Video.json */,
 				C342B2BD1F2186B9007F04FC /* Car.json */,
 				C342B2BE1F2186B9007F04FC /* FavConcern.json */,
-				C342B2BF1F2186B9007F04FC /* newMainPageFirst.json */,
+				C342B2BF1F2186B9007F04FC /* GalleryList.json */,
 				C342B2C01F2186B9007F04FC /* newMainPageSecond.json */,
 				C342B2C11F2186B9007F04FC /* NewRecProduct.json */,
 				C342B2C21F2186B9007F04FC /* Userinfo.json */,
@@ -262,9 +270,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDC7141F245054CB00C32703 /* Build configuration list for PBXNativeTarget "SCJSONUtilTests" */;
 			buildPhases = (
+				8AEF8A028DE317889F4DAB57 /* [CP] Check Pods Manifest.lock */,
 				DDC71412245054CB00C32703 /* Sources */,
 				DDC71413245054CB00C32703 /* Frameworks */,
 				DDC71414245054CB00C32703 /* Resources */,
+				3DA5FFD12034CF47EA69C9BE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -330,7 +340,7 @@
 				C342B2D41F2186B9007F04FC /* Userinfo.json in Resources */,
 				C342B2A91F218554007F04FC /* Main.storyboard in Resources */,
 				DD99FD0721EF0C3000584AC4 /* Video.json in Resources */,
-				C342B2D11F2186B9007F04FC /* newMainPageFirst.json in Resources */,
+				C342B2D11F2186B9007F04FC /* GalleryList.json in Resources */,
 				C342B2D31F2186B9007F04FC /* NewRecProduct.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +355,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3DA5FFD12034CF47EA69C9BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SCJSONUtilTests/Pods-SCJSONUtilTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SCJSONUtil/SCJSONUtil.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCJSONUtil.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCJSONUtilTests/Pods-SCJSONUtilTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		766A551F4EDC2091FE075FA5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,6 +389,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCJSONUtilDemo/Pods-SCJSONUtilDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AEF8A028DE317889F4DAB57 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SCJSONUtilTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A24A144F85492CB067857741 /* [CP] Check Pods Manifest.lock */ = {
@@ -592,6 +642,7 @@
 		};
 		DDC7141D245054CB00C32703 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7668D1C6AFBFC376799CADF /* Pods-SCJSONUtilTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -613,6 +664,7 @@
 		};
 		DDC7141E245054CB00C32703 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A35052C75EE50DF0B92EF308 /* Pods-SCJSONUtilTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -144,7 +144,7 @@
      如果code不正确，那么无需 json 解析，此时包装一个 Error 出来，然后通过 block 回调给业务层处理;
      */
     
-    NSDictionary *newMainPageInfo = [self readNewMainPageFirst];
+    NSDictionary *json = [self readGalleryList];
     
     /* 假如网络请求返回的数据格式如下：
      
@@ -162,7 +162,7 @@
     //  model名字叫GalleryModel；对应的 JOSN keypath 是 @"content/gallery" ;
     
     //根据keypath找到目标JOSN
-    id findedJSON = SCFindJSONwithKeyPath(@"content/gallery", newMainPageInfo);
+    id findedJSON = SCFindJSONwithKeyPath(@"content/gallery", json);
     //自动根据类型解析；
     NSArray *models = SCJSON2Model(findedJSON, @"GalleryModel");
     //这完全可以封装到我们的网络请求里！
@@ -246,9 +246,9 @@
     return [self readBundleJSONFile:@"FavConcern"];
 }
 
-- (NSDictionary *)readNewMainPageFirst
+- (NSDictionary *)readGalleryList
 {
-    return [self readBundleJSONFile:@"newMainPageFirst"];
+    return [self readBundleJSONFile:@"GalleryList"];
 }
 
 - (NSDictionary *)readVideoList

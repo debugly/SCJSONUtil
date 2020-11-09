@@ -10,9 +10,9 @@
 
 @interface GalleryModel : NSObject
 
-@property (nonatomic, copy) NSString *isFlagship;
+@property (nonatomic, assign) BOOL isFlagship;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *pic;
+@property (nonatomic, copy) NSURL *pic;
 @property (nonatomic, copy) NSString *refContent;
 @property (nonatomic, copy) NSString *type;
 

@@ -1,51 +1,41 @@
 [
- {
- "refContent": "111111111",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic16.shangpin.com/e/s/15/02/15/20150215155540295340-10-10.jpg"
- },{
- "refContent": "2222222",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic12.shangpin.com/e/s/15/02/15/20150215154810871864-10-10.jpg"
- },{
- "refContent": "3333333",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic14.shangpin.com/e/s/15/04/01/20150401185027193594-10-10.jpg"
- },{
- "refContent": "4444444",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic11.shangpin.com/e/s/15/02/15/20150215150055287171-10-10.jpg"
- },{
- "refContent": "5555555",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic14.shangpin.com/e/s/15/02/15/20150215155043347252-10-10.jpg"
- },{
- "refContent": "6666666",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic12.shangpin.com/e/s/15/02/15/20150215150258387585-10-10.jpg"
- },{
- "refContent": "7777777",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic13.shangpin.com/e/s/15/02/15/20150215155140474254-10-10.jpg"
- },{
- "refContent": "8888888",
- "nameEN": "TopShop",
- "nameCN": "TopShop",
- "desc": "描述摘要",
- "pic": "http://pic14.shangpin.com/e/s/15/02/15/20150215154845410359-10-10.jpg"
- }
- ]
+    {
+        "refContent": "111111111",
+        "nameEN": "TopShopEN1",
+        "nameCN": "TopShopCN1",
+        "desc": "描述摘要1",
+        "pic": "http://pic.shangpin.com/1.jpg"
+    },{
+        "refContent": "222222222",
+        "nameEN": "TopShopEN2",
+        "nameCN": "TopShopCN2",
+        "desc": "描述摘要2",
+        "pic": "http://pic.shangpin.com/2.jpg"
+    },{
+        "refContent": "333333333",
+        "nameEN": "TopShopEN3",
+        "nameCN": "TopShopCN3",
+        "desc": "描述摘要3",
+        "pic": "http://pic.shangpin.com/3.jpg"
+    },{
+        "refContent": "444444444",
+        "nameEN": "TopShopEN4",
+        "nameCN": "TopShopCN4",
+        "desc": "描述摘要4",
+        "pic": "http://pic.shangpin.com/4.jpg"
+    },{
+        "refContent": "555555555",
+        "nameEN": "TopShopEN5",
+        "nameCN": "TopShopCN5",
+        "desc": "描述摘要5",
+        "pic": "http://pic.shangpin.com/5.jpg"
+    },{
+        "refContent": "666666666",
+        "nameEN": "TopShopEN6",
+        "nameCN": "TopShopCN6",
+        "desc": "描述摘要6",
+        "pic": "http://pic.shangpin.com/6.jpg"
+    }
+]
+ 
+

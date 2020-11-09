@@ -12,7 +12,7 @@
 
 @property (nonatomic,copy) NSString *original_url;
 @property (nonatomic,copy) NSString *thumbnail_url;
-@property (nonatomic,copy) NSString *raw_url;
+@property (nonatomic,copy) NSURL *raw_url;
 
 @end
 
@@ -28,7 +28,7 @@
 
 @property (nonatomic,retain) AvatarInfoModel *avatarInfo;
 @property (nonatomic,copy)   NSString *gender;
-@property (nonatomic,copy)   NSString *uid;
+@property (nonatomic,assign) long uid;
 @property (nonatomic,copy)   NSString *name;
 @property (nonatomic,copy)   NSString *phone_number;
 

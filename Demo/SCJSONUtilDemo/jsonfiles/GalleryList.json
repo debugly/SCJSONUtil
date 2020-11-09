@@ -7,42 +7,42 @@
                     "name": "白色情人节 与浪漫牵手",
                     "pic": "http://pic16.shangpin.com/e/s/15/03/06/20150306174649601525-10-10.jpg",
                     "refContent": "http://m.shangpin.com/meet/189",
-                    "type": "5"
+                    "type": "1"
                     },
                     {
-                    "isFlagship": "0",
+                    "isFlagship": "1",
                     "name": "【早春新品预售】",
                     "pic": "http://pic11.shangpin.com/e/s/15/03/13/20150313101837452024-10-10.jpg",
                     "refContent": "50310992",
-                    "type": "1"
+                    "type": "2"
                     },
                     {
                     "isFlagship": "0",
                     "name": "【男装春季促销】",
                     "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
                     "refContent": "50310978",
-                    "type": "1"
+                    "type": "3"
+                    },
+                    {
+                    "isFlagship": "1",
+                    "name": "【男装春季促销】",
+                    "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
+                    "refContent": "50310978",
+                    "type": "4"
                     },
                     {
                     "isFlagship": "0",
                     "name": "【男装春季促销】",
                     "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
                     "refContent": "50310978",
-                    "type": "1"
+                    "type": "5"
                     },
                     {
-                    "isFlagship": "0",
+                    "isFlagship": "1",
                     "name": "【男装春季促销】",
                     "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
                     "refContent": "50310978",
-                    "type": "1"
-                    },
-                    {
-                    "isFlagship": "0",
-                    "name": "【男装春季促销】",
-                    "pic": "http://pic12.shangpin.com/e/s/15/03/12/20150312092557150616-10-10.jpg",
-                    "refContent": "50310978",
-                    "type": "1"
+                    "type": "6"
                     }
                     ],
         "entrance": [
