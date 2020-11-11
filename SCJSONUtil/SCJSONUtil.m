@@ -42,9 +42,9 @@ typedef NS_ENUM(NSUInteger, QLPropertyType) {
     QLPropertyTypeInt32     = 'i',
     QLPropertyTypeUInt32    = 'I',
     QLPropertyTypeLong32    = 'l', //32位机器 long 型
-    QLPropertyTypeULong32   = 'L',//32位机器 unsigned long 型
-    QLPropertyTypeInt64     = 'q',  //32位机器 long long 类型；64位机器 long long 和 long 类型
-    QLPropertyTypeUInt64    = 'Q', //32位机器 unsigned long long 类型；64位机器 unsigned long long 和 unsigned long 类型
+    QLPropertyTypeULong32   = 'L', //32位机器 unsigned long 型
+    QLPropertyTypeInt64     = 'q', //32位机器 long long 类型；64位机器 long long 和 long 类型
+    QLPropertyTypeUInt64    = 'Q'  //32位机器 unsigned long long 类型；64位机器 unsigned long long 和 unsigned long 类型
 };
 
 typedef struct QLPropertyDescS {
@@ -131,7 +131,7 @@ static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *k
     return NULL;
 }
 
-#pragma mark - 【ValueTransfer】
+#pragma mark 【ValueTransfer】
 
 static NSString * QLValueTransfer2NSString(id value) {
     return [value description];
@@ -242,7 +242,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
             SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回类型不匹配，无法解析！请修改为NSArray * %@; 或者 NSMutableArray * %@;",NSStringFromClass([self class]),serverKey,serverKey,serverKey);
         }
     } else if ([obj isKindOfClass:[NSDictionary class]]) {
-        //如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
+        // 如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
         if (pdesc->type == QLPropertyTypeObj) {
             if (QLCStrEqual((char *)pdesc->clazz, "NSMutableDictionary")) {
                 [self setValue:[obj mutableCopy] forKey:mapedKey];
@@ -421,7 +421,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
 
 @end
 
-#pragma mark - JOSNUtil c functions
+#pragma mark - JOSNUtil public c functions
 
 id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *json){
     if (!json) {
