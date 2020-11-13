@@ -10,6 +10,6 @@
 
 @interface NSObject (PrintProperties)
 
-- (NSString *)DEBUGDescrption;
+- (NSString *)sc_printAllProperties;
 
 @end

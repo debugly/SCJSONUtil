@@ -15,8 +15,6 @@
 		C342B2A91F218554007F04FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342B2A71F218554007F04FC /* Main.storyboard */; };
 		C342B2AB1F218554007F04FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C342B2AA1F218554007F04FC /* Assets.xcassets */; };
 		C342B2AE1F218554007F04FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342B2AC1F218554007F04FC /* LaunchScreen.storyboard */; };
-		C342B2CC1F2186B9007F04FC /* NSArray+DebugDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2B71F2186B9007F04FC /* NSArray+DebugDescription.m */; };
-		C342B2CD1F2186B9007F04FC /* NSObject+DebugDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2B91F2186B9007F04FC /* NSObject+DebugDescription.m */; };
 		C342B2CE1F2186B9007F04FC /* NSObject+PrintProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */; };
 		C342B2CF1F2186B9007F04FC /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BD1F2186B9007F04FC /* Car.json */; };
 		C342B2D01F2186B9007F04FC /* FavConcern.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BE1F2186B9007F04FC /* FavConcern.json */; };
@@ -64,10 +62,6 @@
 		C342B2AA1F218554007F04FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C342B2AD1F218554007F04FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C342B2AF1F218554007F04FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C342B2B61F2186B9007F04FC /* NSArray+DebugDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DebugDescription.h"; sourceTree = "<group>"; };
-		C342B2B71F2186B9007F04FC /* NSArray+DebugDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DebugDescription.m"; sourceTree = "<group>"; };
-		C342B2B81F2186B9007F04FC /* NSObject+DebugDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DebugDescription.h"; sourceTree = "<group>"; };
-		C342B2B91F2186B9007F04FC /* NSObject+DebugDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DebugDescription.m"; sourceTree = "<group>"; };
 		C342B2BA1F2186B9007F04FC /* NSObject+PrintProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PrintProperties.h"; sourceTree = "<group>"; };
 		C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PrintProperties.m"; sourceTree = "<group>"; };
 		C342B2BD1F2186B9007F04FC /* Car.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Car.json; sourceTree = "<group>"; };
@@ -197,10 +191,6 @@
 		C342B2B51F2186B9007F04FC /* debug */ = {
 			isa = PBXGroup;
 			children = (
-				C342B2B61F2186B9007F04FC /* NSArray+DebugDescription.h */,
-				C342B2B71F2186B9007F04FC /* NSArray+DebugDescription.m */,
-				C342B2B81F2186B9007F04FC /* NSObject+DebugDescription.h */,
-				C342B2B91F2186B9007F04FC /* NSObject+DebugDescription.m */,
 				C342B2BA1F2186B9007F04FC /* NSObject+PrintProperties.h */,
 				C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */,
 			);
@@ -313,7 +303,7 @@
 		C342B2931F218554007F04FC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = xuqianlong;
 				TargetAttributes = {
 					C342B29A1F218554007F04FC = {
@@ -466,7 +456,6 @@
 			files = (
 				C342B2CE1F2186B9007F04FC /* NSObject+PrintProperties.m in Sources */,
 				C342B2A61F218554007F04FC /* ViewController.m in Sources */,
-				C342B2CD1F2186B9007F04FC /* NSObject+DebugDescription.m in Sources */,
 				C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */,
 				C342B2D61F2186B9007F04FC /* FavModel.m in Sources */,
 				DD8B84EE255E842700E56BE3 /* Util.m in Sources */,
@@ -478,7 +467,6 @@
 				C342B2A01F218554007F04FC /* main.m in Sources */,
 				DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */,
 				DD99FD0A21EF0C4200584AC4 /* DynamicVideos.m in Sources */,
-				C342B2CC1F2186B9007F04FC /* NSArray+DebugDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +534,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -570,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -604,6 +593,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -622,7 +612,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -638,7 +628,6 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SCJSONUtilDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.debugly.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -655,7 +644,6 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SCJSONUtilDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.debugly.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

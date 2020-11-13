@@ -11,8 +11,6 @@
 #import "UserInfoModel.h"
 #import "FavModel.h"
 #import "OCTypes.h"
-#import "NSObject+DebugDescription.h"
-#import "NSArray+DebugDescription.h"
 #import "NSObject+PrintProperties.h"
 #import "Car.h"
 #import "DynamicVideos.h"
@@ -106,14 +104,14 @@
 {
     NSDictionary *typesDic = [Util readOCTypes];
     OCTypes *model = [OCTypes sc_instanceFormDic:typesDic];
-    return [model DEBUGDescrption];
+    return [model sc_printAllProperties];
 }
 
 - (NSString *)testKeyPathFromDictionary
 {
     NSDictionary *json = [Util readStore];
     StoreModel *store = SCJSON2Model(json, @"StoreModel");
-    return [store DEBUGDescrption];
+    return [store sc_printAllProperties];
 }
 
 - (void)testCount:(long)count work:(dispatch_block_t)block
@@ -136,7 +134,7 @@
 {
     NSDictionary *userInfoDic = [Util readUserInfo];
     UserInfoModel *uModel = [UserInfoModel sc_instanceFormDic:userInfoDic];
-    return [uModel DEBUGDescrption];
+    return [uModel sc_printAllProperties];
 }
 
 ///json数组转model数组
@@ -144,7 +142,7 @@
 {
     NSArray *favArr = [Util readFavConcern];
     NSArray *favModels = [FavModel sc_instanceArrFormArray:favArr];
-    return [favModels DEBUGDescrption];
+    return [favModels sc_printAllProperties];
 }
 
 ///指定解析的路径，找到指定 json；
@@ -179,7 +177,7 @@
     //自动根据类型解析；
     NSArray *models = SCJSON2Model(findedJSON, @"GalleryModel");
     //这完全可以封装到我们的网络请求里！
-    return [models DEBUGDescrption];
+    return [models sc_printAllProperties];
 }
 
 - (NSString *)testDynamicConvertFromDictionary
@@ -192,7 +190,7 @@
      */
     
     DynamicVideos *videoList = SCJSON2ModelV2(videoListJson, @"DynamicVideos",@{@"qq":@"videos"});//这里的qq,可以换成iqiyi；具体是业务决定的
-    return [videoList DEBUGDescrption];
+    return [videoList sc_printAllProperties];
 }
 
 - (NSString *)testCustomConvertFromDictionary
@@ -206,7 +204,7 @@
      */
     
     VideoInfo *videoInfo = SCJSON2ModelV2(videoInfoJson, @"VideoInfo",@{@"test":@"RefObj"});//额外业务参数
-    return [videoInfo DEBUGDescrption];
+    return [videoInfo sc_printAllProperties];
 }
 
 - (void)testPerformance
@@ -215,7 +213,7 @@
     NSDictionary *userInfoDic = [Util readUserInfo];
     
     [self testCount:10000 work:^{
-        UserInfoModel *uModel = [UserInfoModel sc_instanceFormDic:userInfoDic];
+        [UserInfoModel sc_instanceFormDic:userInfoDic];
     }];
     //    10000 次转换耗时:0.51412
     //    100000 次转换耗时:4.61152

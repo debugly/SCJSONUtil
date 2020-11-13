@@ -11,8 +11,10 @@
 
 @implementation NSObject (PrintProperties)
 
-- (NSArray *)propertyNames
+- (NSArray *)sc_propertyNames
 {
+    NSArray *ignoreArr = @[@"superclass", @"description", @"debugDescription", @"hash"];
+    
     NSArray *(^classProperties)(Class clazz) = ^ NSArray * (Class clazz){
         
         unsigned int count = 0;
@@ -20,6 +22,9 @@
         NSMutableArray *propertyNames = [NSMutableArray array];
         for (int i = 0; i < count; i++) {
             NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+            if ([ignoreArr containsObject:key]) {
+                continue;
+            }
             [propertyNames addObject:key];
         }
         free(properties);
@@ -39,13 +44,7 @@
     return [properties copy];
 }
 
-
-- (NSString *)DEBUGDescrption
-{
-    return [self DEBUGDescrptionWithLeval:0];
-}
-
-- (NSString *)stringForLeval:(NSUInteger)leval
+- (NSString *)sc_stringForLeval:(NSUInteger)leval
 {
     NSMutableString *toString = [[NSMutableString alloc]init];
     while (leval --) {
@@ -54,18 +53,18 @@
     return toString;
 }
 
-- (NSString *)DEBUGDescrptionWithLeval:(NSUInteger)leval
+- (NSString *)sc_printAllPropertiesWithLeval:(int)leval
 {
-    NSString *levalString = [self stringForLeval:leval];
+    NSString *levalString = [self sc_stringForLeval:leval];
     leval ++;
     if ([self isKindOfClass:[NSArray class]]) {
         NSArray *objs = (NSArray *)self;
         NSMutableString *toString = [[NSMutableString alloc]init];
-        [toString appendString:levalString];
         [toString appendFormat:@"[\n"];
         for (NSObject *obj in objs) {
             [toString appendString:levalString];
-            [toString appendFormat:@"%@",[obj DEBUGDescrptionWithLeval:leval]];
+            [toString appendString:levalString];
+            [toString appendFormat:@"%@\n",[obj sc_printAllPropertiesWithLeval:leval]];
         }
         [toString appendString:levalString];
         [toString appendFormat:@"]\n"];
@@ -85,7 +84,7 @@
         return [self description];
     }else{
         NSMutableString *toString = [[NSMutableString alloc]init];
-        NSArray *properties = [self propertyNames];
+        NSArray *properties = [self sc_propertyNames];
         
         for (int i = 0; i < properties.count; i++) {
             NSMutableDictionary *propertyDic = properties[i];
@@ -107,7 +106,7 @@
                 }else if([NSStringFromClass([value class]) isEqualToString:@"NSObject"]){
                     //ignore
                 }else{
-                    NSString *desc = [value DEBUGDescrptionWithLeval:leval+1];
+                    NSString *desc = [value sc_printAllPropertiesWithLeval:leval+1];
                     [toString appendFormat:@"\t%@:%@\n",key,desc];
                 }
             }
@@ -116,6 +115,11 @@
         }
         return [toString copy];
     }
+}
+
+- (NSString *)sc_printAllProperties
+{
+    return [self sc_printAllPropertiesWithLeval:0];
 }
 
 @end

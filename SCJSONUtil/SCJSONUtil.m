@@ -123,7 +123,7 @@ static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *k
                 
             default: // #:^ igonre:Class,SEL,Method...
             {
-                SCJSONLog(@"未识别的类型：%c",iType);
+                SCJSONLog(@"unrecognized type:%c",iType);
             }
                 break;
         }
@@ -171,24 +171,24 @@ static NSURL * QLValueTransfer2NSURL(id value) {
 
 @implementation NSObject (SCJSON2Model)
 
-- (void)_findFromCollideKeyMap:(NSString *)serverKey
-                      forValue:(id)serverValue
-                    completion:(void(^)(NSString *,NSString *,id))comp
+- (void)sc_findPropertyFromCollideKeyMap:(NSString *)serverKey
+                                forValue:(id)serverValue
+                              completion:(void(^)(NSString *,NSString *,id))comp
 {
     id<SCJSON2ModelProtocol>_self = (id<SCJSON2ModelProtocol>)self;
     if ([_self respondsToSelector:@selector(sc_collideKeysMap)]) {
-        //自定义key，覆盖服务器返回的key；并且支持keypath
         NSDictionary *map = [_self sc_collideKeysMap];
-        NSString * mappedPropertyName = map[serverKey];
-        //自定义了属性名，将服务器返回的值对应到自定义的属性名上
-        if (mappedPropertyName) {
+        NSString * mappedName = map[serverKey];
+        //严格匹配上了，意味着很明确要映射
+        if (mappedName) {
             if (comp) {
-                comp(mappedPropertyName,serverKey,serverValue);
+                //此时仍然使用 serverKey 作为后续的查询 Model 类名的 key
+                comp(mappedName,serverKey,serverValue);
             }
             return;
         }
-        
-        __block BOOL found = NO;
+        //下面是支持 keypath 查找的逻辑
+        __block BOOL matched = NO;
         [map enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull customServerKey, NSString * _Nonnull mappedPropertyName, BOOL * _Nonnull stop) {
             //自定义了属性名，将服务器返回的值根据keypath进一步查找，然后对应到自定义的属性名上
             if ([customServerKey hasPrefix:serverKey]) {
@@ -197,15 +197,17 @@ static NSURL * QLValueTransfer2NSURL(id value) {
                     if([serverValue isKindOfClass:[NSDictionary class]]) {
                         NSString *targetKey = [customServerKey substringFromIndex:range.location + range.length];
                         id mappedValue = [serverValue valueForKeyPath:targetKey];
+                        //确定一个keypath查找就invoke下；但仍旧继续遍历，以处理通过多个 keypath 查找同一个字段下的多个子字段情况 @{@"data.a":"a",@"data.b":"b"}
                         if (comp) {
                             comp(mappedPropertyName,customServerKey,mappedValue);
                         }
-                        found = YES;
+                        matched = YES;
                     }
                 }
             }
         }];
-        if (!found) {
+        //遍历完了还没匹配上，说明没有配置映射
+        if (!matched) {
             if (comp) {
                 comp(nil,serverKey,serverValue);
             }
@@ -218,20 +220,21 @@ static NSURL * QLValueTransfer2NSURL(id value) {
     }
 }
 
-- (void)_resolveunDefinedKey:(NSString *)propertyName
-                    forValue:(id)propertyValue
-                      refObj:(id)refObj
-                  completion:(void(^)(NSString *,NSString *,id))comp
-                               
+- (void)sc_resolveunDefinedKey:(NSString *)propertyName
+                      forValue:(id)propertyValue
+                        refObj:(id)refObj
+                    completion:(void(^)(NSString *,NSString *,id))comp
 {
+    NSString *outName = propertyName;
+    id outValue = propertyValue;
+    
     id<SCJSON2ModelProtocol>_self = (id<SCJSON2ModelProtocol>)self;
-    NSString *outPropertyName = propertyName;
-    id outPropertyValue = propertyValue;
-    if ([_self respondsToSelector:@selector(sc_unDefinedKey:forValue:refObj:)] && [_self sc_unDefinedKey:&outPropertyName forValue:&outPropertyValue refObj:refObj]) {
-        SCJSONLog(@"mapped server key:%@->%@.%@",propertyName,NSStringFromClass([self class]),outPropertyName);
-        if (outPropertyName.length > 0) {
+    if ([_self respondsToSelector:@selector(sc_unDefinedKey:forValue:refObj:)] && [_self sc_unDefinedKey:&outName forValue:&outValue refObj:refObj]) {
+        SCJSONLog(@"mapped server key:%@->%@.%@",propertyName,NSStringFromClass([self class]),outName);
+        if (outName.length > 0) {
             if (comp) {
-                comp(outPropertyName,outPropertyName,outPropertyValue);
+                //此时使用自定义映射属性名 outName 作为后续的查询 Model 类名的 key
+                comp(outName,outName,outValue);
             }
             return;
         }
@@ -240,23 +243,28 @@ static NSURL * QLValueTransfer2NSURL(id value) {
         if ([propertyClass hasPrefix:@"__"]) {
             propertyClass = NSStringFromClass([propertyValue superclass]);
         }
-        SCJSONLog(@"⚠️ %@ 类没有解析 %@ 字段，请完善为 %@ * %@",NSStringFromClass([self class]),propertyName,propertyClass,propertyName);
+        SCJSONLog(@"igonred %@.%@,add property use %@ * %@",NSStringFromClass([self class]),propertyName,propertyClass,propertyName);
     }
 }
 
-- (void)_resolveProperty:(NSString *)propertyName
-                forValue:(id)propertyValue
-                  refObj:(id)refObj
-              completion:(void(^)(QLPropertyDesc *,NSString *,NSString *,id))comp
+- (void)sc_resolveProperty:(NSString *)propertyName
+                  forValue:(id)propertyValue
+                    refObj:(id)refObj
+                completion:(void(^)(QLPropertyDesc *,NSString *,NSString *,id))comp
 {
-    [self _findFromCollideKeyMap:propertyName
-                        forValue:propertyValue
-                    completion:^(NSString *pName,NSString *mKey,id mValue) {
+    /*
+     为了支持 keypath 查找，只能优先查找 sc_collideKeysMap，否则会出现类型不匹配，出现没解析的情况！
+     比如：{@"activity.on" : @"activity"}
+     */
+    [self sc_findPropertyFromCollideKeyMap:propertyName
+                                  forValue:propertyValue
+                                completion:^(NSString *pName,NSString *mKey,id mValue) {
         QLPropertyDesc * pdesc = NULL;
         if (pName) {
             //通过sc_collideKeysMap提供了
             pdesc = QLPropertyDescForClassProperty([self class], [pName UTF8String]);
         } else {
+            //当sc_collideKeysMap没提供时，就把服务区返回字段当做 Model 属性名进行试探
             pdesc = QLPropertyDescForClassProperty([self class], [propertyName UTF8String]);
         }
         
@@ -268,12 +276,13 @@ static NSURL * QLValueTransfer2NSURL(id value) {
             }
         } else {
             //获取属性类型，获取不到时走 sc_unDefinedKey 来补救
-            [self _resolveunDefinedKey:propertyName
-                              forValue:propertyValue
-                                refObj:refObj
-                            completion:^(NSString *aName,NSString *aKey,id aValue) {
+            [self sc_resolveunDefinedKey:propertyName
+                                forValue:propertyValue
+                                  refObj:refObj
+                              completion:^(NSString *aName,NSString *aKey,id aValue) {
                 if (aName) {
                     QLPropertyDesc * pdesc = QLPropertyDescForClassProperty([self class], [aName UTF8String]);
+                    //补救的属性存在?
                     if (pdesc) {
                         comp(pdesc,aName,aKey,aValue);
                     }
@@ -287,31 +296,27 @@ static NSURL * QLValueTransfer2NSURL(id value) {
                    forKey:(NSString *)serverKey
                    refObj:(id)refObj
 {
-    //1、默认情况下，把服务器返回的字段名，当做 model 的属性名
-//    __block NSString *propertyName = serverKey;
-//    __block NSString *modelKey = serverKey;
-//    __block id mappedValue = serverValue;
-//    __block QLPropertyDesc * pdesc = NULL;
-    //2、处理自定义属性名
-    [self _resolveProperty:serverKey
-                  forValue:serverValue
-                    refObj:refObj
-                completion:^(QLPropertyDesc *pdesc,NSString *propertyName,NSString *modelKey,id mappedValue) {
-        //有这个属性
+    //1、处理属性名（顺序:根据sc_collideKeysMap获取;服务器返回的字段名;通过sc_unDefinedKey方法）
+    [self sc_resolveProperty:serverKey
+                    forValue:serverValue
+                      refObj:refObj
+                  completion:^(QLPropertyDesc *pdesc,NSString *propertyName,NSString *modelKey,id mappedValue) {
         if (pdesc) {
+            //属性描述不空，则表示有这个属性
             id<SCJSON2ModelProtocol> instance = (id<SCJSON2ModelProtocol>)self;
             
-            //3、进行自动匹配赋值之前，再给客户端一次机会，可根据业务逻辑自行处理
+            //2、进行自动匹配赋值之前，再给客户端一次机会，可根据业务逻辑自行处理
             if ([instance respondsToSelector:@selector(sc_key:beforeAssignedValue:refObj:)]) {
                 mappedValue = [instance sc_key:propertyName beforeAssignedValue:mappedValue refObj:refObj];
             }
             
+            //3、进入类型自动匹配流程
             do {
-                //4、进入类型自动匹配流程
+                //3.1、匹配数组类型
                 if ([mappedValue isKindOfClass:[NSArray class]]) {
-                    //4.1、匹配数组类型
+                    
                     if (pdesc->type == QLPropertyTypeObj && (QLCStrEqual((char *)pdesc->clazz, "NSMutableArray") || QLCStrEqual((char *)pdesc->clazz, "NSArray") )) {
-                        //获取model名字
+                        //优先从 collideKeyModelMap 获取 Model 类名
                         NSString *modleName = nil;
                         if ([instance respondsToSelector:@selector(sc_collideKeyModelMap)]) {
                             modleName = [[instance sc_collideKeyModelMap]objectForKey:modelKey];
@@ -323,15 +328,16 @@ static NSURL * QLValueTransfer2NSURL(id value) {
                             if (clazz) {
                                 objs = [clazz sc_instanceArrFormArray:mappedValue];
                             } else {
-                                SCJSONLog(@"⚠️⚠️[%@ Class] is undefined!",modleName);
+                                SCJSONLog(@"⚠️⚠️⚠️[%@ Class] is undefined!",modleName);
                                 break;
                             }
                         } else {
+                            //当获取不到 Model 类名时不解析
                             objs = [NSArray arrayWithArray:mappedValue];
                         }
                         
                         char * pclazz = pdesc->clazz;
-                        // 如果属性是可变的，那么做个可变处理
+                        //如果属性是可变的，那么做个可变处理
                         if (QLCStrEqual(pclazz, "NSMutableArray")) {
                             objs = [NSMutableArray arrayWithArray:objs];
                         }
@@ -339,13 +345,13 @@ static NSURL * QLValueTransfer2NSURL(id value) {
                             [self setValue:objs forKey:propertyName];
                         }
                     } else {
-                        // model 属性不是 NSMutableArray/NSArray，无法处理！默认忽略掉！
-                        SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回类型不匹配，无法解析！请修改为NSArray * %@; 或者 NSMutableArray * %@;",NSStringFromClass([self class]),serverKey,serverKey,serverKey);
+                        //忽略掉 Model 属性不是 NSMutableArray/NSArray 的情况
+                        SCJSONLog(@"⚠️⚠️ %@.%@ may be: (%@*)%@",NSStringFromClass([self class]),propertyName,NSStringFromClass([mappedValue class]),propertyName);
                     }
                 }
-                // 4.2、匹配字典类型
+                //3.2、匹配字典类型
                 else if ([mappedValue isKindOfClass:[NSDictionary class]]) {
-                    // 如果class类型是字典类型则默认不执行内部解析，直接返回json数据，否则执行内层解析
+                    //如果 property 是字典类型则直接赋值，否则执行 model 解析
                     if (pdesc->type == QLPropertyTypeObj) {
                         if (QLCStrEqual((char *)pdesc->clazz, "NSMutableDictionary")) {
                             [self setValue:[mappedValue mutableCopy] forKey:propertyName];
@@ -357,52 +363,50 @@ static NSURL * QLValueTransfer2NSURL(id value) {
                                 id value = [clazz sc_instanceFormDic:mappedValue];
                                 if (value) {
                                     [self setValue:value forKey:propertyName];
-                                } else {
-                                    SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回的值 %@ 类型不法匹配！请修改为NSDictionary * %@; 或者 NSMutableDictionary * %@;",NSStringFromClass([self class]),propertyName,mappedValue,propertyName,propertyName);
                                 }
                             }
                         }
                     } else {
-                        SCJSONLog(@"⚠️⚠️ %@ 类的 %@ 属性类型跟服务器返回的值 %@ 类型不法匹配！请修改为NSDictionary * %@; 或者 NSMutableDictionary * %@;",NSStringFromClass([self class]),propertyName,mappedValue,propertyName,propertyName);
+                        //忽略掉 Model 属性不是 NSMutableDictionary/NSDictionary 的情况
+                        SCJSONLog(@"⚠️⚠️ %@.%@ may be: (%@*)%@",NSStringFromClass([self class]),propertyName,NSStringFromClass([mappedValue class]),propertyName);
                     }
                 }
-                // 4.3、匹配非NULL类型
+                //3.3、匹配非 NULL 类型
                 else if (![mappedValue isKindOfClass:[NSNull class]]) {
-                    //自定义对象或者系统的NSStirng，NSNumber等；
+                    //简单非空类型 id,NSStirng,NSNumber,int,bool,float...
                     switch (pdesc->type) {
                         case QLPropertyTypeObj:
                         {
-                            const char *dclazz = pdesc->clazz;
-                            //目标类型是id，无法处理直接赋值；
-                            if (!dclazz) {
-                                [self setValue:mappedValue forKey:propertyName];
-                                break;
-                            }
-                            const char *vclazz = object_getClassName(mappedValue);
-                            //目标类型和值类型相同，则直接赋值
-                            if (QLCStrEqual((char *)dclazz, (char *)vclazz)) {
-                                [self setValue:mappedValue forKey:propertyName];
-                            } else if (QLCStrEqual((char *)dclazz, "NSString")) {
+                            id r = nil;
+                            const char *pClazz = pdesc->clazz;
+                            //目标类型可能是id类型，直接赋值
+                            if (!pClazz) {
+                                r = mappedValue;
+                            } else if (QLCStrEqual((char *)pClazz, (char *)object_getClassName(mappedValue))) {
+                                //目标类型和值类型相同，则直接赋值
+                                r = mappedValue;
+                            } else if (QLCStrEqual((char *)pClazz, "NSString")) {
                                 //目标类型是NSString
-                                NSString *value = QLValueTransfer2NSString(mappedValue);
-                                [self setValue:value forKey:propertyName];
-                            } else if (QLCStrEqual((char *)dclazz, "NSMutableString")) {
+                                r = QLValueTransfer2NSString(mappedValue);
+                            } else if (QLCStrEqual((char *)pClazz, "NSMutableString")) {
                                 //目标类型是NSMutableString
                                 NSString *value = QLValueTransfer2NSString(mappedValue);
-                                value = [NSMutableString stringWithString:value];
-                                [self setValue:value forKey:propertyName];
-                            } else if (QLCStrEqual((char *)dclazz, "NSNumber")) {
+                                r = [NSMutableString stringWithString:value];
+                            } else if (QLCStrEqual((char *)pClazz, "NSNumber")) {
                                 //目标类型是NSNumber
-                                NSNumber *value = QLValueTransfer2NSNumber(mappedValue);
-                                [self setValue:value forKey:propertyName];
-                            } else if (QLCStrEqual((char *)dclazz, "NSDecimalNumber")) {
+                                r = QLValueTransfer2NSNumber(mappedValue);
+                            } else if (QLCStrEqual((char *)pClazz, "NSDecimalNumber")) {
                                 //目标类型是NSDecimalNumber
-                                NSDecimalNumber *value = QLValueTransfer2NSDecimalNumber(mappedValue);
-                                [self setValue:value forKey:propertyName];
-                            } else if (QLCStrEqual((char *)dclazz, "NSURL")) {
+                                r = QLValueTransfer2NSDecimalNumber(mappedValue);
+                            } else if (QLCStrEqual((char *)pClazz, "NSURL")) {
                                 //目标类型是NSURL
-                                NSURL *value = QLValueTransfer2NSURL(mappedValue);
-                                [self setValue:value forKey:propertyName];
+                                r = QLValueTransfer2NSURL(mappedValue);
+                            } else {
+                                SCJSONError(@"unrecognized type (%s)%@ for (%@)",pClazz,propertyName,NSStringFromClass([mappedValue class]));
+                            }
+                            
+                            if (r) {
+                                [self setValue:r forKey:propertyName];
                             }
                         }
                             break;
@@ -438,7 +442,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
                 }
             } while (0);
             
-            //5、释放内存
+            //4、释放内存
             if (NULL != pdesc) {
                 if (NULL != pdesc->clazz) {
                     free((void *)pdesc->clazz);
@@ -488,7 +492,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
             if (instance) {
                 [modelArr addObject:instance];
             } else {
-                SCJSONError(@"WTF?无法将该[%@]转为[%@]",json,NSStringFromClass([self class]));
+                SCJSONError(@"WTF?can't convert json [%@] to [%@]",json,NSStringFromClass([self class]));
             }
         }];
         return [NSArray arrayWithArray:modelArr];
@@ -505,7 +509,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
     if ([self class] == [NSDecimalNumber class]) {
         return QLValueTransfer2NSDecimalNumber(json);
     }
-    SCJSONError(@"无法将该[%@]转为[%@]",json,NSStringFromClass([self class]));
+    SCJSONError(@"can't convert json [%@] to [%@]",json,NSStringFromClass([self class]));
     return nil;
 }
 
