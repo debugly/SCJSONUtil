@@ -15,9 +15,11 @@
 #import "NSArray+DebugDescription.h"
 #import "NSObject+PrintProperties.h"
 #import "Car.h"
-#import "VideoList.h"
+#import "DynamicVideos.h"
 #import "VideoInfo.h"
 #import "GalleryModel.h"
+#import "StoreModel.h"
+#import "Util.h"
 
 @interface SCJSONUtilTests : XCTestCase
 
@@ -35,7 +37,6 @@
 
 - (void)testLogSwitch
 {
-    XCTAssert(isSCJSONUtilLogOn() == NO);
     SCJSONUtilLog(YES);
     XCTAssert(isSCJSONUtilLogOn() == YES);
     SCJSONUtilLog(NO);
@@ -44,7 +45,7 @@
 
 - (void)testOCTypes
 {
-    NSDictionary *typesDic = [self readOCTypes];
+    NSDictionary *typesDic = [Util readOCTypes];
     OCTypes *model = [OCTypes sc_instanceFormDic:typesDic];
     XCTAssert(model.boolType == YES);
     XCTAssert(model.BOOLType == YES);
@@ -88,7 +89,7 @@
 ///字典转model
 - (void)testModelFromDictionary
 {
-    NSDictionary *userInfoDic = [self readUserInfo];
+    NSDictionary *userInfoDic = [Util readUserInfo];
     UserInfoModel *uModel = [UserInfoModel sc_instanceFormDic:userInfoDic];
     XCTAssert([uModel.code isEqualToString:@"10000"]);
     
@@ -122,7 +123,7 @@
 ///json数组转model数组
 - (void)testModelsFromJSONArr
 {
-    NSArray *favArr = [self readFavConcern];
+    NSArray *favArr = [Util readFavConcern];
     NSArray *favModels = [FavModel sc_instanceArrFormArray:favArr];
     int i = 1;
     for (FavModel *fav in favModels) {
@@ -146,7 +147,7 @@
      如果code不正确，那么无需 json 解析，此时包装一个 Error 出来，然后通过 block 回调给业务层处理;
      */
     
-    NSDictionary *json = [self readGalleryList];
+    NSDictionary *json = [Util readGalleryList];
     
     /* 假如网络请求返回的数据格式如下：
      
@@ -188,20 +189,40 @@
 
 - (void)testDynamicConvertFromDictionary
 {
-    NSDictionary *videoListJson = [self readVideoList];
+    NSDictionary *videoListJson = [Util readVideoList];
     /**
      // 动态映射 key 的映射关系
      !! 这里模拟一个场景，我们需要请求这样一个接口，参数值可以是[qq,iqiyi]，响应结果里会包含所有渠道的视频信息(详见Video.json)，我们客户端定义了一个 video 数组来存放目标渠道的剧集，但是这种情况下，我们不知道怎么确定 video 字段跟服务器字段的映射关系！所以为了满足这种需求，就提供了V2版本的函数，她的第三个参数就是用来存放额外信息的，这个信息会在解析过程中，通过(sc_unDefinedKey:forValue:refObj:)方法传递过来；然后根据 refObj 提供的映射关系，去动态修改 key (value)！
      这样就解决了编译时无法确定映射关系问题，有点像 OC 的运行时哈，代码运行起来后，可以动态的解决！
      */
     
-    VideoList *videoList = SCJSON2ModelV2(videoListJson, @"VideoList",@{@"qq":@"videos"});//这里的qq,可以换成iqiyi；具体是业务决定的
-    XCTAssert(videoList);
+    DynamicVideos *video = SCJSON2ModelV2(videoListJson, @"DynamicVideos",@{@"qq":@"videos"});//这里的qq,可以换成iqiyi；具体是业务决定的
+    
+    XCTAssert([video.area isEqualToString:@"内地"]);
+    XCTAssert(video.playlistid == 5828854);
+    XCTAssert([video.wps count] == 4);
+    XCTAssert(video.array == 0);
+    XCTAssert(video.activity == 1);
+    XCTAssert([video.smallVerPicUrl isKindOfClass:[NSURL class]]);
+    XCTAssert([video.showAlbumName isKindOfClass:[NSMutableString class]]);
+    for (int i = 0; i < [video.videos count]; i++) {
+        VideoItem *item = video.videos[i];
+        XCTAssert(item.no == i + 1);
+        XCTAssert([item.showName isKindOfClass:[NSString class]]);
+        XCTAssert([item.title isKindOfClass:[NSString class]]);
+        XCTAssert([item.domain isKindOfClass:[NSString class]]);
+        XCTAssert([item.showName isKindOfClass:[NSString class]]);
+        XCTAssert([item.type isKindOfClass:[NSNumber class]]);
+        XCTAssert([item.rid isKindOfClass:[NSNumber class]]);
+        XCTAssert([item.uid isKindOfClass:[NSNumber class]]);
+        XCTAssert([item.rSwfurl isKindOfClass:[NSMutableString class]]);
+        XCTAssert([item.url isKindOfClass:[NSURL class]]);
+    }
 }
 
 - (void)testCustomConvertFromDictionary
 {
-    NSDictionary *videoInfoJson = [self readVideoInfo];
+    NSDictionary *videoInfoJson = [Util readVideoInfo];
     /**
      // 自定义解析过程
      !! 当解析过程过于复杂时，可在
@@ -210,13 +231,38 @@
      */
     
     VideoInfo *videoInfo = SCJSON2ModelV2(videoInfoJson, @"VideoInfo",@{@"test":@"RefObj"});//额外业务参数
-    XCTAssert(videoInfo);
+    XCTAssert([videoInfo.name isEqualToString:@"欢乐颂"]);
+    for (int i = 0; i < 3; i++) {
+        VideoSection *section = videoInfo.sections[i];
+        XCTAssert(section.ck == i+1);
+        NSString *du = section.du;
+        NSString *hc = section.hc;
+        NSString *result = [NSString stringWithFormat:@"%d",15+i];
+        XCTAssert([hc isKindOfClass:[NSString class]]);
+        XCTAssert([du isEqualToString:result]);
+    }
+}
+
+- (void)testKeyPathFromDictionary
+{
+    NSDictionary *json = [Util readStore];
+    StoreModel *store = SCJSON2Model(json, @"StoreModel");
+    XCTAssert([store.name isEqualToString:@"测试下KeyPath"]);
+    for (int i = 0; i < 3; i++) {
+        NSNumber *order = store.order[i];
+        XCTAssert([order intValue] == i+1);
+        NSString *category = store.category[i];
+        NSString *weight = store.weight[i];
+        NSString *result = [NSString stringWithFormat:@"%d",15+i];
+        XCTAssert([category isKindOfClass:[NSString class]]);
+        XCTAssert([result isEqualToString:weight]);
+    }
 }
 
 - (void)testPerformance
 {
     ///!! 测试的时候要关闭日志，NSLog 很耗时！
-    NSDictionary *userInfoDic = [self readUserInfo];
+    NSDictionary *userInfoDic = [Util readUserInfo];
     [self performance:1000 work:^{
         [UserInfoModel sc_instanceFormDic:userInfoDic];
     }];
@@ -224,56 +270,4 @@
     //    100000 次转换耗时:4.61152
 }
 
-#pragma mark - private and util methods
-
-- (NSString *)jsonFilePath:(NSString *)fName
-{
-    return [[NSBundle mainBundle]pathForResource:fName ofType:@"json"];
-}
-
-- (id)readBundleJSONFile:(NSString *)fName
-{
-    NSData *data = [NSData dataWithContentsOfFile:[self jsonFilePath:fName]];
-    NSError *err = nil;
-    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
-    if (err) {
-        return nil;
-    }
-    return json;
-}
-
-- (NSDictionary *)readOCTypes
-{
-    return [self readBundleJSONFile:@"OCTypes"];
-}
-
-- (NSDictionary *)readCarInfo
-{
-    return [self readBundleJSONFile:@"Car"];
-}
-
-- (NSDictionary *)readUserInfo
-{
-    return [self readBundleJSONFile:@"Userinfo"];
-}
-
-- (NSArray *)readFavConcern
-{
-    return [self readBundleJSONFile:@"FavConcern"];
-}
-
-- (NSDictionary *)readGalleryList
-{
-    return [self readBundleJSONFile:@"GalleryList"];
-}
-
-- (NSDictionary *)readVideoList
-{
-    return [self readBundleJSONFile:@"Video"];
-}
-
-- (NSDictionary *)readVideoInfo
-{
-    return [self readBundleJSONFile:@"VideoInfo"];
-}
 @end

@@ -72,6 +72,17 @@
         return [toString copy];
     }else if([self isKindOfClass:[NSDictionary class]]){
         return [self description];
+    }else if([self isKindOfClass:[NSNumber class]]) {
+        return [self description];
+    }else if([self isKindOfClass:[NSNull class]]) {
+        return [self description];
+    }else if([self isKindOfClass:[NSURL class]]) {
+        NSURL *url = (NSURL *)self;
+        return [url absoluteString];
+    }else if([self isKindOfClass:[NSString class]]) {
+        return [self description];
+    }else if([self isKindOfClass:[NSDate class]]) {
+        return [self description];
     }else{
         NSMutableString *toString = [[NSMutableString alloc]init];
         NSArray *properties = [self propertyNames];

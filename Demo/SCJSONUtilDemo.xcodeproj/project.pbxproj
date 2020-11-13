@@ -30,8 +30,11 @@
 		C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2CB1F2186B9007F04FC /* UserInfoModel.m */; };
 		DD58AFFF238D01EE00E47BB1 /* OCTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD58AFFE238D01EE00E47BB1 /* OCTypes.json */; };
 		DD58B002238D035B00E47BB1 /* OCTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = DD58B001238D035B00E47BB1 /* OCTypes.m */; };
-		DD99FD0721EF0C3000584AC4 /* Video.json in Resources */ = {isa = PBXBuildFile; fileRef = DD99FD0621EF0C3000584AC4 /* Video.json */; };
-		DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* VideoList.m */; };
+		DD8B84D2255E78FC00E56BE3 /* Store.json in Resources */ = {isa = PBXBuildFile; fileRef = DD8B84D1255E78FC00E56BE3 /* Store.json */; };
+		DD8B84D7255E796500E56BE3 /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8B84D6255E796500E56BE3 /* StoreModel.m */; };
+		DD8B84EE255E842700E56BE3 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8B84ED255E842700E56BE3 /* Util.m */; };
+		DD99FD0721EF0C3000584AC4 /* DynamicVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = DD99FD0621EF0C3000584AC4 /* DynamicVideos.json */; };
+		DD99FD0A21EF0C4200584AC4 /* DynamicVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99FD0921EF0C4200584AC4 /* DynamicVideos.m */; };
 		DDA214172227C2700001F585 /* VideoInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA214162227C2700001F585 /* VideoInfo.json */; };
 		DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA214192227C31B0001F585 /* VideoInfo.m */; };
 		DDC71419245054CB00C32703 /* SCJSONUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC71418245054CB00C32703 /* SCJSONUtilTests.m */; };
@@ -85,9 +88,14 @@
 		DD58AFFE238D01EE00E47BB1 /* OCTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OCTypes.json; sourceTree = "<group>"; };
 		DD58B000238D035B00E47BB1 /* OCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCTypes.h; sourceTree = "<group>"; };
 		DD58B001238D035B00E47BB1 /* OCTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCTypes.m; sourceTree = "<group>"; };
-		DD99FD0621EF0C3000584AC4 /* Video.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Video.json; sourceTree = "<group>"; };
-		DD99FD0821EF0C4200584AC4 /* VideoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoList.h; sourceTree = "<group>"; };
-		DD99FD0921EF0C4200584AC4 /* VideoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoList.m; sourceTree = "<group>"; };
+		DD8B84D1255E78FC00E56BE3 /* Store.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Store.json; sourceTree = "<group>"; };
+		DD8B84D5255E796500E56BE3 /* StoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
+		DD8B84D6255E796500E56BE3 /* StoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreModel.m; sourceTree = "<group>"; };
+		DD8B84EC255E842700E56BE3 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		DD8B84ED255E842700E56BE3 /* Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		DD99FD0621EF0C3000584AC4 /* DynamicVideos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DynamicVideos.json; sourceTree = "<group>"; };
+		DD99FD0821EF0C4200584AC4 /* DynamicVideos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicVideos.h; sourceTree = "<group>"; };
+		DD99FD0921EF0C4200584AC4 /* DynamicVideos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicVideos.m; sourceTree = "<group>"; };
 		DDA214162227C2700001F585 /* VideoInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoInfo.json; sourceTree = "<group>"; };
 		DDA214182227C31B0001F585 /* VideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoInfo.h; sourceTree = "<group>"; };
 		DDA214192227C31B0001F585 /* VideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 		C342B29D1F218554007F04FC /* SCJSONUtilDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DD8B84EB255E841500E56BE3 /* util */,
 				C342B2B51F2186B9007F04FC /* debug */,
 				C342B2BC1F2186B9007F04FC /* jsonfiles */,
 				C342B2C31F2186B9007F04FC /* models */,
@@ -201,7 +210,7 @@
 		C342B2BC1F2186B9007F04FC /* jsonfiles */ = {
 			isa = PBXGroup;
 			children = (
-				DD99FD0621EF0C3000584AC4 /* Video.json */,
+				DD99FD0621EF0C3000584AC4 /* DynamicVideos.json */,
 				C342B2BD1F2186B9007F04FC /* Car.json */,
 				C342B2BE1F2186B9007F04FC /* FavConcern.json */,
 				C342B2BF1F2186B9007F04FC /* GalleryList.json */,
@@ -209,6 +218,7 @@
 				C342B2C11F2186B9007F04FC /* NewRecProduct.json */,
 				C342B2C21F2186B9007F04FC /* Userinfo.json */,
 				DDA214162227C2700001F585 /* VideoInfo.json */,
+				DD8B84D1255E78FC00E56BE3 /* Store.json */,
 				DD58AFFE238D01EE00E47BB1 /* OCTypes.json */,
 			);
 			path = jsonfiles;
@@ -225,14 +235,25 @@
 				C342B2C91F2186B9007F04FC /* GalleryModel.m */,
 				C342B2CA1F2186B9007F04FC /* UserInfoModel.h */,
 				C342B2CB1F2186B9007F04FC /* UserInfoModel.m */,
-				DD99FD0821EF0C4200584AC4 /* VideoList.h */,
-				DD99FD0921EF0C4200584AC4 /* VideoList.m */,
+				DD99FD0821EF0C4200584AC4 /* DynamicVideos.h */,
+				DD99FD0921EF0C4200584AC4 /* DynamicVideos.m */,
 				DDA214182227C31B0001F585 /* VideoInfo.h */,
 				DDA214192227C31B0001F585 /* VideoInfo.m */,
 				DD58B000238D035B00E47BB1 /* OCTypes.h */,
 				DD58B001238D035B00E47BB1 /* OCTypes.m */,
+				DD8B84D5255E796500E56BE3 /* StoreModel.h */,
+				DD8B84D6255E796500E56BE3 /* StoreModel.m */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		DD8B84EB255E841500E56BE3 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				DD8B84EC255E842700E56BE3 /* Util.h */,
+				DD8B84ED255E842700E56BE3 /* Util.m */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		DDC71417245054CB00C32703 /* SCJSONUtilTests */ = {
@@ -339,8 +360,9 @@
 				C342B2CF1F2186B9007F04FC /* Car.json in Resources */,
 				C342B2D41F2186B9007F04FC /* Userinfo.json in Resources */,
 				C342B2A91F218554007F04FC /* Main.storyboard in Resources */,
-				DD99FD0721EF0C3000584AC4 /* Video.json in Resources */,
+				DD99FD0721EF0C3000584AC4 /* DynamicVideos.json in Resources */,
 				C342B2D11F2186B9007F04FC /* GalleryList.json in Resources */,
+				DD8B84D2255E78FC00E56BE3 /* Store.json in Resources */,
 				C342B2D31F2186B9007F04FC /* NewRecProduct.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,13 +469,15 @@
 				C342B2CD1F2186B9007F04FC /* NSObject+DebugDescription.m in Sources */,
 				C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */,
 				C342B2D61F2186B9007F04FC /* FavModel.m in Sources */,
+				DD8B84EE255E842700E56BE3 /* Util.m in Sources */,
 				C342B2A31F218554007F04FC /* AppDelegate.m in Sources */,
 				C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */,
 				C342B2D51F2186B9007F04FC /* Car.m in Sources */,
 				DD58B002238D035B00E47BB1 /* OCTypes.m in Sources */,
+				DD8B84D7255E796500E56BE3 /* StoreModel.m in Sources */,
 				C342B2A01F218554007F04FC /* main.m in Sources */,
 				DDA2141A2227C31B0001F585 /* VideoInfo.m in Sources */,
-				DD99FD0A21EF0C4200584AC4 /* VideoList.m in Sources */,
+				DD99FD0A21EF0C4200584AC4 /* DynamicVideos.m in Sources */,
 				C342B2CC1F2186B9007F04FC /* NSArray+DebugDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

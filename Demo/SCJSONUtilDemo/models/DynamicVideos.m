@@ -1,22 +1,22 @@
 //
-//  VideoList.m
+//  DynamicVideos.m
 //  SCJSONUtilDemo
 //
 //  Created by Matt Reach on 2019/1/16.
 //  Copyright © 2019 xuqianlong. All rights reserved.
 //
 
-#import "VideoList.h"
+#import "DynamicVideos.h"
 
 @implementation VideoItem
 
 @end
 
-@implementation VideoList
+@implementation DynamicVideos
 
 - (NSDictionary *)sc_collideKeysMap
 {
-    return @{@"wp" : @"wps"};
+    return @{@"wp" : @"wps",@"activity.on" : @"activity"};
 }
 
 - (NSDictionary *)sc_collideKeyModelMap

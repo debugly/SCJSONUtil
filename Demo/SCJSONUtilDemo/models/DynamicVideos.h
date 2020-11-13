@@ -1,5 +1,5 @@
 //
-//  VideoList.h
+//  DynamicVideos.h
 //  SCJSONUtilDemo
 //
 //  Created by Matt Reach on 2019/1/16.
@@ -17,24 +17,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSString *domain;
 @property (nonatomic,strong) NSNumber *type;
-@property (nonatomic,strong) NSNumber * rid;
-@property (nonatomic,copy) NSMutableString * rSwfurl;
-@property (nonatomic,copy) NSMutableString * url;
-@property (nonatomic,strong) NSNumber * uid;
+@property (nonatomic,strong) NSNumber *rid;
+@property (nonatomic,strong) NSNumber *uid;
+@property (nonatomic,copy) NSMutableString *rSwfurl;
+@property (nonatomic,copy) NSURL *url;
 
 @end
 
-@interface VideoList : NSObject
+@interface DynamicVideos : NSObject
 
 @property (nonatomic,copy) NSString *area;
 @property (nonatomic,assign) long playlistid;
 @property (nonatomic,strong) NSArray<VideoItem *> *videos;
 ///没有指定model，原值输出！
 @property (nonatomic,strong) NSArray *wps;
-///不能解析！
+///与服务器返回类型不同，也不能自动转换，因此不能解析！
 @property (nonatomic,assign) int array;
 @property (nonatomic,assign) BOOL activity;
-@property (nonatomic,copy) NSMutableString * smallVerPicUrl;
+@property (nonatomic,copy) NSURL * smallVerPicUrl;
 @property (nonatomic,copy) NSMutableString * showAlbumName;
 
 @end
