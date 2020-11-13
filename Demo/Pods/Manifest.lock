@@ -1,5 +1,5 @@
 PODS:
-  - SCJSONUtil (2.5.2)
+  - SCJSONUtil (2.5.3)
 
 DEPENDENCIES:
   - SCJSONUtil (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SCJSONUtil: f815eb11a2aa6fdc4920cb9ff2a33850a8bc4a7d
+  SCJSONUtil: 2bfbe54635e41bfbfcb3e4589c5564d286abb268
 
 PODFILE CHECKSUM: 4d715c1f01ec2dfe95c38447fb1fba28f04f1733
 
