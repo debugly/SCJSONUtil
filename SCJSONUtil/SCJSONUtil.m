@@ -30,7 +30,7 @@ BOOL isSCJSONUtilLogOn(void) {
 
 typedef NS_ENUM(NSUInteger, QLPropertyType) {
     QLPropertyTypeUnknow,
-    QLPropertyTypeId        = 'id',
+    QLPropertyTypeId        = '*',
     QLPropertyTypeObj       = '@',
     QLPropertyTypeFloat     = 'f',
     QLPropertyTypeDouble    = 'd',
