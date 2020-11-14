@@ -30,6 +30,7 @@ BOOL isSCJSONUtilLogOn(void) {
 
 typedef NS_ENUM(NSUInteger, QLPropertyType) {
     QLPropertyTypeUnknow,
+    QLPropertyTypeId        = 'id',
     QLPropertyTypeObj       = '@',
     QLPropertyTypeFloat     = 'f',
     QLPropertyTypeDouble    = 'd',
@@ -76,22 +77,30 @@ static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *k
     }
     // 2.成员类型
     const char *encodedType = property_getAttributes(property);
-    char *matched = strchr(encodedType, ',');
-    long location = matched - encodedType;
-    char fullType[location+1];
+    //TB,N,V_boolType
+    //T@"NSString",C,N,V_stringType
+    //T@,&,N,V_idType
+    char *comma = strchr(encodedType, ',');
+    int bufferLen = (int)(comma - encodedType + 1);
+    char fullType[bufferLen];
+    bzero(fullType, bufferLen);
     sscanf(encodedType,"%[^,]",fullType);
     
     if (strlen(fullType)>=2) {
         const char iType = fullType[1];
         switch (iType) {
-            case QLPropertyTypeObj:
+            case '@':
             {
                 //属性是对象类型，这里取出对象的类型，id取不出来；
-                bool isID =  QLCStrEqual("T@", fullType);
-                if (!isID) {
-                    char buffer [location+1];
+                bool isID = QLCStrEqual("T@", fullType);
+                if (isID) {
+                    QLPropertyDesc *desc = (QLPropertyDesc *)QLMallocInit(sizeof(QLPropertyDesc));
+                    desc->type = QLPropertyTypeId;
+                    return desc;
+                } else {
+                    char buffer [bufferLen + 1];
+                    bzero(buffer,bufferLen + 1);
                     sscanf(fullType, "%*[^\"]\"%[^\"]",buffer);
-                    
                     QLPropertyDesc *desc = (QLPropertyDesc *)QLMallocInit(sizeof(QLPropertyDesc));
                     char *pclazz = (char *)QLMallocInit(sizeof(buffer)+1);
                     strcpy(pclazz, buffer);
@@ -312,6 +321,14 @@ static NSURL * QLValueTransfer2NSURL(id value) {
             
             //3、进入类型自动匹配流程
             do {
+                //属性是 id 类型时，无法进行值的类型匹配
+                if (pdesc->type == QLPropertyTypeId) {
+                    if (mappedValue) {
+                        [self setValue:mappedValue forKey:propertyName];
+                    }
+                    break;
+                }
+                
                 //3.1、匹配数组类型
                 if ([mappedValue isKindOfClass:[NSArray class]]) {
                     

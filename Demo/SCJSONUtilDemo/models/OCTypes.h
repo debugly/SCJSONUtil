@@ -37,6 +37,7 @@
 @property (nonatomic, strong) NSURL * urlType;
 @property (nonatomic, strong) NSURL * fileURLType;
 @property (nonatomic, strong) OCClassA * classAType;
+@property (nonatomic, strong) id idType;
 
 @end
 

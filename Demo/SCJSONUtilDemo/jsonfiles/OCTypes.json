@@ -20,5 +20,6 @@
     "fileURLType": "file:///Users/qianlongxu/Desktop/Caption.zip",
     "classAType": {
         "name": "I'm a classA instance."
-    }
+    },
+    "idType": "I'm id type."
 }

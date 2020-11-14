@@ -71,6 +71,7 @@
     XCTAssert([model.fileURLType isKindOfClass:[NSURL class]]);
     XCTAssert([model.classAType isKindOfClass:[OCClassA class]]);
     XCTAssert([model.classAType.name isEqualToString:@"I'm a classA instance."]);
+    XCTAssert([model.idType isEqualToString:@"I'm id type."]);
 }
 
 - (void)performance:(long)count work:(dispatch_block_t)block
