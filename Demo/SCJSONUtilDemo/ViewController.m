@@ -33,13 +33,13 @@
     //[self printTypeEncodings];
     
     SCJSONUtilLog(YES);
-    NSString *result = [NSString stringWithFormat:@"=======日志开关=======\n%d\n\n",isSCJSONUtilLogOn()];
+    NSString *result = [NSString stringWithFormat:@"\n=======日志开关=======\n%d\n\n",isSCJSONUtilLogOn()];
     
     result = [result stringByAppendingString:@"\n=======Objc 基础数据类型解析=======\n\n"];
 
     result = [result stringByAppendingString:[self testOCTypes]];
 
-    result = [result stringByAppendingString:@"\n=======通过keypath简化解析=======\n\n"];
+    result = [result stringByAppendingString:@"\n=======通过keypath查找简化解析=======\n\n"];
 
     result = [result stringByAppendingString:[self testKeyPathFromDictionary]];
 
@@ -63,7 +63,7 @@
 
     result = [result stringByAppendingString:[self testCustomConvertFromDictionary]];
 
-    result = [result stringByAppendingString:@"\n\n===================\n\n"];
+    result = [result stringByAppendingString:@"\n\n===================\n"];
     
     self.txv.text = result;
  
