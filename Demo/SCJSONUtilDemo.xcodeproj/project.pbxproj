@@ -15,7 +15,6 @@
 		C342B2A91F218554007F04FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342B2A71F218554007F04FC /* Main.storyboard */; };
 		C342B2AB1F218554007F04FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C342B2AA1F218554007F04FC /* Assets.xcassets */; };
 		C342B2AE1F218554007F04FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342B2AC1F218554007F04FC /* LaunchScreen.storyboard */; };
-		C342B2CE1F2186B9007F04FC /* NSObject+PrintProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */; };
 		C342B2CF1F2186B9007F04FC /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BD1F2186B9007F04FC /* Car.json */; };
 		C342B2D01F2186B9007F04FC /* FavConcern.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BE1F2186B9007F04FC /* FavConcern.json */; };
 		C342B2D11F2186B9007F04FC /* GalleryList.json in Resources */ = {isa = PBXBuildFile; fileRef = C342B2BF1F2186B9007F04FC /* GalleryList.json */; };
@@ -62,8 +61,6 @@
 		C342B2AA1F218554007F04FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C342B2AD1F218554007F04FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C342B2AF1F218554007F04FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C342B2BA1F2186B9007F04FC /* NSObject+PrintProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PrintProperties.h"; sourceTree = "<group>"; };
-		C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PrintProperties.m"; sourceTree = "<group>"; };
 		C342B2BD1F2186B9007F04FC /* Car.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Car.json; sourceTree = "<group>"; };
 		C342B2BE1F2186B9007F04FC /* FavConcern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FavConcern.json; sourceTree = "<group>"; };
 		C342B2BF1F2186B9007F04FC /* GalleryList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GalleryList.json; sourceTree = "<group>"; };
@@ -164,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				DD8B84EB255E841500E56BE3 /* util */,
-				C342B2B51F2186B9007F04FC /* debug */,
 				C342B2BC1F2186B9007F04FC /* jsonfiles */,
 				C342B2C31F2186B9007F04FC /* models */,
 				C342B2A11F218554007F04FC /* AppDelegate.h */,
@@ -186,15 +182,6 @@
 				C342B29F1F218554007F04FC /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C342B2B51F2186B9007F04FC /* debug */ = {
-			isa = PBXGroup;
-			children = (
-				C342B2BA1F2186B9007F04FC /* NSObject+PrintProperties.h */,
-				C342B2BB1F2186B9007F04FC /* NSObject+PrintProperties.m */,
-			);
-			path = debug;
 			sourceTree = "<group>";
 		};
 		C342B2BC1F2186B9007F04FC /* jsonfiles */ = {
@@ -454,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C342B2CE1F2186B9007F04FC /* NSObject+PrintProperties.m in Sources */,
 				C342B2A61F218554007F04FC /* ViewController.m in Sources */,
 				C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */,
 				C342B2D61F2186B9007F04FC /* FavModel.m in Sources */,

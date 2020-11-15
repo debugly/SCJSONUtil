@@ -91,10 +91,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "SCJSONUtil", "SCJSONUtil/**/*.{h,m}"
-  # s.exclude_files = "Classes/Exclude"
-
-  # s.public_header_files = "SCJSONUtil/**/*.h"
+  s.source_files  = "SCJSONUtil/**/*.{h,m,c}"
+  s.private_header_files = "SCJSONUtil/internal/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

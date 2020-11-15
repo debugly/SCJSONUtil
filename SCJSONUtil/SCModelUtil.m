@@ -1,22 +1,15 @@
 //
-//  NSObject+PrintProperties.m
-//  QLJSON2Model
+//  SCModelUtil.m
+//  SCJSONUtil
 //
-//  Created by qianlongxu on 15/11/25.
-//  Copyright © 2015年 xuqianlong. All rights reserved.
+//  Created by qianlongxu on 2020/11/15.
 //
 
-#import "NSObject+PrintProperties.h"
+#import "SCModelUtil.h"
 #import "objc/runtime.h"
+#import "scutil.h"
 
-static bool QLCStrEqual(char *v1,char *v2) {
-    if (NULL == v1 || NULL == v2) {
-        return 0;
-    }
-    return 0 == strcmp(v1, v2);
-}
-
-@implementation NSObject (PrintProperties)
+@implementation NSObject (SCModel2JSON)
 
 - (NSArray *)sc_propertyNames
 {
@@ -147,32 +140,25 @@ static bool QLCStrEqual(char *v1,char *v2) {
     return @"unknown";
 }
 
-- (NSString *)sc_calssName
+- (id)sc_toJSON
 {
-    NSString *clazz = NSStringFromClass([self class]);
-    if ([clazz hasPrefix:@"__"]) {
-        clazz = NSStringFromClass([self superclass]);
-    }
-    if ([clazz isEqualToString:@"NSTaggedPointerString"]) {
-        clazz = NSStringFromClass([[self superclass]superclass]);
-    }
-    return clazz;
+    return [self sc_toJSONWithProperyType:NO];
 }
 
-- (id)sc_allPropertiesToJSON
+- (id)sc_toJSONWithProperyType:(BOOL)printProperyType
 {
     if ([self isKindOfClass:[NSArray class]]) {
         NSMutableArray *json = [NSMutableArray array];
         NSArray *arr = (NSArray *)self;
         for (NSObject *obj in arr) {
-            [json addObject:[obj sc_allPropertiesToJSON]];
+            [json addObject:[obj sc_toJSONWithProperyType:printProperyType]];
         }
         return [json copy];
     } else if ([self isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *json = [NSMutableDictionary dictionary];
         NSDictionary *dic = (NSDictionary *)self;
         [dic enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL * _Nonnull stop) {
-            [json setObject:[obj sc_allPropertiesToJSON] forKey:key];
+            [json setObject:[obj sc_toJSONWithProperyType:printProperyType] forKey:key];
         }];
         return [json copy];
     } else if ([self isKindOfClass:[NSNumber class]]) {
@@ -186,28 +172,22 @@ static bool QLCStrEqual(char *v1,char *v2) {
         return [self description];
     } else if ([self isKindOfClass:[NSDate class]]) {
         return [self description];
-    } else{
+    } else {
         NSArray *propertiesForClass = [self sc_propertyNames];
         NSMutableDictionary *json = [NSMutableDictionary dictionary];
-        for (int i = 0; i < propertiesForClass.count; i++) {
-            NSMutableDictionary *propertyDic = propertiesForClass[i];
+        for (NSDictionary *propertyDic in propertiesForClass) {
             NSArray *properties = [propertyDic objectForKey:@"property"];
             for (NSString *property in properties) {
                 id propertyValue = [self valueForKey:property];
-                NSString *aKey = [NSString stringWithFormat:@"%@ %@",[self sc_typeForProperty:property],property];
-                [json setObject:[propertyValue sc_allPropertiesToJSON] forKey:aKey];
+                NSString *aKey = property;
+                if (printProperyType) {
+                    aKey = [NSString stringWithFormat:@"%@ %@",[self sc_typeForProperty:property],property];
+                }
+                [json setObject:[propertyValue sc_toJSONWithProperyType:printProperyType] forKey:aKey];
             }
         }
         return json;
     }
-}
-
-- (NSString *)sc_printAllProperties
-{
-    NSDictionary *dic = [self sc_allPropertiesToJSON];
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted|1UL << 3 error:nil];
-    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return [NSString stringWithFormat:@"%@* %p:\n%@",[self sc_calssName],self,jsonStr];
 }
 
 @end

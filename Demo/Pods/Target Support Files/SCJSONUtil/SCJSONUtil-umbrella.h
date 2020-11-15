@@ -11,6 +11,7 @@
 #endif
 
 #import "SCJSONUtil.h"
+#import "SCModelUtil.h"
 
 FOUNDATION_EXPORT double SCJSONUtilVersionNumber;
 FOUNDATION_EXPORT const unsigned char SCJSONUtilVersionString[];

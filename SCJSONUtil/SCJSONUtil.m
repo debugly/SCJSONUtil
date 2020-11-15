@@ -7,6 +7,7 @@
 
 #import "SCJSONUtil.h"
 #import "objc/runtime.h"
+#import "scutil.h"
 
 static BOOL s_SCJSONUtilLogOn = NO;
 
@@ -56,13 +57,6 @@ typedef struct QLPropertyDescS {
 #pragma mark - C  Functions  -Begin-
 
 #pragma mark 【Utils】
-
-static bool QLCStrEqual(char *v1,char *v2) {
-    if (NULL == v1 || NULL == v2) {
-        return 0;
-    }
-    return 0 == strcmp(v1, v2);
-}
 
 static void *QLMallocInit(size_t __size) {
     void *p = malloc(__size);

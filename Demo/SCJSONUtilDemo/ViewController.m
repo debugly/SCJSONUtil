@@ -8,15 +8,43 @@
 
 #import "ViewController.h"
 #import <SCJSONUtil/SCJSONUtil.h>
+#import <SCJSONUtil/SCModelUtil.h>
 #import "UserInfoModel.h"
 #import "FavModel.h"
 #import "OCTypes.h"
-#import "NSObject+PrintProperties.h"
 #import "Car.h"
 #import "DynamicVideos.h"
 #import "VideoInfo.h"
 #import "StoreModel.h"
 #import "Util.h"
+
+@implementation NSObject (print)
+
+- (NSString *)sc_calssName
+{
+    NSString *clazz = NSStringFromClass([self class]);
+    if ([clazz hasPrefix:@"__"]) {
+        clazz = NSStringFromClass([self superclass]);
+    }
+    if ([clazz isEqualToString:@"NSTaggedPointerString"]) {
+        clazz = NSStringFromClass([[self superclass]superclass]);
+    }
+    return clazz;
+}
+
+- (NSString *)sc_toJSONString:(BOOL)prettyPrinted
+{
+    return [self sc_toJSONString:prettyPrinted printProperyType:NO];
+}
+
+- (NSString *)sc_toJSONString:(BOOL)prettyPrinted printProperyType:(BOOL)printProperyType
+{
+    NSDictionary *dic = [self sc_toJSONWithProperyType:printProperyType];
+    NSString *jsonStr = JSON2String(dic, prettyPrinted);
+    return [NSString stringWithFormat:@"%@* %p:\n%@",[self sc_calssName],self,jsonStr];
+}
+
+@end
 
 @interface ViewController ()
 
@@ -25,7 +53,6 @@
 @end
 
 @implementation ViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +66,7 @@
 
     result = [result stringByAppendingString:[self testOCTypes]];
 
-    result = [result stringByAppendingString:@"\n=======通过keypath查找简化解析=======\n\n"];
+    result = [result stringByAppendingString:@"\n\n=======通过keypath查找简化解析=======\n\n"];
 
     result = [result stringByAppendingString:[self testKeyPathFromDictionary]];
 
@@ -68,7 +95,7 @@
     self.txv.text = result;
  
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        ///测试嵌套model解析性能
+//        //测试嵌套model解析性能
 //        [self testPerformance];
 //    });
 }
@@ -104,14 +131,16 @@
 {
     NSDictionary *typesDic = [Util readOCTypes];
     OCTypes *model = [OCTypes sc_instanceFormDic:typesDic];
-    return [model sc_printAllProperties];
+    //美化打印
+    return [model sc_toJSONString:YES];
 }
 
 - (NSString *)testKeyPathFromDictionary
 {
     NSDictionary *json = [Util readStore];
     StoreModel *store = SCJSON2Model(json, @"StoreModel");
-    return [store sc_printAllProperties];
+    //美化打印，并且json的key值里包含定义属性的类型
+    return [store sc_toJSONString:YES printProperyType:YES];
 }
 
 - (void)testCount:(long)count work:(dispatch_block_t)block
@@ -129,23 +158,23 @@
 
 #pragma mark - test json 2 model
 
-///字典转model
+//字典转model
 - (NSString *)testModelFromDictionary
 {
     NSDictionary *userInfoDic = [Util readUserInfo];
     UserInfoModel *uModel = [UserInfoModel sc_instanceFormDic:userInfoDic];
-    return [uModel sc_printAllProperties];
+    return [uModel sc_toJSONString:NO];
 }
 
-///json数组转model数组
+//json数组转model数组
 - (NSString *)testModelsFromJSONArr
 {
     NSArray *favArr = [Util readFavConcern];
     NSArray *favModels = [FavModel sc_instanceArrFormArray:favArr];
-    return [favModels sc_printAllProperties];
+    return [favModels sc_toJSONString:NO];
 }
 
-///指定解析的路径，找到指定 json；
+//指定解析的路径，找到指定 json；
 - (NSString *)testKeyPath
 {
     
@@ -177,7 +206,7 @@
     //自动根据类型解析；
     NSArray *models = SCJSON2Model(findedJSON, @"GalleryModel");
     //这完全可以封装到我们的网络请求里！
-    return [models sc_printAllProperties];
+    return [models sc_toJSONString:NO];
 }
 
 - (NSString *)testDynamicConvertFromDictionary
@@ -190,7 +219,7 @@
      */
     
     DynamicVideos *videoList = SCJSON2ModelV2(videoListJson, @"DynamicVideos",@{@"qq":@"videos"});//这里的qq,可以换成iqiyi；具体是业务决定的
-    return [videoList sc_printAllProperties];
+    return [videoList sc_toJSONString:NO];
 }
 
 - (NSString *)testCustomConvertFromDictionary
@@ -204,12 +233,12 @@
      */
     
     VideoInfo *videoInfo = SCJSON2ModelV2(videoInfoJson, @"VideoInfo",@{@"test":@"RefObj"});//额外业务参数
-    return [videoInfo sc_printAllProperties];
+    return [videoInfo sc_toJSONString:NO];
 }
 
 - (void)testPerformance
 {
-    ///!! 测试的时候要关闭日志，NSLog 很耗时！
+    //!! 测试的时候要关闭日志，NSLog 很耗时！
     NSDictionary *userInfoDic = [Util readUserInfo];
     
     [self testCount:10000 work:^{

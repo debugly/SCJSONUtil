@@ -8,10 +8,10 @@
 
 #import <XCTest/XCTest.h>
 #import <SCJSONUtil/SCJSONUtil.h>
+#import <SCJSONUtil/SCModelUtil.h>
 #import "UserInfoModel.h"
 #import "FavModel.h"
 #import "OCTypes.h"
-#import "NSObject+PrintProperties.h"
 #import "Car.h"
 #import "DynamicVideos.h"
 #import "VideoInfo.h"
@@ -41,10 +41,24 @@
     XCTAssert(isSCJSONUtilLogOn() == NO);
 }
 
+- (void)rawJson:(id)json model:(id)model
+{
+    //测试下json转成的model，再转回json跟原json是否相等；
+    NSDictionary *json2 = [model sc_toJSON];
+    [json enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        id obj2 = json2[key];
+        NSLog(@"test equal[%@:%@:%@]",key,obj,obj2);
+        //由于浮点数字不能直接比较，因此这里统一转为字符串再比
+        XCTAssert([[obj2 description] isEqual:[obj description]]);
+    }];
+}
+
 - (void)testOCTypes
 {
     NSDictionary *typesDic = [Util readOCTypes];
     OCTypes *model = [OCTypes sc_instanceFormDic:typesDic];
+    [self rawJson:typesDic model:model];
+    
     XCTAssert(model.boolType == YES);
     XCTAssert(model.BOOLType == YES);
     XCTAssert(model.charType == 32);
@@ -91,7 +105,6 @@
     NSDictionary *userInfoDic = [Util readUserInfo];
     UserInfoModel *uModel = [UserInfoModel sc_instanceFormDic:userInfoDic];
     XCTAssert([uModel.code isEqualToString:@"10000"]);
-    
     DataInfoModel *data = uModel.data;
     XCTAssert([data.basicInfo isKindOfClass:[BasicInfoModel class]]);
     
@@ -117,6 +130,7 @@
         XCTAssert([brandImg.thumbnail_url isEqualToString:@"http://thumbnail/e/s/15/04/01/20150401185027193594-10-10.jpg"]);
         XCTAssert([[brandImg.raw_url absoluteString] isEqualToString:@"http://raw/e/s/15/04/01/20150401185027193594-10-10.jpg"]);
     }
+    
 }
 
 ///json数组转model数组
