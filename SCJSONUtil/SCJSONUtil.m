@@ -593,3 +593,23 @@ id SCJSON2ModelV2(id json,NSString *modelName,id refObj){
 id SCJSON2Model(id json,NSString *modelName){
     return SCJSON2ModelV2(json, modelName, nil);
 }
+
+NSString *JSON2String(id json, BOOL prettyPrinted) {
+    if (@available(iOS 13.0,macos 10.15,*)) {
+        NSJSONWritingOptions opts = NSJSONWritingWithoutEscapingSlashes;
+        if (prettyPrinted) {
+            opts |= NSJSONWritingPrettyPrinted;
+        }
+        NSData *data = [NSJSONSerialization dataWithJSONObject:json options:opts error:nil];
+        if (data) {
+            return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+    } else {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:json options:prettyPrinted?NSJSONWritingPrettyPrinted:0 error:nil];
+        if (data) {
+            NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            return [jsonStr stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+        }
+    }
+    return nil;
+}
