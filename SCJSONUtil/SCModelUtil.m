@@ -21,10 +21,12 @@
         NSMutableArray *propertyNames = [NSMutableArray array];
         for (int i = 0; i < count; i++) {
             NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-            if ([ignoreArr containsObject:key]) {
-                continue;
+            if (key) {
+                if ([ignoreArr containsObject:key]) {
+                    continue;
+                }
+                [propertyNames addObject:key];
             }
-            [propertyNames addObject:key];
         }
         free(properties);
         return propertyNames;
@@ -151,14 +153,20 @@
         NSMutableArray *json = [NSMutableArray array];
         NSArray *arr = (NSArray *)self;
         for (NSObject *obj in arr) {
-            [json addObject:[obj sc_toJSONWithProperyType:printProperyType]];
+            id o = [obj sc_toJSONWithProperyType:printProperyType];
+            if (o) {
+                [json addObject:o];
+            }
         }
         return [json copy];
     } else if ([self isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *json = [NSMutableDictionary dictionary];
         NSDictionary *dic = (NSDictionary *)self;
         [dic enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL * _Nonnull stop) {
-            [json setObject:[obj sc_toJSONWithProperyType:printProperyType] forKey:key];
+            id o = [obj sc_toJSONWithProperyType:printProperyType];
+            if (o) {
+                [json setObject:o forKey:key];
+            }
         }];
         return [json copy];
     } else if ([self isKindOfClass:[NSNumber class]]) {
@@ -183,7 +191,10 @@
                 if (printProperyType) {
                     aKey = [NSString stringWithFormat:@"%@ %@",[self sc_typeForProperty:property],property];
                 }
-                [json setObject:[propertyValue sc_toJSONWithProperyType:printProperyType] forKey:aKey];
+                id obj = [propertyValue sc_toJSONWithProperyType:printProperyType];
+                if (obj) {
+                    [json setObject:obj forKey:aKey];
+                }
             }
         }
         return json;
