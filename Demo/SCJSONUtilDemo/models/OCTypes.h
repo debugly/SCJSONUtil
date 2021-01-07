@@ -38,6 +38,7 @@
 @property (nonatomic, strong) NSURL * fileURLType;
 @property (nonatomic, strong) OCClassA * classAType;
 @property (nonatomic, strong) id idType;
+//只读属性不解析
+@property (readonly, strong) NSString *skipMe;
 
 @end
-

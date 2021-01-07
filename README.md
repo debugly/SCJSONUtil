@@ -201,3 +201,6 @@ end
 * 2.5.3 重构解析过程，支持keypath映射。
 
 * 2.5.4 支持 Model 转 json；提供 JSON2String 方法。
+
+* 2.5.5 修复服务端返回字段是 description，hash等只读属性字段时的崩溃。
+

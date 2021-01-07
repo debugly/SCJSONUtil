@@ -21,5 +21,9 @@
     "classAType": {
         "name": "I'm a classA instance."
     },
-    "idType": "I'm id type."
+    "idType": "I'm id type.",
+    "hash": 979798,
+    "superclass": "NSObject",
+    "description": "I'm a description",
+    "debugDescription": "I'm a debug description"
 }

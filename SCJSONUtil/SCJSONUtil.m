@@ -74,30 +74,35 @@ static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *k
     //TB,N,V_boolType
     //T@"NSString",C,N,V_stringType
     //T@,&,N,V_idType
-    char *comma = strchr(encodedType, ',');
-    int bufferLen = (int)(comma - encodedType + 1);
-    char fullType[bufferLen];
-    bzero(fullType, bufferLen);
-    sscanf(encodedType,"%[^,]",fullType);
+    //T@"NSString",R,C description debugDescription
+    //T#,R  superclass
+    //TQ,R  hash
+    NSString *encodedStr = [[NSString alloc] initWithCString:encodedType encoding:NSUTF8StringEncoding];
+    NSArray *items = [encodedStr componentsSeparatedByString:@","];
+    //skip the readonly property. fix [<OCTypes 0x600000e9e880> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key description.'
+    if ([items containsObject:@"R"]) {
+        return NULL;
+    }
+
+    NSString *varFullType = [items firstObject];
     
-    if (strlen(fullType)>=2) {
-        const char iType = fullType[1];
+    if (varFullType.length >= 2) {
+        const char iType = [varFullType characterAtIndex:1];
         switch (iType) {
-            case '@':
+            case QLPropertyTypeObj:
             {
                 //属性是对象类型，这里取出对象的类型，id取不出来；
-                bool isID = QLCStrEqual("T@", fullType);
+                bool isID = [@"T@" isEqualToString:varFullType];
                 if (isID) {
                     QLPropertyDesc *desc = (QLPropertyDesc *)QLMallocInit(sizeof(QLPropertyDesc));
                     desc->type = QLPropertyTypeId;
                     return desc;
                 } else {
-                    char buffer [bufferLen + 1];
-                    bzero(buffer,bufferLen + 1);
-                    sscanf(fullType, "%*[^\"]\"%[^\"]",buffer);
+                    NSString *varType = [varFullType substringFromIndex:2];
+                    varType = [varType stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                     QLPropertyDesc *desc = (QLPropertyDesc *)QLMallocInit(sizeof(QLPropertyDesc));
-                    char *pclazz = (char *)QLMallocInit(sizeof(buffer)+1);
-                    strcpy(pclazz, buffer);
+                    char *pclazz = (char *)QLMallocInit(varType.length + 1);
+                    strcpy(pclazz, varType.UTF8String);
                     desc->clazz = pclazz;
                     desc->type = iType;
                     return desc;

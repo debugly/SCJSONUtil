@@ -45,8 +45,9 @@
 {
     //测试下json转成的model，再转回json跟原json是否相等；
     NSDictionary *json2 = [model sc_toJSON];
-    [json enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        id obj2 = json2[key];
+    //以model转成的josn为主，因为可能有的model没有解析json的所有字段
+    [json2 enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        id obj2 = json[key];
         NSLog(@"test equal[%@:%@:%@]",key,obj,obj2);
         //由于浮点数字不能直接比较，因此这里统一转为字符串再比
         XCTAssert([[obj2 description] isEqual:[obj description]]);
@@ -86,6 +87,8 @@
     XCTAssert([model.classAType isKindOfClass:[OCClassA class]]);
     XCTAssert([model.classAType.name isEqualToString:@"I'm a classA instance."]);
     XCTAssert([model.idType isEqualToString:@"I'm id type."]);
+    XCTAssert(model.skipMe == nil);
+    
 }
 
 - (void)performance:(long)count work:(dispatch_block_t)block
