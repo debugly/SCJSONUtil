@@ -25,6 +25,7 @@
 		C342B2D61F2186B9007F04FC /* FavModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C71F2186B9007F04FC /* FavModel.m */; };
 		C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2C91F2186B9007F04FC /* GalleryModel.m */; };
 		C342B2D81F2186B9007F04FC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C342B2CB1F2186B9007F04FC /* UserInfoModel.m */; };
+		C9B76F472D9B7FE4002429FD /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B76F462D9B7FE4002429FD /* Test.m */; };
 		DD58AFFF238D01EE00E47BB1 /* OCTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD58AFFE238D01EE00E47BB1 /* OCTypes.json */; };
 		DD58B002238D035B00E47BB1 /* OCTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = DD58B001238D035B00E47BB1 /* OCTypes.m */; };
 		DD8B84D2255E78FC00E56BE3 /* Store.json in Resources */ = {isa = PBXBuildFile; fileRef = DD8B84D1255E78FC00E56BE3 /* Store.json */; };
@@ -76,6 +77,8 @@
 		C342B2CA1F2186B9007F04FC /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		C342B2CB1F2186B9007F04FC /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		C7668D1C6AFBFC376799CADF /* Pods-SCJSONUtilTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCJSONUtilTests.debug.xcconfig"; path = "Target Support Files/Pods-SCJSONUtilTests/Pods-SCJSONUtilTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C9B76F452D9B7FE4002429FD /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		C9B76F462D9B7FE4002429FD /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		DD58AFFE238D01EE00E47BB1 /* OCTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OCTypes.json; sourceTree = "<group>"; };
 		DD58B000238D035B00E47BB1 /* OCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCTypes.h; sourceTree = "<group>"; };
 		DD58B001238D035B00E47BB1 /* OCTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCTypes.m; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				C342B2A21F218554007F04FC /* AppDelegate.m */,
 				C342B2A41F218554007F04FC /* ViewController.h */,
 				C342B2A51F218554007F04FC /* ViewController.m */,
+				C9B76F452D9B7FE4002429FD /* Test.h */,
+				C9B76F462D9B7FE4002429FD /* Test.m */,
 				C342B2A71F218554007F04FC /* Main.storyboard */,
 				C342B2AA1F218554007F04FC /* Assets.xcassets */,
 				C342B2AC1F218554007F04FC /* LaunchScreen.storyboard */,
@@ -442,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B76F472D9B7FE4002429FD /* Test.m in Sources */,
 				C342B2A61F218554007F04FC /* ViewController.m in Sources */,
 				C342B2D71F2186B9007F04FC /* GalleryModel.m in Sources */,
 				C342B2D61F2186B9007F04FC /* FavModel.m in Sources */,
@@ -616,7 +622,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96C96H28CU;
 				INFOPLIST_FILE = SCJSONUtilDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.debugly.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -634,7 +640,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96C96H28CU;
 				INFOPLIST_FILE = SCJSONUtilDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.debugly.SCJSONUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

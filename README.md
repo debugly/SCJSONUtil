@@ -1,18 +1,15 @@
 SCJSONUtil
 ============
 
-[![CI Status](https://img.shields.io/travis/debugly/SCJSONUtil.svg?style=flat)](https://travis-ci.org/debugly/SCJSONUtil)
 [![Version](https://img.shields.io/cocoapods/v/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
 [![License](https://img.shields.io/cocoapods/l/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
 [![Platform](https://img.shields.io/cocoapods/p/SCJSONUtil.svg?style=flat)](https://cocoapods.org/pods/SCJSONUtil)
 
 ## 特性
 
-1. 小巧，方便，功能强大
-2. 支持自定义属性名（比如服务器返回的是id，我们的model里可定义为uid）
-3. 支持类型自动匹配（比如服务器返回的是Number，model里定义的是String，那么会解析为 String）
-
-> 在 2.1 之前该框架会将服务器返回的字段统统转为 NSString 类型，因此 model 的头文件里定义的全都是 NSString 类型，这对于使用者来说是个恶心的限制，有用户还有我的团队都给我反馈过这个问题，因此我决定支持下类型自动匹配的功能，因此更加完美了呢！
+1. 小巧方便，功能强大
+2. 支持映射属性名（比如服务器返回的是id，我们的model里可定义为uid）
+3. 类型自动匹配（比如服务器返回的是Number，model里定义的是String，那么就会解析为 String）
 
 ## 使用 CocoaPods 安装
 
@@ -65,13 +62,13 @@ end
 * 使用JSONUtil解析
 
 ```
-假设responseJSON是服务器返回的json数据，那么正规的写法是先判断 code 是否等于 0，然后再取出 gallery 对应的json，然后交给 JSONUtil ！JSONUtil提供了便捷的方法能够方便将它取出来：
+假设responseJSON是服务器返回的json数据，常规的写法是先判断 code 是否等于 0，然后再取出 gallery 对应的json 转成 model; 然而 SCJSONUtil 
+提供了更加便捷的方法完成这些步骤：
 
 //1.根据 keypath 取出目标json
-    id findedJSON = SCFindJSONwithKeyPath(@"content/gallery", responseJSON); 
+id findedJSON = SCFindJSONwithKeyPath(@"content/gallery", responseJSON); 
 //2.使用 JSONUtil 解析
-    NSArray *models = SCJSON2Model(findedJSON, @"GalleryModel");
-
+NSArray *models = SCJSON2Model(findedJSON, @"GalleryModel");
 //models 就是你想要的GalleryModel数组了！
 ```
 
@@ -81,14 +78,12 @@ end
 
 ## 核心思想
 
-1. 递归，JSON 是可以嵌套的，因此这是一个递归的问题；
-2. 遍历 JSON，而不是遍历model
+1. 递归：JSON 是可以嵌套的，因此这是一个递归的问题；
+2. 遍历 JSON，根据遍历出的 json 里的key，去 model 里查找对应的映射名或者属性名
 3. 适当的地方进行 ValueTransfer，做到类型自动匹配
 4. 通过 kvc 给 model 赋值
 
-核心的思想应该是一样的，不过具体实现差别还真的挺大的！
-
-### 主流 JSON 转 Model 流程
+### 其他 JSON 转 Model 框架的大致流程
 
 这里要解释下第二点，因为这里我和其他的 JSON 转 Model 框架的实现大不相同！先来看下其他的主流思想：
 
@@ -105,16 +100,13 @@ end
 
 - 遍历服务器返回的JSON
 - 根据遍历的key，去model里查询该属性
+  - 先看看是否做了属性名映射，没映射就用key当作属性名
   - 查到了，说明model里定义了该属性，就通过 Runtime 取出属性的类型，解析继续往下走
-  - 查不到，说明model里不关心该属性，开始下次遍历
-- 如果值是数组或者字典则开始递归
+  - 查不到，说明model里不关心该属性，继续遍历
+- 如果值是数组或者字典则创建一个数组或者字典对应的Model开始递归
 - 通过第二步获取的属性类型和json值类型比较
   - 类型一致，则直接 kvc 赋值
   - 类型不一致，则先进行转换，然后再 kvc 赋值
-
-### JSONUtil 与主流转换框架的区别
-
-可以看出： **JSONUtil 遍历的是服务器返回的 JSON 而不是model的全部属性，并且没做 cache ！这是与其他框架有很大区别！**
 
 ### JSONUtil 不做 cache 的原因
 
@@ -152,23 +144,23 @@ end
 
 * 1.0 必须继承 QLBaseModel 父类
 
-* 1.0.1 在属性命名上有限制，对于子model必须故意制造出"冲突 key"
+* 1.0.1 在属性命名上有限制，对于子model必须自定义属性名才行
 
-* 1.0.2 去掉了必须制造冲突 key 的限制,使用起来友好了许多
+* 1.0.2 去掉了必须自定义属性名的限制
 
-* 2.0 则去掉了必须继承父类的限制，可谓更贴合实际了; QLJSON2Model 改名为 JSONUtil
+* 2.0 则去掉了必须继承父类的限制，改名为 JSONUtil
 
-* 2.1 自动匹配类型，比如服务器返回了一个Number，客户端model属性是String，那么框架会帮你自动转为String
+* 2.1 增加匹配自动类型功能，比如服务器返回的 Number，客户端定义的是 String，那么会帮你自动转为 String
 
-* 2.2 公司项目也使用这个库，因此遵循内部的命名规范，统一加上sl(SL)前缀
+* 2.2 公司项目也使用这个库，命名规范需要，统一加上 sl(SL)前缀
 
-* 2.3 公司内部工程重构，将该库提取到了通用库中，因此修改了类名将 SL 改为了 SC ，方便日后及时更新该库
+* 2.3 项目重构，将该库提取到了通用库中，SL 前缀改为 SC
 
-* 2.4 支持 CocoaPods 安装；demo使用pods
+* 2.4 支持 CocoaPods 集成
 
 * 2.4.1 清理没用的方法
 
-* 2.4.2 当服务器返回数据不能转化为Number时，不能使用KVC赋值
+* 2.4.2 当服务器返回数据不能转化为 Number 时，不使用 KVC 赋值
 
 * 2.4.3 开始在 OS X 平台测试使用
 
@@ -184,15 +176,15 @@ end
   2018-11-27 18:30:17.844351+0800 SCJSONUtilDemo[91682:1947248] ⚠️⚠️ DataInfoModel 类的 cars 属性没有指定model类名，这会导致解析后数组里的值是原始值，并非model对象！可以通过 sc_collideKeyModelMap 指定 @{@"cars":@"XyzModel"}
   ```
 
-* 2.4.5 增加类别方法，可动态做key-value映射
+* 2.4.5 增加类别方法，可动态做 key-value 映射
 
 * 2.4.6 增加类别方法，可自定义解析过程
 
 * 2.4.7 修复通过 KVC 给标量赋值为 nil 时导致的崩溃
 
-* 2.4.8 修复没有配置Model名时，解析完毕后，属性值为nil问题
+* 2.4.8 修复没有配置 Model 名时，解析完毕后，属性值为nil问题
 
-* 2.4.9 当服务器返回值是数组类型，而Model属性不是数组类型时，不进行解析
+* 2.4.9 当服务器返回值是数组类型，而 Model 属性不是数组类型时，不进行解析
 
 * 2.5.0 支持解析 long long 类型，丰富测试 case
 
@@ -200,10 +192,12 @@ end
 
 * 2.5.2 增加日志控制开关，更加灵活
 
-* 2.5.3 重构解析过程，支持keypath映射
+* 2.5.3 重构解析过程，支持 keypath 映射
 
-* 2.5.4 支持 Model 转 json；提供 JSON2String 方法
+* 2.5.4 支持 Model 转 json；提供 JSON2String 工具方法
 
-* 2.5.5 修复服务端返回字段是 description，hash等只读属性字段时的崩溃
+* 2.5.5 修复服务端返回字段是 description，hash 等只读属性字段时的崩溃
 
 * 2.5.6 解决 Xcode14 找不到 libarclite_iphoneos.a 问题
+
+* 2.5.7 支持 tvos 平台

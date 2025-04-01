@@ -64,7 +64,7 @@ static void *QLMallocInit(size_t __size) {
     return p;
 }
 
-static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz,const char *key) {
+static QLPropertyDesc * QLPropertyDescForClassProperty(Class clazz, const char *key) {
     objc_property_t property = class_getProperty(clazz, key);
     if (NULL == property) {
         return NULL;
@@ -181,7 +181,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
 
 - (void)sc_findPropertyFromCollideKeyMap:(NSString *)serverKey
                                 forValue:(id)serverValue
-                              completion:(void(^)(NSString *,NSString *,id))comp
+                              completion:(void(^)(NSString *, NSString *,id))comp
 {
     id<SCJSON2ModelProtocol>_self = (id<SCJSON2ModelProtocol>)self;
     if ([_self respondsToSelector:@selector(sc_collideKeysMap)]) {
@@ -231,7 +231,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
 - (void)sc_resolveunDefinedKey:(NSString *)propertyName
                       forValue:(id)propertyValue
                         refObj:(id)refObj
-                    completion:(void(^)(NSString *,NSString *,id))comp
+                    completion:(void(^)(NSString *, NSString *,id))comp
 {
     NSString *outName = propertyName;
     id outValue = propertyValue;
@@ -258,7 +258,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
 - (void)sc_resolveProperty:(NSString *)propertyName
                   forValue:(id)propertyValue
                     refObj:(id)refObj
-                completion:(void(^)(QLPropertyDesc *,NSString *,NSString *,id))comp
+                completion:(void(^)(QLPropertyDesc *, NSString *, NSString *,id))comp
 {
     /*
      为了支持 keypath 查找，只能优先查找 sc_collideKeysMap，否则会出现类型不匹配，出现没解析的情况！
@@ -266,7 +266,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
      */
     [self sc_findPropertyFromCollideKeyMap:propertyName
                                   forValue:propertyValue
-                                completion:^(NSString *pName,NSString *mKey,id mValue) {
+                                completion:^(NSString *pName, NSString *mKey, id mValue) {
         QLPropertyDesc * pdesc = NULL;
         if (pName) {
             //通过sc_collideKeysMap提供了
@@ -548,7 +548,7 @@ static NSURL * QLValueTransfer2NSURL(id value) {
 
 #pragma mark - JOSNUtil public c functions
 
-id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *json){
+id SCFindJSONwithKeyPathArr(NSArray *pathArr, NSDictionary *json){
     if (!json) {
         return nil;
     }
@@ -569,7 +569,7 @@ id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *json){
     }
 }
 
-id SCFindJSONwithKeyPathV2(NSString *keyPath,NSDictionary *JSON,NSString *separator){
+id SCFindJSONwithKeyPathV2(NSString *keyPath, NSDictionary *JSON, NSString *separator){
     if (!keyPath || keyPath.length == 0) {
         return JSON;
     }
@@ -580,21 +580,21 @@ id SCFindJSONwithKeyPathV2(NSString *keyPath,NSDictionary *JSON,NSString *separa
     return SCFindJSONwithKeyPathArr(pathArr, JSON);
 }
 
-id SCFindJSONwithKeyPath(NSString *keyPath,NSDictionary *json){
+id SCFindJSONwithKeyPath(NSString *keyPath, NSDictionary *json){
     return SCFindJSONwithKeyPathV2(keyPath, json, @"/");
 }
 
-id SCJSON2ModelV2(id json,NSString *modelName,id refObj){
+id SCJSON2ModelV2(id json, NSString *modelName, id refObj){
     Class clazz = NSClassFromString(modelName);
     return [clazz sc_instanceFromValue:json refObj:refObj];
 }
 
-id SCJSON2Model(id json,NSString *modelName){
+id SCJSON2Model(id json, NSString *modelName){
     return SCJSON2ModelV2(json, modelName, nil);
 }
 
 NSString *JSON2String(id json, BOOL prettyPrinted) {
-    if (@available(iOS 13.0,macos 10.15,*)) {
+    if (@available(iOS 13.0,macos 10.15, watchos 6.0, tvos 13.0, *)) {
         NSJSONWritingOptions opts = NSJSONWritingWithoutEscapingSlashes;
         if (prettyPrinted) {
             opts |= NSJSONWritingPrettyPrinted;
@@ -604,7 +604,7 @@ NSString *JSON2String(id json, BOOL prettyPrinted) {
             return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         }
     } else {
-        NSData *data = [NSJSONSerialization dataWithJSONObject:json options:prettyPrinted?NSJSONWritingPrettyPrinted:0 error:nil];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:json options:prettyPrinted ? NSJSONWritingPrettyPrinted:0 error:nil];
         if (data) {
             NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             return [jsonStr stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];

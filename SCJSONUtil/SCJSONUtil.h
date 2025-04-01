@@ -95,36 +95,36 @@ BOOL isSCJSONUtilLogOn(void);
  @brief  很方便的一个c方法,将 JSON 转为 Model,可用将 JSON 数据解析成 Model 对象！
 
  @param json 服务器返回的JSON
- @param modelName 客户端定义的Model类类名
+ @param modelName 客户端定义的Model类类名, 或者系统的 NSNumber、NSString、NSURL、NSDecimalNumber
  @return Model类的实例对象
  */
-FOUNDATION_EXPORT id SCJSON2Model(id json,NSString *modelName);
+FOUNDATION_EXPORT id SCJSON2Model(id json, NSString *modelName);
 
 /**
- @brief  see SCJSON2ModelV2
+ @brief 同 SCJSON2Model
  @param refObj  客户端传递的额外参数,辅助解析;具体参考 Video.json 解析成 DynamicVideos 的例子！
  */
-FOUNDATION_EXPORT id SCJSON2ModelV2(id json,NSString *modelName,id refObj);
+FOUNDATION_EXPORT id SCJSON2ModelV2(id json, NSString *modelName, id refObj);
 
 /**
  *  @brief 根据 pathArr 找到目标 JSON,可辅助 JSON2Model 函数使用,先找到目标 JOSN 再解析;
  *  @param pathArr 查找目标 JSON 的路径数组;@[@"data"], @[@"data",@"list"]
  */
 
-FOUNDATION_EXPORT id SCFindJSONwithKeyPathArr(NSArray *pathArr,NSDictionary *json);
+FOUNDATION_EXPORT id SCFindJSONwithKeyPathArr(NSArray *pathArr, NSDictionary *json);
 
 /**
  *  @brief 根据 keyPath 找到目标 JSON,可辅助 JSON2Model 函数使用,先找到目标 JOSN 再解析;
  *  @param keyPath 查找目标 JSON 的路径;以 / 为分割的字符;例如：@"data", @"data/list",@"data/detail/price";
  */
-FOUNDATION_EXPORT id SCFindJSONwithKeyPath(NSString *keyPath,NSDictionary *json);
+FOUNDATION_EXPORT id SCFindJSONwithKeyPath(NSString *keyPath, NSDictionary *json);
 
 /**
  *  @brief see SCFindJSONwithKeyPath
  *  @param keyPath JSON 数据里的一个路径
  *  @param separator 指定分割字符;
  */
-FOUNDATION_EXPORT id SCFindJSONwithKeyPathV2(NSString *keyPath,NSDictionary *JSON,NSString *separator);
+FOUNDATION_EXPORT id SCFindJSONwithKeyPathV2(NSString *keyPath, NSDictionary *JSON, NSString *separator);
 
 /**
  *  @brief 将 JSON 对象转成字符串(url类型不会将 / 转义为 \\/)

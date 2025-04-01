@@ -14,4 +14,13 @@
 
 @implementation OCTypes
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _skipMe = @"我没有被解析";
+    }
+    return self;
+}
+
 @end
